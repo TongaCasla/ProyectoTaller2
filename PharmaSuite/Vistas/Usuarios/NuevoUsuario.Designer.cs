@@ -63,144 +63,144 @@
             // lNombre
             // 
             lNombre.AutoSize = true;
-            lNombre.Font = new Font("Century Gothic", 12.75F);
+            lNombre.Font = new Font("Microsoft Sans Serif", 12.75F);
             lNombre.Location = new Point(180, 37);
             lNombre.Name = "lNombre";
-            lNombre.Size = new Size(77, 21);
+            lNombre.Size = new Size(68, 20);
             lNombre.TabIndex = 0;
             lNombre.Text = "Nombre";
             // 
             // txbNombre
             // 
-            txbNombre.Font = new Font("Century Gothic", 11F);
+            txbNombre.Font = new Font("Microsoft Sans Serif", 11F);
             txbNombre.Location = new Point(175, 63);
             txbNombre.Name = "txbNombre";
-            txbNombre.Size = new Size(196, 25);
+            txbNombre.Size = new Size(196, 24);
             txbNombre.TabIndex = 1;
             txbNombre.TextChanged += txbNombre_TextChanged;
             // 
             // txbApellido
             // 
-            txbApellido.Font = new Font("Century Gothic", 11F);
+            txbApellido.Font = new Font("Microsoft Sans Serif", 11F);
             txbApellido.Location = new Point(430, 61);
             txbApellido.Name = "txbApellido";
-            txbApellido.Size = new Size(196, 25);
+            txbApellido.Size = new Size(196, 24);
             txbApellido.TabIndex = 2;
             txbApellido.TextChanged += txbApellido_TextChanged;
             // 
             // lApellido
             // 
             lApellido.AutoSize = true;
-            lApellido.Font = new Font("Century Gothic", 12.75F);
+            lApellido.Font = new Font("Microsoft Sans Serif", 12.75F);
             lApellido.Location = new Point(433, 37);
             lApellido.Name = "lApellido";
-            lApellido.Size = new Size(78, 21);
+            lApellido.Size = new Size(68, 20);
             lApellido.TabIndex = 2;
             lApellido.Text = "Apellido";
             // 
             // txbDni
             // 
-            txbDni.Font = new Font("Century Gothic", 11F);
+            txbDni.Font = new Font("Microsoft Sans Serif", 11F);
             txbDni.Location = new Point(175, 129);
             txbDni.Name = "txbDni";
-            txbDni.Size = new Size(196, 25);
+            txbDni.Size = new Size(196, 24);
             txbDni.TabIndex = 3;
             txbDni.TextChanged += txbDni_TextChanged;
             // 
             // lDni
             // 
             lDni.AutoSize = true;
-            lDni.Font = new Font("Century Gothic", 12.75F);
+            lDni.Font = new Font("Microsoft Sans Serif", 12.75F);
             lDni.Location = new Point(175, 103);
             lDni.Name = "lDni";
-            lDni.Size = new Size(41, 21);
+            lDni.Size = new Size(38, 20);
             lDni.TabIndex = 4;
             lDni.Text = "DNI";
             // 
             // txbEmail
             // 
-            txbEmail.Font = new Font("Century Gothic", 11F);
+            txbEmail.Font = new Font("Microsoft Sans Serif", 11F);
             txbEmail.Location = new Point(175, 261);
             txbEmail.Name = "txbEmail";
-            txbEmail.Size = new Size(196, 25);
+            txbEmail.Size = new Size(196, 24);
             txbEmail.TabIndex = 7;
             txbEmail.TextChanged += txbEmail_TextChanged;
             // 
             // lEmail
             // 
             lEmail.AutoSize = true;
-            lEmail.Font = new Font("Century Gothic", 12.75F);
+            lEmail.Font = new Font("Microsoft Sans Serif", 12.75F);
             lEmail.Location = new Point(175, 235);
             lEmail.Name = "lEmail";
-            lEmail.Size = new Size(52, 21);
+            lEmail.Size = new Size(51, 20);
             lEmail.TabIndex = 6;
             lEmail.Text = "Email";
             // 
             // txbContra
             // 
-            txbContra.Font = new Font("Century Gothic", 11F);
+            txbContra.Font = new Font("Microsoft Sans Serif", 11F);
             txbContra.Location = new Point(430, 195);
             txbContra.Name = "txbContra";
             txbContra.PasswordChar = '*';
-            txbContra.Size = new Size(196, 25);
+            txbContra.Size = new Size(196, 24);
             txbContra.TabIndex = 6;
             txbContra.TextChanged += txbContra_TextChanged;
             // 
             // lContra
             // 
             lContra.AutoSize = true;
-            lContra.Font = new Font("Century Gothic", 12.75F);
+            lContra.Font = new Font("Microsoft Sans Serif", 12.75F);
             lContra.Location = new Point(430, 169);
             lContra.Name = "lContra";
-            lContra.Size = new Size(109, 21);
+            lContra.Size = new Size(95, 20);
             lContra.TabIndex = 10;
             lContra.Text = "Contraseña";
             // 
             // txbUsuario
             // 
-            txbUsuario.Font = new Font("Century Gothic", 11F);
+            txbUsuario.Font = new Font("Microsoft Sans Serif", 11F);
             txbUsuario.Location = new Point(175, 195);
             txbUsuario.Name = "txbUsuario";
-            txbUsuario.Size = new Size(196, 25);
+            txbUsuario.Size = new Size(196, 24);
             txbUsuario.TabIndex = 5;
             txbUsuario.TextChanged += txbUsuario_TextChanged;
             // 
             // lUsuario
             // 
             lUsuario.AutoSize = true;
-            lUsuario.Font = new Font("Century Gothic", 12.75F);
+            lUsuario.Font = new Font("Microsoft Sans Serif", 12.75F);
             lUsuario.Location = new Point(175, 169);
             lUsuario.Name = "lUsuario";
-            lUsuario.Size = new Size(70, 21);
+            lUsuario.Size = new Size(67, 20);
             lUsuario.TabIndex = 8;
             lUsuario.Text = "Usuario";
             // 
             // lSexo
             // 
             lSexo.AutoSize = true;
-            lSexo.Font = new Font("Century Gothic", 12.75F);
+            lSexo.Font = new Font("Microsoft Sans Serif", 12.75F);
             lSexo.Location = new Point(433, 301);
             lSexo.Name = "lSexo";
-            lSexo.Size = new Size(48, 21);
+            lSexo.Size = new Size(46, 20);
             lSexo.TabIndex = 14;
             lSexo.Text = "Sexo";
             // 
             // txbTele
             // 
-            txbTele.Font = new Font("Century Gothic", 11F);
+            txbTele.Font = new Font("Microsoft Sans Serif", 11F);
             txbTele.Location = new Point(430, 129);
             txbTele.Name = "txbTele";
-            txbTele.Size = new Size(196, 25);
+            txbTele.Size = new Size(196, 24);
             txbTele.TabIndex = 4;
             txbTele.TextChanged += txbTele_TextChanged;
             // 
             // lTele
             // 
             lTele.AutoSize = true;
-            lTele.Font = new Font("Century Gothic", 12.75F);
+            lTele.Font = new Font("Microsoft Sans Serif", 12.75F);
             lTele.Location = new Point(433, 103);
             lTele.Name = "lTele";
-            lTele.Size = new Size(80, 21);
+            lTele.Size = new Size(73, 20);
             lTele.TabIndex = 12;
             lTele.Text = "Teléfono";
             // 
@@ -208,10 +208,10 @@
             // 
             radioHombre.AutoSize = true;
             radioHombre.Checked = true;
-            radioHombre.Font = new Font("Century Gothic", 12F);
+            radioHombre.Font = new Font("Microsoft Sans Serif", 12F);
             radioHombre.Location = new Point(430, 331);
             radioHombre.Name = "radioHombre";
-            radioHombre.Size = new Size(90, 25);
+            radioHombre.Size = new Size(84, 24);
             radioHombre.TabIndex = 10;
             radioHombre.TabStop = true;
             radioHombre.Text = "Hombre";
@@ -221,10 +221,10 @@
             // radioMujer
             // 
             radioMujer.AutoSize = true;
-            radioMujer.Font = new Font("Century Gothic", 12F);
+            radioMujer.Font = new Font("Microsoft Sans Serif", 12F);
             radioMujer.Location = new Point(528, 331);
             radioMujer.Name = "radioMujer";
-            radioMujer.Size = new Size(71, 25);
+            radioMujer.Size = new Size(66, 24);
             radioMujer.TabIndex = 16;
             radioMujer.Text = "Mujer";
             radioMujer.UseVisualStyleBackColor = true;
@@ -232,10 +232,10 @@
             // radioOtro
             // 
             radioOtro.AutoSize = true;
-            radioOtro.Font = new Font("Century Gothic", 12F);
+            radioOtro.Font = new Font("Microsoft Sans Serif", 12F);
             radioOtro.Location = new Point(605, 331);
             radioOtro.Name = "radioOtro";
-            radioOtro.Size = new Size(64, 25);
+            radioOtro.Size = new Size(58, 24);
             radioOtro.TabIndex = 17;
             radioOtro.Text = "Otro";
             radioOtro.UseVisualStyleBackColor = true;
@@ -243,31 +243,31 @@
             // lFecha
             // 
             lFecha.AutoSize = true;
-            lFecha.Font = new Font("Century Gothic", 12.75F);
+            lFecha.Font = new Font("Microsoft Sans Serif", 12.75F);
             lFecha.Location = new Point(430, 235);
             lFecha.Name = "lFecha";
-            lFecha.Size = new Size(163, 21);
+            lFecha.Size = new Size(144, 20);
             lFecha.TabIndex = 18;
             lFecha.Text = "Fecha Nacimiento";
             // 
             // dateFecha
             // 
-            dateFecha.Font = new Font("Century Gothic", 11F);
+            dateFecha.Font = new Font("Microsoft Sans Serif", 11F);
             dateFecha.Format = DateTimePickerFormat.Short;
             dateFecha.Location = new Point(430, 261);
             dateFecha.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateFecha.Name = "dateFecha";
-            dateFecha.Size = new Size(196, 25);
+            dateFecha.Size = new Size(196, 24);
             dateFecha.TabIndex = 8;
             dateFecha.ValueChanged += dateFecha_ValueChanged;
             // 
             // lPerfil
             // 
             lPerfil.AutoSize = true;
-            lPerfil.Font = new Font("Century Gothic", 12.75F);
+            lPerfil.Font = new Font("Microsoft Sans Serif", 12.75F);
             lPerfil.Location = new Point(174, 301);
             lPerfil.Name = "lPerfil";
-            lPerfil.Size = new Size(47, 21);
+            lPerfil.Size = new Size(48, 20);
             lPerfil.TabIndex = 21;
             lPerfil.Text = "Perfil";
             // 
@@ -275,12 +275,12 @@
             // 
             comboPerfil.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPerfil.DropDownWidth = 270;
-            comboPerfil.Font = new Font("Century Gothic", 12.75F);
+            comboPerfil.Font = new Font("Microsoft Sans Serif", 12.75F);
             comboPerfil.FormattingEnabled = true;
-            comboPerfil.Items.AddRange(new object[] { "Cliente", "Empleado", "Gerente", "Administrador Productos", "Administrador Usuarios" });
+            comboPerfil.Items.AddRange(new object[] { "Gerente", "Administrador Usuarios", "Administrador Productos", "Empleado", "Cliente" });
             comboPerfil.Location = new Point(174, 327);
             comboPerfil.Name = "comboPerfil";
-            comboPerfil.Size = new Size(197, 29);
+            comboPerfil.Size = new Size(197, 28);
             comboPerfil.TabIndex = 9;
             comboPerfil.SelectedIndexChanged += comboPerfil_SelectedIndexChanged;
             // 
@@ -292,7 +292,7 @@
             btnGuardar.Cursor = Cursors.Hand;
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.FlatStyle = FlatStyle.Flat;
-            btnGuardar.Font = new Font("Century Gothic", 18F);
+            btnGuardar.Font = new Font("Microsoft Sans Serif", 18F);
             btnGuardar.ForeColor = Color.Black;
             btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -313,7 +313,7 @@
             btnCancelar.Cursor = Cursors.Hand;
             btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Century Gothic", 18F);
+            btnCancelar.Font = new Font("Microsoft Sans Serif", 18F);
             btnCancelar.ForeColor = Color.Black;
             btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -333,7 +333,7 @@
             btnMostrarContra.Cursor = Cursors.Hand;
             btnMostrarContra.FlatAppearance.BorderSize = 0;
             btnMostrarContra.FlatStyle = FlatStyle.Flat;
-            btnMostrarContra.Font = new Font("Century Gothic", 18F);
+            btnMostrarContra.Font = new Font("Microsoft Sans Serif", 18F);
             btnMostrarContra.ForeColor = Color.Black;
             btnMostrarContra.Image = (Image)resources.GetObject("btnMostrarContra.Image");
             btnMostrarContra.Location = new Point(632, 187);
@@ -350,7 +350,7 @@
             btnOcultarContra.Cursor = Cursors.Hand;
             btnOcultarContra.FlatAppearance.BorderSize = 0;
             btnOcultarContra.FlatStyle = FlatStyle.Flat;
-            btnOcultarContra.Font = new Font("Century Gothic", 18F);
+            btnOcultarContra.Font = new Font("Microsoft Sans Serif", 18F);
             btnOcultarContra.ForeColor = Color.Black;
             btnOcultarContra.Image = (Image)resources.GetObject("btnOcultarContra.Image");
             btnOcultarContra.Location = new Point(632, 187);
@@ -399,10 +399,10 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 24F);
+            label1.Font = new Font("Microsoft Sans Serif", 24F);
             label1.Location = new Point(257, 9);
             label1.Name = "label1";
-            label1.Size = new Size(240, 39);
+            label1.Size = new Size(224, 37);
             label1.TabIndex = 42;
             label1.Text = "Nuevo usuario";
             // 
