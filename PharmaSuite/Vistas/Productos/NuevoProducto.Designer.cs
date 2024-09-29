@@ -98,6 +98,7 @@
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Kg", "Gr", "L", "Ml" });
             comboBox2.Location = new Point(606, 202);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(49, 29);
@@ -108,6 +109,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Higiene", "Medicamento", "Venta libre", "Perfume", "Limpieza" });
             comboBox1.Location = new Point(515, 127);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(140, 29);

@@ -14,4 +14,6 @@ public partial class Usuario
     public int IdPersona { get; set; }
 
     public virtual Persona IdPersonaNavigation { get; set; } = null!;
+
+    
 }

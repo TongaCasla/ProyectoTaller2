@@ -15,12 +15,17 @@ namespace PharmaSuite.Vistas.Usuarios
 {
     public partial class DatosPersona : Form
     {
-        public DatosPersona(Persona ps)
+
+        private Persona usuarioActual;
+        public DatosPersona(Persona ps,Persona usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual=usuarioActual;
             this.asignarValores(ps);
 
-            this.verificarTipoPerfil(ps.IdPerfil);
+            this.verificarTipoPerfil(usuarioActual.IdPerfil);
+
+
             this.labelPersona.Text += ps.Nombre+" "+ps.Apellido;
         }
         private void verificarTipoPerfil(int tipoPerfil)
@@ -30,7 +35,9 @@ namespace PharmaSuite.Vistas.Usuarios
                 //Perfil empleado;
                 case 2:
                 //Perfil Gerente
-                case 1:
+
+                case 3:
+
                     {
                         lPerfil.Hide();
                         comboPerfil.Hide();

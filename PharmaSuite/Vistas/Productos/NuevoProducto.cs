@@ -15,6 +15,8 @@ namespace PharmaSuite.Vistas.Productos
         public NuevoProducto()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 1;
         }
 
         private void button1_Click(object sender, EventArgs e)

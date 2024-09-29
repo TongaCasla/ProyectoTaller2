@@ -87,12 +87,12 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Font = new Font("Century Gothic", 11F);
+            dateTimePicker1.Font = new Font("Century Gothic", 15.75F);
             dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.Location = new Point(431, 209);
             dateTimePicker1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(154, 25);
+            dateTimePicker1.Size = new Size(154, 33);
             dateTimePicker1.TabIndex = 44;
             // 
             // btnGuardarReporte
@@ -119,21 +119,21 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 14.25F);
+            label2.Font = new Font("Century Gothic", 15.75F);
             label2.Location = new Point(431, 184);
             label2.Name = "label2";
-            label2.Size = new Size(129, 22);
+            label2.Size = new Size(143, 24);
             label2.TabIndex = 43;
             label2.Text = "Fecha de fin:";
             // 
             // dateFecha
             // 
-            dateFecha.Font = new Font("Century Gothic", 11F);
+            dateFecha.Font = new Font("Century Gothic", 15.75F);
             dateFecha.Format = DateTimePickerFormat.Short;
             dateFecha.Location = new Point(238, 209);
             dateFecha.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateFecha.Name = "dateFecha";
-            dateFecha.Size = new Size(154, 25);
+            dateFecha.Size = new Size(154, 33);
             dateFecha.TabIndex = 42;
             // 
             // label1
@@ -150,11 +150,11 @@
             // comboBox1
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Century Gothic", 14.25F);
+            comboBox1.Font = new Font("Century Gothic", 15.75F);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(238, 123);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(154, 30);
+            comboBox1.Size = new Size(154, 32);
             comboBox1.TabIndex = 4;
             // 
             // btnCancelar
@@ -200,20 +200,20 @@
             // lNombreProd
             // 
             lNombreProd.AutoSize = true;
-            lNombreProd.Font = new Font("Century Gothic", 14.25F);
-            lNombreProd.Location = new Point(238, 184);
+            lNombreProd.Font = new Font("Century Gothic", 15.75F);
+            lNombreProd.Location = new Point(237, 184);
             lNombreProd.Name = "lNombreProd";
-            lNombreProd.Size = new Size(153, 22);
+            lNombreProd.Size = new Size(170, 24);
             lNombreProd.TabIndex = 2;
             lNombreProd.Text = "Fecha de inicio:";
             // 
             // lCodigoProd
             // 
             lCodigoProd.AutoSize = true;
-            lCodigoProd.Font = new Font("Century Gothic", 14.25F);
+            lCodigoProd.Font = new Font("Century Gothic", 15.75F);
             lCodigoProd.Location = new Point(238, 98);
             lCodigoProd.Name = "lCodigoProd";
-            lCodigoProd.Size = new Size(154, 22);
+            lCodigoProd.Size = new Size(169, 24);
             lCodigoProd.TabIndex = 0;
             lCodigoProd.Text = "Tipo de reporte:";
             // 

@@ -17,19 +17,25 @@ namespace PharmaSuite.Vistas.Usuarios
     {
         private String tituloTabla;
         private BusquedaEnTabla formBuscar;
+
+        private Persona usuarioActual;
         int idPerfil;
-        public MostrarTabla(string tituloLabel)
+        public MostrarTabla(string tituloLabel,Persona usuarioActual)
+
+
         {
             InitializeComponent();
+            this.usuarioActual= usuarioActual;
             this.setTitulo(tituloLabel);
             this.pruebaTablas();
             //this.verificarTabla();
 
         }
-        public MostrarTabla(String tituloLabel, bool habilitarBotones)
+        public MostrarTabla(String tituloLabel, bool habilitarBotones,Persona usuarioActual)
         {
             InitializeComponent();
             this.setTitulo(tituloLabel);
+            this.usuarioActual = usuarioActual;
             this.verificarTabla();
             btnBuscar.Visible = habilitarBotones;
             btnMostrarActivos.Visible = habilitarBotones;
@@ -127,7 +133,9 @@ namespace PharmaSuite.Vistas.Usuarios
             {
                 int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
                 Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
-                DatosPersona dtPer = new DatosPersona(ps);
+
+                DatosPersona dtPer = new DatosPersona(ps,usuarioActual);
+
                 dtPer.Show();
             }
             

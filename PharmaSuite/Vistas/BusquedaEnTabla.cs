@@ -43,7 +43,7 @@ namespace PharmaSuite.Vistas
             switch (tituloVista)
             {
                 case "Productos":
-                    tituloBusqueda = "Cod. Prod";
+                    tituloBusqueda = "Nombre";
                     break;
                 case "Categorías":
                     tituloBusqueda = "Categoría";
@@ -60,6 +60,9 @@ namespace PharmaSuite.Vistas
             this.Dispose();
         }
 
-        
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

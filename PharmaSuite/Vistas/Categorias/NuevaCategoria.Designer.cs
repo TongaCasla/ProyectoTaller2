@@ -82,6 +82,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Century Gothic", 14.25F);
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Activo", "Inactivo" });
             comboBox1.Location = new Point(425, 122);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(140, 30);
