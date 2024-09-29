@@ -54,7 +54,7 @@ namespace Vistas
         //Evento para cerrar cuestionario
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.LimpiarTextBoxes(this);
+            this.LimpiarTextBoxes(panel1);
         }
 
 
@@ -119,7 +119,7 @@ namespace Vistas
                 //Enviamos
 
                 //y luego limpiamos los datos 
-                this.LimpiarTextBoxes(this);
+                this.LimpiarTextBoxes(panel1);
             }
         }
 
