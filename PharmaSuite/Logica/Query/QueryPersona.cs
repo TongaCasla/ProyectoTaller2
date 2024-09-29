@@ -46,11 +46,19 @@ namespace PharmaSuite.Logica.Query
 
         }
 
+        public Persona bucarPorId (int id) 
+        {
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+            return dc.Personas.First(s => s.IdPersona.Equals(id));
+        }
+
         public List<Persona> listaPersona() 
         {
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
 
             return new List<Persona>(dc.Personas); 
-        } 
+        }
+
+       
     }
 }

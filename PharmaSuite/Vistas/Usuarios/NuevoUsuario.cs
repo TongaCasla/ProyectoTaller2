@@ -71,17 +71,21 @@ namespace Vistas
         //Verificamos que tipo de usuario se agregará
         private void comboPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.LimpiarTextBoxes(this);
+            if(comboPerfil.SelectedIndex == 0)
+            {
+                txbUsuario.Enabled = false;
+                txbContra.Enabled = false;
+            }
+            else
+            {
+                txbUsuario.Enabled = true;
+                txbContra.Enabled = true;
+            }
+
         }
 
 
-        private void txbNombre_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void txbApellido_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private string sexoRadioButton()
         {
