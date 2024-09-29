@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PharmaSuite.Logica.Query;
+using PharmaSuite.Modelo.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,35 +18,20 @@ namespace Vistas
 {
     public partial class VistaLogin : Form
     {
-        private string usuario;
+        private Persona usuarioActual;
         public VistaLogin()
         {
-            this.setUsuario(string.Empty);
             InitializeComponent();
-            this.Resize += new EventHandler(Form2_Resize);
-            CenterPanel();
+            this.setUsuario(usuarioActual);
 
         }
-        public void setUsuario(String usuario)
+        public void setUsuario(Persona usuario)
         {
-            this.usuario = usuario;
+            this.usuarioActual = usuario;
         }
-        public String getUsuario()
+        public Persona getUsuario()
         {
-            return this.usuario;
-        }
-
-
-        private void CenterPanel()
-        {
-            int x = (this.ClientSize.Width - panel1.Width) / 2;
-            int y = (this.ClientSize.Height - panel1.Height) / 2;
-            panel1.Location = new Point(x, y);
-        }
-
-        private void Form2_Resize(object sender, EventArgs e)
-        {
-            CenterPanel();
+            return this.usuarioActual;
         }
 
 
@@ -60,18 +47,20 @@ namespace Vistas
             //Rescatamos los datos
             string usuario = txtbUsuario.Text;
             string password = txtbContra.Text;
-            /*Opcional*/
-            //Comparamos si son iguales
-            if (usuario == password)
+            QueryUsuario qu = new();
+            qu.bucarNombre(usuario);
+
+
+            //Validamos la password
+            /*
+            if (qu.bucarNombre(usuario) && qu.verificarPassword(password))
             {
                 //Ocultamos la pantalla del login
                 this.Hide();
                 //Seteamos el usuario
                 this.setUsuario(usuario);
-                // Abrimos el nuevo formulario
                 VistaMenuPpal form = new(this.getUsuario());
                 form.Show();
-                // Cerramos el formulario actual cuando el nuevo se cierre
                 form.FormClosed += (s, args) => this.Close();
 
             }
@@ -80,16 +69,16 @@ namespace Vistas
             {
                 MessageBox.Show("Datos incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }*/
 
         }
-
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             Application.Exit();
 
         }
+
     }
 
 

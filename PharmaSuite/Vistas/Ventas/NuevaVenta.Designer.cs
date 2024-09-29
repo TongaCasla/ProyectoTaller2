@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NuevaVenta));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnCliente = new Button();
             checkBox1 = new CheckBox();
@@ -44,7 +46,6 @@
             btnBuscar = new Button();
             TBCodigoprod = new TextBox();
             label2 = new Label();
-            panel3 = new Panel();
             btnCancelar = new Button();
             btnGuardar = new Button();
             dataGridView1 = new DataGridView();
@@ -55,7 +56,7 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.Azure;
             panel1.Controls.Add(btnCliente);
             panel1.Controls.Add(checkBox1);
@@ -63,9 +64,9 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(TBDni);
             panel1.Controls.Add(btnBuscarDNI);
-            panel1.Location = new Point(403, 31);
+            panel1.Location = new Point(12, 17);
             panel1.Name = "panel1";
-            panel1.Size = new Size(389, 242);
+            panel1.Size = new Size(313, 242);
             panel1.TabIndex = 0;
             // 
             // btnCliente
@@ -78,7 +79,7 @@
             btnCliente.Font = new Font("Century Gothic", 15.75F);
             btnCliente.ForeColor = Color.Black;
             btnCliente.Image = (Image)resources.GetObject("btnCliente.Image");
-            btnCliente.Location = new Point(81, 141);
+            btnCliente.Location = new Point(35, 140);
             btnCliente.Name = "btnCliente";
             btnCliente.Size = new Size(232, 34);
             btnCliente.TabIndex = 44;
@@ -91,7 +92,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(81, 191);
+            checkBox1.Location = new Point(35, 190);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(200, 28);
             checkBox1.TabIndex = 43;
@@ -103,7 +104,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 20F);
-            label1.Location = new Point(130, 25);
+            label1.Location = new Point(84, 24);
             label1.Name = "label1";
             label1.Size = new Size(111, 33);
             label1.TabIndex = 42;
@@ -113,7 +114,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 15.75F);
-            label6.Location = new Point(81, 72);
+            label6.Location = new Point(35, 71);
             label6.Name = "label6";
             label6.Size = new Size(99, 24);
             label6.TabIndex = 36;
@@ -122,7 +123,7 @@
             // TBDni
             // 
             TBDni.Font = new Font("Century Gothic", 15.75F);
-            TBDni.Location = new Point(81, 96);
+            TBDni.Location = new Point(35, 95);
             TBDni.Name = "TBDni";
             TBDni.Size = new Size(196, 33);
             TBDni.TabIndex = 37;
@@ -137,7 +138,7 @@
             btnBuscarDNI.Font = new Font("Century Gothic", 15.75F);
             btnBuscarDNI.ForeColor = Color.Black;
             btnBuscarDNI.Image = (Image)resources.GetObject("btnBuscarDNI.Image");
-            btnBuscarDNI.Location = new Point(277, 95);
+            btnBuscarDNI.Location = new Point(231, 94);
             btnBuscarDNI.Name = "btnBuscarDNI";
             btnBuscarDNI.Size = new Size(36, 34);
             btnBuscarDNI.TabIndex = 38;
@@ -147,7 +148,7 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.Azure;
             panel2.Controls.Add(label4);
             panel2.Controls.Add(btnBuscarNombreProd);
@@ -156,16 +157,16 @@
             panel2.Controls.Add(btnBuscar);
             panel2.Controls.Add(TBCodigoprod);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(12, 31);
+            panel2.Location = new Point(331, 17);
             panel2.Name = "panel2";
-            panel2.Size = new Size(390, 242);
+            panel2.Size = new Size(276, 242);
             panel2.TabIndex = 1;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 20F);
-            label4.Location = new Point(132, 21);
+            label4.Location = new Point(76, 21);
             label4.Name = "label4";
             label4.Size = new Size(137, 33);
             label4.TabIndex = 35;
@@ -182,31 +183,33 @@
             btnBuscarNombreProd.ForeColor = Color.Black;
             btnBuscarNombreProd.Image = (Image)resources.GetObject("btnBuscarNombreProd.Image");
             btnBuscarNombreProd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscarNombreProd.Location = new Point(281, 171);
+            btnBuscarNombreProd.Location = new Point(225, 171);
             btnBuscarNombreProd.Name = "btnBuscarNombreProd";
             btnBuscarNombreProd.Size = new Size(36, 33);
             btnBuscarNombreProd.TabIndex = 34;
             btnBuscarNombreProd.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnBuscarNombreProd.UseVisualStyleBackColor = false;
-            btnBuscarNombreProd.Click += btnBuscarNombreProd_Click;
+            btnBuscarNombreProd.Visible = false;
             // 
             // TBNombreprod
             // 
             TBNombreprod.Font = new Font("Century Gothic", 15.75F);
-            TBNombreprod.Location = new Point(85, 171);
+            TBNombreprod.Location = new Point(29, 171);
             TBNombreprod.Name = "TBNombreprod";
             TBNombreprod.Size = new Size(196, 33);
             TBNombreprod.TabIndex = 33;
+            TBNombreprod.Visible = false;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 15.75F);
-            label3.Location = new Point(85, 141);
+            label3.Location = new Point(29, 141);
             label3.Name = "label3";
             label3.Size = new Size(236, 24);
             label3.TabIndex = 32;
             label3.Text = "Nombre de producto:";
+            label3.Visible = false;
             // 
             // btnBuscar
             // 
@@ -219,18 +222,17 @@
             btnBuscar.ForeColor = Color.Black;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(279, 96);
+            btnBuscar.Location = new Point(223, 96);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(36, 34);
             btnBuscar.TabIndex = 31;
             btnBuscar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // TBCodigoprod
             // 
             TBCodigoprod.Font = new Font("Century Gothic", 15.75F);
-            TBCodigoprod.Location = new Point(83, 96);
+            TBCodigoprod.Location = new Point(27, 96);
             TBCodigoprod.Name = "TBCodigoprod";
             TBCodigoprod.Size = new Size(196, 33);
             TBCodigoprod.TabIndex = 16;
@@ -239,20 +241,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
-            label2.Location = new Point(83, 72);
+            label2.Location = new Point(27, 72);
             label2.Name = "label2";
             label2.Size = new Size(227, 24);
             label2.TabIndex = 15;
             label2.Text = "Código de producto:";
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel3.BackColor = Color.FromArgb(187, 222, 251);
-            panel3.Location = new Point(400, -2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(12, 275);
-            panel3.TabIndex = 36;
             // 
             // btnCancelar
             // 
@@ -266,7 +259,7 @@
             btnCancelar.ForeColor = Color.Black;
             btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(452, 513);
+            btnCancelar.Location = new Point(238, 522);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(166, 40);
             btnCancelar.TabIndex = 38;
@@ -286,7 +279,7 @@
             btnGuardar.ForeColor = Color.Black;
             btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(626, 513);
+            btnGuardar.Location = new Point(412, 522);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(166, 40);
             btnGuardar.TabIndex = 37;
@@ -298,13 +291,37 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.Azure;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(28, 279);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.Location = new Point(12, 265);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(743, 218);
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView1.Size = new Size(566, 236);
             dataGridView1.TabIndex = 39;
             // 
             // NuevaVenta
@@ -312,11 +329,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(797, 574);
+            ClientSize = new Size(868, 574);
             Controls.Add(dataGridView1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
-            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "NuevaVenta";
@@ -344,7 +360,6 @@
         private Label label6;
         private TextBox TBDni;
         private Button btnBuscarDNI;
-        private Panel panel3;
         private CheckBox checkBox1;
         private Button btnCliente;
         private Button btnCancelar;

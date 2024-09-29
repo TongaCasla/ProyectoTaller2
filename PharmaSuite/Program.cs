@@ -1,3 +1,4 @@
+using PharmaSuite.Modelo.DB;
 using PharmaSuite.Vistas;
 using Vistas;
 namespace PharmaSuite
@@ -13,9 +14,29 @@ namespace PharmaSuite
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new VistaLogin());
-            //Application.Run(new VistaMenuPpal("Carlos"));
+            //Codigo de test
+            
+            Persona p = new Persona();
+            p.IdPersona = 1;
+            p.Nombre = "Administrador";
+            p.Apellido = "";
+            p.Dni = 0;
+            p.FechaNac = new(2000,03,31);
+            p.Telefono = "";
+            p.Email = "";
+            p.Sexo = "";
+            p.IdPerfil = 4;
+            ///////////////////////////////////////////////
+            Usuario t = new Usuario();
+            t.Nombre = "Administrador";
+            t.Pass = "1234";
+            t.IdPersona = 1;
+            
+            //Fin codigo test
+            //Application.Run(new VistaLogin());
+            Application.Run(new VistaMenuPpal(p));
 
         }
+       
     }
 }

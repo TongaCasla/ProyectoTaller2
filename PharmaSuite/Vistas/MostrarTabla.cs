@@ -1,9 +1,12 @@
-﻿using System;
+﻿using PharmaSuite.Logica.Query;
+using PharmaSuite.Modelo.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,21 +17,30 @@ namespace PharmaSuite.Vistas.Usuarios
     {
         private String tituloTabla;
         private BusquedaEnTabla formBuscar;
-        public MostrarTabla(string tituloLabel)
+
+        private Persona usuarioActual;
+        int idPerfil;
+        public MostrarTabla(string tituloLabel,Persona usuarioActual)
+
+
         {
             InitializeComponent();
+            this.usuarioActual= usuarioActual;
             this.setTitulo(tituloLabel);
-            //this.testearTabla();
-            this.verificarTabla();
+            this.pruebaTablas();
+            //this.verificarTabla();
+
         }
-        public MostrarTabla(String tituloLabel, bool habilitarBotones)
+        public MostrarTabla(String tituloLabel, bool habilitarBotones,Persona usuarioActual)
         {
             InitializeComponent();
             this.setTitulo(tituloLabel);
+            this.usuarioActual = usuarioActual;
             this.verificarTabla();
-            btnBuscar.Visible= habilitarBotones;
-            btnMostrarActivos.Visible= habilitarBotones;
-            btnMostrarInactivos.Visible= habilitarBotones;
+            btnBuscar.Visible = habilitarBotones;
+            btnMostrarActivos.Visible = habilitarBotones;
+            btnMostrarInactivos.Visible = habilitarBotones;
+            
         }
         private void setTitulo(String tituloLabel)
         {
@@ -39,6 +51,19 @@ namespace PharmaSuite.Vistas.Usuarios
         {
             return this.tituloTabla;
         }
+        private void pruebaTablas()
+        {
+
+            QueryPersona query = new QueryPersona();
+            List <Persona> lista = query.listaPersona();
+
+            foreach (Persona ps in lista) 
+            {
+                dataGridView1.Rows.Add(ps.Dni, ps.Nombre,ps.Apellido,ps.Email, ps.IdPerfil, ps.Activo,"Modificar","Eliminar");
+            }
+
+        }
+               
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -72,22 +97,52 @@ namespace PharmaSuite.Vistas.Usuarios
                 dataGridView1.Show();
             }
         }
-        private void testearTabla()
+
+
+
+       
+        //mod
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Definir columnas del DataGridView
-            dataGridView1.ColumnCount = 3;
-            dataGridView1.Columns[0].Name = "Código de Producto";
-            dataGridView1.Columns[1].Name = "Nombre del Producto";
-            dataGridView1.Columns[2].Name = "Precio";
+            DbPharmaSuiteContext cn = new DbPharmaSuiteContext();
+            QueryPersona query = new QueryPersona();
+            DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+            // Verificar que no sea el encabezado de la columna
+            if (e.RowIndex >= 0 && e.ColumnIndex == 7)
+            {
+                    int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                    Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
 
-            // Datos de ejemplo que quieres agregar al DataGridView
-            string codigoProducto = "P001";
-            string nombreProducto = "Producto de prueba";
-            decimal precioProducto = 100.50m;
+                    if (ps.Activo == "si")
+                    {
+                        ps.Activo = "no";
+                        cn.SaveChanges();
+                    
+                     }
+                    else
+                    {
+                        ps.Activo = "si";
+                        cn.SaveChanges();
+    
 
-            // Agregar una nueva fila con los datos al DataGridView
-            dataGridView1.Rows.Add(codigoProducto, nombreProducto, precioProducto);
+                    }
+                    this.pruebaTablas();
+                    MessageBox.Show("Se ha modificado el campo correctamente");
+
+            }else if (e.RowIndex >= 0 && e.ColumnIndex == 6) 
+            {
+                int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
+
+                DatosPersona dtPer = new DatosPersona(ps,usuarioActual);
+
+                dtPer.Show();
+            }
+            
         }
-
+        }
     }
-}
+
+
+
+

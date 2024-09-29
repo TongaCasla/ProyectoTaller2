@@ -116,6 +116,7 @@
             btnBuscar.TabIndex = 30;
             btnBuscar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // txbBusqueda
             // 

@@ -30,24 +30,34 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MostrarTabla));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnMostrarActivos = new Button();
             btnMostrarInactivos = new Button();
             labelTituloTabla = new Label();
             btnBuscar = new Button();
             lTablaVacia = new Label();
             dataGridView1 = new DataGridView();
+            DnI = new DataGridViewTextBoxColumn();
+            NombrePersona = new DataGridViewTextBoxColumn();
+            Apellido = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            TipoPerfilPersona = new DataGridViewTextBoxColumn();
+            EstadoPersona = new DataGridViewTextBoxColumn();
+            Modificar = new DataGridViewButtonColumn();
+            Eliminar = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnMostrarActivos
             // 
             btnMostrarActivos.Anchor = AnchorStyles.Top;
-            btnMostrarActivos.BackColor = Color.FromArgb(187, 222, 251);
+            btnMostrarActivos.BackColor = Color.PaleGreen;
             btnMostrarActivos.BackgroundImageLayout = ImageLayout.None;
             btnMostrarActivos.Cursor = Cursors.Hand;
             btnMostrarActivos.FlatAppearance.BorderSize = 0;
             btnMostrarActivos.FlatStyle = FlatStyle.Flat;
-            btnMostrarActivos.Font = new Font("Century Gothic", 18F);
+            btnMostrarActivos.Font = new Font("Microsoft Sans Serif", 18F);
             btnMostrarActivos.ForeColor = Color.Black;
             btnMostrarActivos.Image = (Image)resources.GetObject("btnMostrarActivos.Image");
             btnMostrarActivos.ImageAlign = ContentAlignment.MiddleLeft;
@@ -63,12 +73,12 @@
             // btnMostrarInactivos
             // 
             btnMostrarInactivos.Anchor = AnchorStyles.Top;
-            btnMostrarInactivos.BackColor = Color.FromArgb(187, 222, 251);
+            btnMostrarInactivos.BackColor = Color.LightCoral;
             btnMostrarInactivos.BackgroundImageLayout = ImageLayout.None;
             btnMostrarInactivos.Cursor = Cursors.Hand;
             btnMostrarInactivos.FlatAppearance.BorderSize = 0;
             btnMostrarInactivos.FlatStyle = FlatStyle.Flat;
-            btnMostrarInactivos.Font = new Font("Century Gothic", 18F);
+            btnMostrarInactivos.Font = new Font("Microsoft Sans Serif", 18F);
             btnMostrarInactivos.ForeColor = Color.Black;
             btnMostrarInactivos.Image = (Image)resources.GetObject("btnMostrarInactivos.Image");
             btnMostrarInactivos.ImageAlign = ContentAlignment.MiddleLeft;
@@ -84,10 +94,10 @@
             // 
             labelTituloTabla.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             labelTituloTabla.AutoSize = true;
-            labelTituloTabla.Font = new Font("Century Gothic", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTituloTabla.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelTituloTabla.Location = new Point(198, 9);
             labelTituloTabla.Name = "labelTituloTabla";
-            labelTituloTabla.Size = new Size(163, 44);
+            labelTituloTabla.Size = new Size(159, 42);
             labelTituloTabla.TabIndex = 26;
             labelTituloTabla.Text = "Lista de ";
             // 
@@ -99,7 +109,7 @@
             btnBuscar.Cursor = Cursors.Hand;
             btnBuscar.FlatAppearance.BorderSize = 0;
             btnBuscar.FlatStyle = FlatStyle.Flat;
-            btnBuscar.Font = new Font("Century Gothic", 18F);
+            btnBuscar.Font = new Font("Microsoft Sans Serif", 18F);
             btnBuscar.ForeColor = Color.Black;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -115,10 +125,10 @@
             // lTablaVacia
             // 
             lTablaVacia.AutoSize = true;
-            lTablaVacia.Font = new Font("Century Gothic", 20F);
-            lTablaVacia.Location = new Point(201, 235);
+            lTablaVacia.Font = new Font("Microsoft Sans Serif", 20F);
+            lTablaVacia.Location = new Point(86, 270);
             lTablaVacia.Name = "lTablaVacia";
-            lTablaVacia.Size = new Size(419, 33);
+            lTablaVacia.Size = new Size(394, 31);
             lTablaVacia.TabIndex = 49;
             lTablaVacia.Text = "No se encontraron resultados...";
             lTablaVacia.Visible = false;
@@ -127,24 +137,117 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(187, 222, 251);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.Location = new Point(29, 140);
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DnI, NombrePersona, Apellido, Email, TipoPerfilPersona, EstadoPersona, Modificar, Eliminar });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.Location = new Point(12, 141);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(666, 351);
-            dataGridView1.TabIndex = 48;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView1.Size = new Size(660, 350);
+            dataGridView1.TabIndex = 50;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // DnI
+            // 
+            DnI.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            DnI.HeaderText = "DNI";
+            DnI.Name = "DnI";
+            DnI.ReadOnly = true;
+            DnI.Width = 62;
+            // 
+            // NombrePersona
+            // 
+            NombrePersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            NombrePersona.HeaderText = "Nombre";
+            NombrePersona.Name = "NombrePersona";
+            NombrePersona.ReadOnly = true;
+            NombrePersona.Width = 90;
+            // 
+            // Apellido
+            // 
+            Apellido.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Apellido.HeaderText = "Apellido";
+            Apellido.Name = "Apellido";
+            Apellido.ReadOnly = true;
+            Apellido.Width = 90;
+            // 
+            // Email
+            // 
+            Email.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Email.HeaderText = "Email";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.Width = 73;
+            // 
+            // TipoPerfilPersona
+            // 
+            TipoPerfilPersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            TipoPerfilPersona.HeaderText = "Perfil";
+            TipoPerfilPersona.Name = "TipoPerfilPersona";
+            TipoPerfilPersona.ReadOnly = true;
+            TipoPerfilPersona.Width = 69;
+            // 
+            // EstadoPersona
+            // 
+            EstadoPersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            EstadoPersona.HeaderText = "Estado";
+            EstadoPersona.Name = "EstadoPersona";
+            EstadoPersona.ReadOnly = true;
+            EstadoPersona.Width = 85;
+            // 
+            // Modificar
+            // 
+            Modificar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Azure;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            Modificar.DefaultCellStyle = dataGridViewCellStyle2;
+            Modificar.HeaderText = "Modificar";
+            Modificar.Name = "Modificar";
+            Modificar.ReadOnly = true;
+            Modificar.Resizable = DataGridViewTriState.True;
+            Modificar.SortMode = DataGridViewColumnSortMode.Automatic;
+            Modificar.Text = "Eliminar";
+            Modificar.Width = 98;
+            // 
+            // Eliminar
+            // 
+            Eliminar.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Eliminar.HeaderText = "Eliminar";
+            Eliminar.Name = "Eliminar";
+            Eliminar.ReadOnly = true;
+            Eliminar.Resizable = DataGridViewTriState.True;
+            Eliminar.SortMode = DataGridViewColumnSortMode.Automatic;
+            Eliminar.Width = 90;
             // 
             // MostrarTabla
             // 
@@ -153,11 +256,11 @@
             BackColor = Color.Azure;
             ClientSize = new Size(820, 503);
             Controls.Add(lTablaVacia);
-            Controls.Add(dataGridView1);
             Controls.Add(btnBuscar);
             Controls.Add(labelTituloTabla);
             Controls.Add(btnMostrarInactivos);
             Controls.Add(btnMostrarActivos);
+            Controls.Add(dataGridView1);
             Name = "MostrarTabla";
             Text = "MostrarTabla";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -172,5 +275,13 @@
         private Button btnBuscar;
         private Label lTablaVacia;
         private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn DnI;
+        private DataGridViewTextBoxColumn NombrePersona;
+        private DataGridViewTextBoxColumn Apellido;
+        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn TipoPerfilPersona;
+        private DataGridViewTextBoxColumn EstadoPersona;
+        private DataGridViewButtonColumn Modificar;
+        private DataGridViewButtonColumn Eliminar;
     }
 }
