@@ -20,13 +20,22 @@ namespace Vistas
     {
         //Variable para mostrar/ocultar la contraseña
         private bool isPasswordHidden = true;
-    
 
         public NuevoUsuario()
         {
             InitializeComponent();
             comboPerfil.SelectedIndex = 0;
- 
+        }
+        public NuevoUsuario(bool habilitarTipoPerfil)
+        {
+            InitializeComponent();
+            comboPerfil.Visible = habilitarTipoPerfil;
+            lPerfil.Visible=habilitarTipoPerfil;
+            lUsuario.Visible=habilitarTipoPerfil;
+            txbUsuario.Visible = habilitarTipoPerfil;
+            lContra.Visible = habilitarTipoPerfil;
+            txbContra.Visible=habilitarTipoPerfil;
+            btnMostrarContra.Visible = habilitarTipoPerfil;
         }
 
         //Evento para mostrar la contraseña
@@ -59,73 +68,34 @@ namespace Vistas
 
         }
 
-        //Evento para cerrar cuestionario
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.LimpiarTextBoxes(this);
-        }
-
-
-        private void txbNombre_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void txbApellido_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbTele_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbContra_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateFecha_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime fechaNacimiento = dateFecha.Value.Date;
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbDni_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        //Verificamos que tipo de usuario se agregará
         private void comboPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            if (comboPerfil.SelectedIndex ==0)
+            {
+                txbUsuario.Enabled = false;
+                txbContra.Enabled = false;
+
+            }
+            else
+            {
+                txbUsuario.Enabled = true;
+                txbContra.Enabled = true;
+            }
         }
 
-        private string sexoRadioButton() 
+        private string sexoRadioButton()
         {
             string sexo = "";
             if (radioHombre.Checked)
             {
                 sexo = "hombre";
             }
-            else if (radioMujer.Checked) 
+            else if (radioMujer.Checked)
             {
                 sexo = "mujer";
             }
-            else 
+            else
             {
                 sexo = "otro";
             }
@@ -163,7 +133,7 @@ namespace Vistas
             {
                 return valUs.verificarDatosUsuario(usuario);
             }
-            else 
+            else
             {
                 MessageBox.Show("Existen campos vacíos, por favor complete todos los campos");
                 return false;
@@ -173,7 +143,7 @@ namespace Vistas
         //Evento para enviar datos e insertar en bd
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-           
+
             // Mostramos un mensaje y guardamos la respuesta
             DialogResult ask = MessageBox.Show(
                 "¿Desea agregar un nuevo cliente?",
@@ -195,14 +165,14 @@ namespace Vistas
                 persona.IdPerfil = (comboPerfil.SelectedIndex) + 1;
                 persona.Sexo = sexoRadioButton();
 
-                if ((comboPerfil.SelectedIndex) + 1 == 5) 
+                if ((comboPerfil.SelectedIndex) + 1 == 1)
                 {
                     dc.Personas.Add(persona);
                     dc.SaveChanges();
                     MessageBox.Show("Se ha agregado al cliente correctamente");
 
                 }
-                else if (verificarUsuario()) 
+                else if (verificarUsuario())
                 {
                     ValidacionUsuario valUs = new ValidacionUsuario();
                     dc.Personas.Add(persona);
@@ -233,6 +203,9 @@ namespace Vistas
             }
         }
 
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.LimpiarTextBoxes(panel1);
+        }
     }
 }

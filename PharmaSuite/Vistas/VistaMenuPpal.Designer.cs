@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaMenuPpal));
+            panel6 = new Panel();
+            pictureBox2 = new PictureBox();
             navSup = new Panel();
             pSuperior = new Panel();
             btnSalir = new PictureBox();
             btnDesplegable = new PictureBox();
             button8 = new Button();
             pUsuarios = new Panel();
-            btnEmpl = new Button();
             btnAgregarUsuario = new Button();
             btnClientes = new Button();
             pVentas = new Panel();
@@ -50,26 +51,21 @@
             pReportes = new Panel();
             btnNuevoReporte = new Button();
             btnUsuarios = new Button();
-            panel2 = new Panel();
             pSesion = new Panel();
             labelTipoPerfil = new Label();
             labelUsuario = new Label();
             navbarIzq = new Panel();
-            panel5 = new Panel();
-            pictureBox2 = new PictureBox();
             btnCategorias = new Button();
             btnVentas = new Button();
-            panel7 = new Panel();
-            panel4 = new Panel();
             btnBackup = new Button();
-            panel3 = new Panel();
             btnReportes = new Button();
-            panel1 = new Panel();
             btnProductos = new Button();
             pFondo = new Panel();
             pBackup = new Panel();
             button1 = new Button();
             button3 = new Button();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             navSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnSalir).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnDesplegable).BeginInit();
@@ -80,10 +76,29 @@
             pReportes.SuspendLayout();
             pSesion.SuspendLayout();
             navbarIzq.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             pFondo.SuspendLayout();
             pBackup.SuspendLayout();
             SuspendLayout();
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(pictureBox2);
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(202, 87);
+            panel6.TabIndex = 26;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Dock = DockStyle.Fill;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(202, 87);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 24;
+            pictureBox2.TabStop = false;
             // 
             // navSup
             // 
@@ -146,7 +161,6 @@
             // 
             // pUsuarios
             // 
-            pUsuarios.Controls.Add(btnEmpl);
             pUsuarios.Controls.Add(btnAgregarUsuario);
             pUsuarios.Controls.Add(btnClientes);
             pUsuarios.Location = new Point(6, 16);
@@ -154,25 +168,6 @@
             pUsuarios.Size = new Size(694, 87);
             pUsuarios.TabIndex = 25;
             pUsuarios.Visible = false;
-            // 
-            // btnEmpl
-            // 
-            btnEmpl.BackgroundImageLayout = ImageLayout.None;
-            btnEmpl.FlatAppearance.BorderSize = 0;
-            btnEmpl.FlatStyle = FlatStyle.Flat;
-            btnEmpl.Font = new Font("Microsoft Sans Serif", 16F);
-            btnEmpl.ForeColor = Color.Black;
-            btnEmpl.Image = (Image)resources.GetObject("btnEmpl.Image");
-            btnEmpl.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmpl.Location = new Point(359, 3);
-            btnEmpl.Name = "btnEmpl";
-            btnEmpl.Size = new Size(174, 81);
-            btnEmpl.TabIndex = 23;
-            btnEmpl.Text = "Empleados";
-            btnEmpl.TextAlign = ContentAlignment.MiddleRight;
-            btnEmpl.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEmpl.UseVisualStyleBackColor = true;
-            btnEmpl.Click += btnEmpl_Click;
             // 
             // btnAgregarUsuario
             // 
@@ -187,7 +182,7 @@
             btnAgregarUsuario.Name = "btnAgregarUsuario";
             btnAgregarUsuario.Size = new Size(155, 81);
             btnAgregarUsuario.TabIndex = 24;
-            btnAgregarUsuario.Text = "Nuevo usuario";
+            btnAgregarUsuario.Text = "Nueva Persona";
             btnAgregarUsuario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAgregarUsuario.UseVisualStyleBackColor = true;
             btnAgregarUsuario.Click += btnAgregar_Click;
@@ -203,10 +198,9 @@
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
             btnClientes.Location = new Point(189, 3);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(141, 81);
+            btnClientes.Size = new Size(153, 81);
             btnClientes.TabIndex = 22;
-            btnClientes.Text = "Clientes";
-            btnClientes.TextAlign = ContentAlignment.MiddleRight;
+            btnClientes.Text = "Ver Personas";
             btnClientes.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClientes.UseVisualStyleBackColor = true;
             btnClientes.Click += btnClientes_Click;
@@ -385,23 +379,15 @@
             btnUsuarios.ForeColor = Color.Black;
             btnUsuarios.Image = (Image)resources.GetObject("btnUsuarios.Image");
             btnUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsuarios.Location = new Point(8, 109);
+            btnUsuarios.Location = new Point(-1, 87);
             btnUsuarios.Name = "btnUsuarios";
-            btnUsuarios.Size = new Size(192, 47);
+            btnUsuarios.Size = new Size(202, 70);
             btnUsuarios.TabIndex = 1;
-            btnUsuarios.Text = "Usuarios";
+            btnUsuarios.Text = "Personas";
             btnUsuarios.TextAlign = ContentAlignment.MiddleRight;
             btnUsuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUsuarios.UseVisualStyleBackColor = true;
             btnUsuarios.Click += btnUsuarios_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(227, 242, 253);
-            panel2.Location = new Point(1, 111);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(6, 45);
-            panel2.TabIndex = 3;
             // 
             // pSesion
             // 
@@ -437,43 +423,19 @@
             // navbarIzq
             // 
             navbarIzq.BackColor = Color.FromArgb(187, 222, 251);
-            navbarIzq.Controls.Add(panel5);
-            navbarIzq.Controls.Add(pictureBox2);
+            navbarIzq.Controls.Add(panel6);
             navbarIzq.Controls.Add(btnCategorias);
             navbarIzq.Controls.Add(btnVentas);
-            navbarIzq.Controls.Add(panel7);
-            navbarIzq.Controls.Add(panel4);
             navbarIzq.Controls.Add(btnBackup);
-            navbarIzq.Controls.Add(panel3);
             navbarIzq.Controls.Add(btnReportes);
-            navbarIzq.Controls.Add(panel1);
             navbarIzq.Controls.Add(btnProductos);
             navbarIzq.Controls.Add(pSesion);
-            navbarIzq.Controls.Add(panel2);
             navbarIzq.Controls.Add(btnUsuarios);
             navbarIzq.Dock = DockStyle.Left;
             navbarIzq.Location = new Point(0, 0);
             navbarIzq.Name = "navbarIzq";
             navbarIzq.Size = new Size(202, 720);
             navbarIzq.TabIndex = 3;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(227, 242, 253);
-            panel5.Location = new Point(3, 424);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(6, 45);
-            panel5.TabIndex = 22;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(7, 5);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(190, 82);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 24;
-            pictureBox2.TabStop = false;
             // 
             // btnCategorias
             // 
@@ -484,9 +446,9 @@
             btnCategorias.ForeColor = Color.Black;
             btnCategorias.Image = (Image)resources.GetObject("btnCategorias.Image");
             btnCategorias.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCategorias.Location = new Point(7, 233);
+            btnCategorias.Location = new Point(0, 220);
             btnCategorias.Name = "btnCategorias";
-            btnCategorias.Size = new Size(193, 47);
+            btnCategorias.Size = new Size(202, 70);
             btnCategorias.TabIndex = 25;
             btnCategorias.Text = "Categorías";
             btnCategorias.TextAlign = ContentAlignment.MiddleRight;
@@ -503,31 +465,15 @@
             btnVentas.ForeColor = Color.Black;
             btnVentas.Image = (Image)resources.GetObject("btnVentas.Image");
             btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVentas.Location = new Point(8, 297);
+            btnVentas.Location = new Point(-1, 289);
             btnVentas.Name = "btnVentas";
-            btnVentas.Size = new Size(192, 47);
+            btnVentas.Size = new Size(202, 70);
             btnVentas.TabIndex = 20;
             btnVentas.Text = "Ventas";
             btnVentas.TextAlign = ContentAlignment.MiddleRight;
             btnVentas.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnVentas.UseVisualStyleBackColor = true;
             btnVentas.Click += btnVentas_Click;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(227, 242, 253);
-            panel7.Location = new Point(1, 235);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(6, 45);
-            panel7.TabIndex = 21;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(227, 242, 253);
-            panel4.Location = new Point(0, 360);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(6, 45);
-            panel4.TabIndex = 23;
             // 
             // btnBackup
             // 
@@ -538,23 +484,15 @@
             btnBackup.ForeColor = Color.Black;
             btnBackup.Image = (Image)resources.GetObject("btnBackup.Image");
             btnBackup.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBackup.Location = new Point(7, 422);
+            btnBackup.Location = new Point(-1, 441);
             btnBackup.Name = "btnBackup";
-            btnBackup.Size = new Size(192, 47);
+            btnBackup.Size = new Size(202, 70);
             btnBackup.TabIndex = 22;
-            btnBackup.Text = "Backup";
+            btnBackup.Text = "Respaldo";
             btnBackup.TextAlign = ContentAlignment.MiddleRight;
             btnBackup.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBackup.UseVisualStyleBackColor = true;
             btnBackup.Click += btnBackup_Click;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(227, 242, 253);
-            panel3.Location = new Point(1, 298);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(6, 45);
-            panel3.TabIndex = 19;
             // 
             // btnReportes
             // 
@@ -565,23 +503,15 @@
             btnReportes.ForeColor = Color.Black;
             btnReportes.Image = (Image)resources.GetObject("btnReportes.Image");
             btnReportes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReportes.Location = new Point(3, 360);
+            btnReportes.Location = new Point(0, 365);
             btnReportes.Name = "btnReportes";
-            btnReportes.Size = new Size(196, 47);
+            btnReportes.Size = new Size(202, 70);
             btnReportes.TabIndex = 18;
             btnReportes.Text = "Reportes";
             btnReportes.TextAlign = ContentAlignment.MiddleRight;
             btnReportes.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReportes.UseVisualStyleBackColor = true;
             btnReportes.Click += btnReportes_Click;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(227, 242, 253);
-            panel1.Location = new Point(1, 172);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(6, 45);
-            panel1.TabIndex = 17;
             // 
             // btnProductos
             // 
@@ -592,9 +522,9 @@
             btnProductos.ForeColor = Color.Black;
             btnProductos.Image = (Image)resources.GetObject("btnProductos.Image");
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProductos.Location = new Point(8, 170);
+            btnProductos.Location = new Point(-1, 154);
             btnProductos.Name = "btnProductos";
-            btnProductos.Size = new Size(192, 47);
+            btnProductos.Size = new Size(202, 70);
             btnProductos.TabIndex = 16;
             btnProductos.Text = "Productos";
             btnProductos.TextAlign = ContentAlignment.MiddleRight;
@@ -640,9 +570,9 @@
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.Location = new Point(186, 2);
             button1.Name = "button1";
-            button1.Size = new Size(141, 74);
+            button1.Size = new Size(152, 74);
             button1.TabIndex = 27;
-            button1.Text = "Cargar";
+            button1.Text = "Restaurar";
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = true;
             // 
@@ -668,14 +598,18 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
+            BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1037, 720);
             Controls.Add(pFondo);
             Controls.Add(navSup);
             Controls.Add(navbarIzq);
+            DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VistaMenuPpal";
-            Text = "Login";
+            Text = "Menu principal";
             WindowState = FormWindowState.Maximized;
+            panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             navSup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnSalir).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnDesplegable).EndInit();
@@ -687,7 +621,6 @@
             pSesion.ResumeLayout(false);
             pSesion.PerformLayout();
             navbarIzq.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             pFondo.ResumeLayout(false);
             pBackup.ResumeLayout(false);
             ResumeLayout(false);
@@ -698,31 +631,24 @@
         private PictureBox btnDesplegable;
         private Button button8;
         private Button btnUsuarios;
-        private Panel panel2;
         private Panel pSesion;
         private Panel navbarIzq;
         private Panel pFondo;
         private Label labelUsuario;
         private Label labelTipoPerfil;
-        private Panel panel1;
         private Button btnProductos;
         private PictureBox btnSalir;
-        private Panel panel3;
         private Button btnReportes;
-        private Panel panel7;
         private Button btnVentas;
-        private Panel panel4;
         private Button btnBackup;
         private PictureBox pictureBox2;
         private Panel pUsuarios;
-        private Button btnEmpl;
         private Button btnAgregarUsuario;
         private Button btnClientes;
         private Panel pProductos;
         private Button btnNuevoProducto;
         private Button btnMostrarProductos;
         private Button btnCategorias;
-        private Panel panel5;
         private Panel pCategorias;
         private Button btnMostrarCategorias;
         private Button btnNuevaCategoria;
@@ -735,5 +661,6 @@
         private Panel pBackup;
         private Button button1;
         private Button button3;
+        private Panel panel6;
     }
 }

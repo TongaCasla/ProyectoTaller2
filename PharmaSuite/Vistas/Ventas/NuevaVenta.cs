@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,54 +21,47 @@ namespace PharmaSuite.Vistas
         public NuevaVenta()
         {
             InitializeComponent();
+            this.iniciarBuscador();
+            this.pruebaTablas();
+            
+               
         }
+        private void iniciarBuscador()
+        {
+            this.formBuscar = new BusquedaEnTabla("Productos");
+            this.formBuscar.TopLevel = false;
+            this.formBuscar.Anchor = AnchorStyles.Right;
+            this.formBuscar.Dock = DockStyle.Right;
+            this.Controls.Add(formBuscar);
+            formBuscar.Show();
+        }
+        private void pruebaTablas()
+        {
+            for(int i = 0;i<20; i++)
+            {
+                // Definir columnas del DataGridView
+                dataGridView1.ColumnCount = 6;
+                dataGridView1.Columns[0].Name = "Código de Producto";
+                dataGridView1.Columns[1].Name = "Nombre del Producto";
+                dataGridView1.Columns[2].Name = "Cantidad";
+                dataGridView1.Columns[3].Name = "Precio";
+                dataGridView1.Columns[4].Name = "Eliminar";
+                dataGridView1.Columns[5].Name = "Cantidad";
 
-        private void TBCodigoprod_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Regex.IsMatch(e.KeyChar.ToString(), "[0-9\b]"))
-            {
-                e.Handled = false; // input ok
-            }
-            else
-            {
-                e.Handled = true; // input denied
-            }
-        }
+                // Datos de ejemplo que quieres agregar al DataGridView
+                int codigoProducto = i;
+                int cantidadProducto = 1;
+                string nombreProducto = "Producto de prueba";
+                decimal precioProducto = 100.50m;
+                Button btnEliminar = new();
+                NumericUpDown btnEditarCant  = new();
 
-        private void TBNombreprod_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z\s\b]"))
-            {
-                e.Handled = false; // input ok
+                // Agregar una nueva fila con los datos al DataGridView
+                dataGridView1.Rows.Add(codigoProducto, nombreProducto, cantidadProducto,precioProducto,btnEliminar,btnEditarCant);
             }
-            else
-            {
-                e.Handled = true; // input denied
-            }
-        }
-        private void TBDni_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Regex.IsMatch(e.KeyChar.ToString(), "[0-9\b]"))
-            {
-                e.Handled = false; // input ok
-            }
-            else
-            {
-                e.Handled = true; // input denied
-            }
-        }
 
-        private void TBNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Regex.IsMatch(e.KeyChar.ToString(), @"^[a-zA-Z\s\b]"))
-            {
-                e.Handled = false; // input ok
-            }
-            else
-            {
-                e.Handled = true; // input denied
-            }
         }
+        
 
         //Metodo para bloquear los campos si es consumidor final
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -89,25 +83,10 @@ namespace PharmaSuite.Vistas
         private void btnCliente_Click(object sender, EventArgs e)
         {
             //Agregamos el formulario para un nuevo cliente
-            NuevoUsuario nuevoUsuario = new NuevoUsuario();
-            this.Controls.Clear();
-            nuevoUsuario.TopLevel = false;
-            nuevoUsuario.Dock = DockStyle.Fill;
-            this.Controls.Add(nuevoUsuario);
+            NuevoUsuario nuevoUsuario = new NuevoUsuario(false);
+            nuevoUsuario.Text = "Nuevo cliente";
+            //nuevoUsuario.Icon = new(Path.Combine(Application.StartupPath, "farmacia.ico"));
             nuevoUsuario.Show();
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            BusquedaEnVenta busqueda = new(label4.Text);
-            busqueda.Show();
-
-        }
-
-        private void btnBuscarNombreProd_Click(object sender, EventArgs e)
-        {
-            BusquedaEnVenta busqueda = new(label4.Text);
-            busqueda.Show();
         }
 
         private void btnBuscarDNI_Click(object sender, EventArgs e)
@@ -115,5 +94,6 @@ namespace PharmaSuite.Vistas
             BusquedaEnVenta busqueda = new(label1.Text);
             busqueda.Show();
         }
+
     }
 }

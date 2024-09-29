@@ -18,5 +18,20 @@ namespace PharmaSuite.Logica.Query
 
             return us;
         }
+        /*
+        public bool verificarPassword(Usuario usuario, string password)
+        {
+            string hashAlmacenado = null;
+
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+
+                // Si no se encuentra el usuario, retorna falso
+    if (hashAlmacenado == null)
+            {
+                return false;
+            }
+            //string hashIngresado = HashPassword(passwordIngresada);
+            //return hashAlmacenado == hashIngresado;
+        }*/
     }
 }

@@ -53,25 +53,27 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtbUsuario);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(34, 66);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(763, 429);
+            panel1.Size = new Size(800, 494);
             panel1.TabIndex = 0;
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(187, 222, 251);
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 18F);
+            button1.Font = new Font("Century Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.MiddleRight;
-            button1.Location = new Point(65, 343);
+            button1.Location = new Point(71, 343);
             button1.Name = "button1";
             button1.Padding = new Padding(0, 0, 5, 0);
-            button1.Size = new Size(150, 43);
+            button1.Size = new Size(169, 43);
             button1.TabIndex = 6;
             button1.Text = "Enviar";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // pictureBox1
@@ -155,10 +157,11 @@
             ClientSize = new Size(800, 494);
             Controls.Add(btnSalir);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VistaLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PharmaSuite";
-            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

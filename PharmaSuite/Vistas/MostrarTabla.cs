@@ -17,22 +17,27 @@ namespace PharmaSuite.Vistas.Usuarios
     {
         private String tituloTabla;
         private BusquedaEnTabla formBuscar;
-        public MostrarTabla(string tituloLabel)
+        private Persona usuarioActual;
+        int idPerfil;
+        public MostrarTabla(string tituloLabel,Persona usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual= usuarioActual;
             this.setTitulo(tituloLabel);
             this.pruebaTablas();
             //this.verificarTabla();
 
         }
-        public MostrarTabla(String tituloLabel, bool habilitarBotones)
+        public MostrarTabla(String tituloLabel, bool habilitarBotones,Persona usuarioActual)
         {
             InitializeComponent();
             this.setTitulo(tituloLabel);
+            this.usuarioActual = usuarioActual;
             this.verificarTabla();
             btnBuscar.Visible = habilitarBotones;
             btnMostrarActivos.Visible = habilitarBotones;
             btnMostrarInactivos.Visible = habilitarBotones;
+            
         }
         private void setTitulo(String tituloLabel)
         {
@@ -45,13 +50,13 @@ namespace PharmaSuite.Vistas.Usuarios
         }
         private void pruebaTablas()
         {
-           
+
             QueryPersona query = new QueryPersona();
             List <Persona> lista = query.listaPersona();
 
             foreach (Persona ps in lista) 
             {
-                dataGridView1.Rows.Add(ps.Dni, ps.Nombre, ps.IdPerfil, ps.Activo);
+                dataGridView1.Rows.Add(ps.Dni, ps.Nombre,ps.Apellido,ps.Email, ps.IdPerfil, ps.Activo,"Modificar","Eliminar");
             }
 
         }
@@ -92,56 +97,46 @@ namespace PharmaSuite.Vistas.Usuarios
 
 
 
-        //Evento para abrir la informacion de la celda
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Verificar que la fila no es el encabezado y que se ha hecho clic en una celda válida
-            if (e.ColumnIndex != dataGridView1.Columns["action"].Index)
-
-            {
-                // Obtener los datos de la fila seleccionada
-                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-
-                // Por ejemplo, obtener el valor de la primera columna (Código de Producto)
-                string nombrePersona = selectedRow.Cells[1].Value.ToString();
-
-                // Abrir el nuevo formulario y pasarle el dato del código de producto
-                //DatosPersona formNuevo = new DatosPersona(nombrePersona, 0);
-                //formNuevo.Text = "Datos de " + nombrePersona;
-                //formNuevo.Show();
-            }
-        }
-
+       
+        //mod
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            DbPharmaSuiteContext cn = new DbPharmaSuiteContext();
+            QueryPersona query = new QueryPersona();
+            DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
             // Verificar que no sea el encabezado de la columna
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 7)
             {
-                // Verificar que se hizo clic en la columna del botón
-                if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-                {
-                    // Obtener la fila seleccionada
-                    DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+                    int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                    Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
 
-                    string estadoActual = selectedRow.Cells["EstadoPersona"].Value.ToString();
-
-                    if (estadoActual == "Activo")
+                    if (ps.Activo == "si")
                     {
-                    selectedRow.Cells["EstadoPersona"].Value = "Inactivo";
-
-                    }
+                        ps.Activo = "no";
+                        cn.SaveChanges();
+                    
+                     }
                     else
                     {
-                        selectedRow.Cells["EstadoPersona"].Value = "Activo";
-
+                        ps.Activo = "si";
+                        cn.SaveChanges();
+    
 
                     }
+                    this.pruebaTablas();
+                    MessageBox.Show("Se ha modificado el campo correctamente");
 
-                }
+            }else if (e.RowIndex >= 0 && e.ColumnIndex == 6) 
+            {
+                int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
+                DatosPersona dtPer = new DatosPersona(ps,usuarioActual);
+                dtPer.Show();
             }
+            
+        }
         }
     }
-}
 
 
 

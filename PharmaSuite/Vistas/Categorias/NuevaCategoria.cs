@@ -15,6 +15,7 @@ namespace PharmaSuite.Vistas.Categorias
         public NuevaCategoria()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
