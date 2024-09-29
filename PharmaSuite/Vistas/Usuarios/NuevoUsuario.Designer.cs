@@ -268,8 +268,10 @@
             comboPerfil.DropDownWidth = 270;
             comboPerfil.Font = new Font("Century Gothic", 15.75F);
             comboPerfil.FormattingEnabled = true;
+
             comboPerfil.Items.AddRange(new object[] { "Cliente", "Empleado", "Gerente", "Administrador" });
             comboPerfil.Location = new Point(170, 53);
+
             comboPerfil.Name = "comboPerfil";
             comboPerfil.Size = new Size(197, 32);
             comboPerfil.TabIndex = 9;

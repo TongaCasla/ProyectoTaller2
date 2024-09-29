@@ -17,9 +17,12 @@ namespace PharmaSuite.Vistas.Usuarios
     {
         private String tituloTabla;
         private BusquedaEnTabla formBuscar;
+
         private Persona usuarioActual;
         int idPerfil;
         public MostrarTabla(string tituloLabel,Persona usuarioActual)
+
+
         {
             InitializeComponent();
             this.usuarioActual= usuarioActual;
@@ -130,7 +133,9 @@ namespace PharmaSuite.Vistas.Usuarios
             {
                 int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
                 Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
+
                 DatosPersona dtPer = new DatosPersona(ps,usuarioActual);
+
                 dtPer.Show();
             }
             

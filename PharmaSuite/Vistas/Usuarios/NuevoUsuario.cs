@@ -165,7 +165,9 @@ namespace Vistas
                 persona.IdPerfil = (comboPerfil.SelectedIndex) + 1;
                 persona.Sexo = sexoRadioButton();
 
+
                 if ((comboPerfil.SelectedIndex) + 1 == 1)
+
                 {
                     dc.Personas.Add(persona);
                     dc.SaveChanges();
