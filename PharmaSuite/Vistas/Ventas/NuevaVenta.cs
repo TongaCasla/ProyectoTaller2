@@ -18,48 +18,20 @@ namespace PharmaSuite.Vistas
     {
         private BusquedaEnTabla formBuscar;
 
+
         public NuevaVenta()
         {
             InitializeComponent();
             this.iniciarBuscador();
-            this.pruebaTablas();
-            
-               
         }
         private void iniciarBuscador()
         {
-            this.formBuscar = new BusquedaEnTabla("Productos");
+            this.formBuscar = new BusquedaEnTabla("Productos",null);
             this.formBuscar.TopLevel = false;
             this.formBuscar.Anchor = AnchorStyles.Right;
             this.formBuscar.Dock = DockStyle.Right;
             this.Controls.Add(formBuscar);
             formBuscar.Show();
-        }
-        private void pruebaTablas()
-        {
-            for(int i = 0;i<20; i++)
-            {
-                // Definir columnas del DataGridView
-                dataGridView1.ColumnCount = 6;
-                dataGridView1.Columns[0].Name = "Código de Producto";
-                dataGridView1.Columns[1].Name = "Nombre del Producto";
-                dataGridView1.Columns[2].Name = "Cantidad";
-                dataGridView1.Columns[3].Name = "Precio";
-                dataGridView1.Columns[4].Name = "Eliminar";
-                dataGridView1.Columns[5].Name = "Cantidad";
-
-                // Datos de ejemplo que quieres agregar al DataGridView
-                int codigoProducto = i;
-                int cantidadProducto = 1;
-                string nombreProducto = "Producto de prueba";
-                decimal precioProducto = 100.50m;
-                Button btnEliminar = new();
-                NumericUpDown btnEditarCant  = new();
-
-                // Agregar una nueva fila con los datos al DataGridView
-                dataGridView1.Rows.Add(codigoProducto, nombreProducto, cantidadProducto,precioProducto,btnEliminar,btnEditarCant);
-            }
-
         }
         
 

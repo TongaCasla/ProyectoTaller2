@@ -18,58 +18,58 @@ namespace Vistas
 {
     public partial class VistaLogin : Form
     {
-        private Persona usuarioActual;
+       
         public VistaLogin()
         {
             InitializeComponent();
-            this.setUsuario(usuarioActual);
+           
 
         }
-        public void setUsuario(Persona usuario)
-        {
-            this.usuarioActual = usuario;
-        }
-        public Persona getUsuario()
-        {
-            return this.usuarioActual;
-        }
+       
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
+            QueryUsuario query = new QueryUsuario();
+            QueryPersona queryPs = new QueryPersona();
 
             //Verificamos que no haya ningun campo vacio
             if (string.IsNullOrEmpty(txtbUsuario.Text) || string.IsNullOrEmpty(txtbContra.Text))
             {
                 MessageBox.Show("No puede haber campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+              
             }
-            //Rescatamos los datos
-            string usuario = txtbUsuario.Text;
-            string password = txtbContra.Text;
-            QueryUsuario qu = new();
-            qu.bucarNombre(usuario);
-
-
-            //Validamos la password
-            /*
-            if (qu.bucarNombre(usuario) && qu.verificarPassword(password))
+            else if (query.bucarNombre(txtbUsuario.Text) == null)
             {
+                MessageBox.Show("Nombre de usuario incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+            }
+            else if (query.bucarNombre(txtbUsuario.Text).Pass != txtbContra.Text)
+            {
+
+                MessageBox.Show("Contraseña incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            else
+            {
+
+                Usuario us = query.bucarNombre(txtbUsuario.Text);
+                Persona usuarioActual = queryPs.bucarPorId(us.IdPersona);
+
+
                 //Ocultamos la pantalla del login
                 this.Hide();
                 //Seteamos el usuario
-                this.setUsuario(usuario);
-                VistaMenuPpal form = new(this.getUsuario());
+
+                VistaMenuPpal form = new(usuarioActual);
                 form.Show();
                 form.FormClosed += (s, args) => this.Close();
-
             }
-            //Si no, mostramos mensaje de error
-            else
-            {
-                MessageBox.Show("Datos incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
+
+            txtbUsuario.Clear();
+            txtbContra.Clear();
+
+
 
         }
 

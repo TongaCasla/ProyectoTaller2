@@ -179,7 +179,7 @@ namespace Vistas
         }
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new MostrarTabla("Clientes",this.getUsuario()));
+            this.agregarNuevoForm(new MostrarTabla(this.getUsuario()));
         }
 
         //Boton productos

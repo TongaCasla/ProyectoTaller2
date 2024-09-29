@@ -18,6 +18,16 @@ namespace PharmaSuite.Logica.Query
 
             return us;
         }
+
+        public Usuario buscarPorIdPers(int id) 
+        {
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+            return dc.Usuarios.SingleOrDefault(s => s.IdPersona.Equals(id));
+
+        }
+
+
+
         /*
         public bool verificarPassword(Usuario usuario, string password)
         {

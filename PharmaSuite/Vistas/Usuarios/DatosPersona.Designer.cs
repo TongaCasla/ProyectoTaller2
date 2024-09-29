@@ -44,7 +44,7 @@
             lUsuario = new Label();
             txbEmail = new TextBox();
             lEmail = new Label();
-            txbTlf = new TextBox();
+            txbTele = new TextBox();
             lTelefono = new Label();
             txbApellido = new TextBox();
             lApellido = new Label();
@@ -70,7 +70,7 @@
             panel1.Controls.Add(lUsuario);
             panel1.Controls.Add(txbEmail);
             panel1.Controls.Add(lEmail);
-            panel1.Controls.Add(txbTlf);
+            panel1.Controls.Add(txbTele);
             panel1.Controls.Add(lTelefono);
             panel1.Controls.Add(txbApellido);
             panel1.Controls.Add(lApellido);
@@ -80,7 +80,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(839, 450);
+            panel1.Size = new Size(804, 450);
             panel1.TabIndex = 0;
             // 
             // btnCancelar
@@ -95,7 +95,7 @@
             btnCancelar.ForeColor = Color.Black;
             btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(418, 384);
+            btnCancelar.Location = new Point(401, 384);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(166, 40);
             btnCancelar.TabIndex = 48;
@@ -116,18 +116,20 @@
             btnGuardar.ForeColor = Color.Black;
             btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(210, 384);
+            btnGuardar.Location = new Point(193, 384);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(166, 40);
             btnGuardar.TabIndex = 47;
             btnGuardar.Text = "Guardar";
             btnGuardar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // comboPerfil
             // 
             comboPerfil.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPerfil.DropDownWidth = 270;
+            comboPerfil.Enabled = false;
             comboPerfil.Font = new Font("Microsoft Sans Serif", 12F);
             comboPerfil.FormattingEnabled = true;
             comboPerfil.Items.AddRange(new object[] { "Cliente", "Empleado", "Gerente", "Administrador" });
@@ -250,13 +252,14 @@
             lEmail.TabIndex = 34;
             lEmail.Text = "Email:";
             // 
-            // txbTlf
+            // txbTele
             // 
-            txbTlf.Font = new Font("Microsoft Sans Serif", 12F);
-            txbTlf.Location = new Point(559, 198);
-            txbTlf.Name = "txbTlf";
-            txbTlf.Size = new Size(234, 26);
-            txbTlf.TabIndex = 33;
+            txbTele.Font = new Font("Microsoft Sans Serif", 12F);
+            txbTele.Location = new Point(559, 198);
+            txbTele.Name = "txbTele";
+            txbTele.ReadOnly = true;
+            txbTele.Size = new Size(234, 26);
+            txbTele.TabIndex = 33;
             // 
             // lTelefono
             // 
@@ -309,7 +312,7 @@
             labelPersona.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             labelPersona.AutoSize = true;
             labelPersona.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPersona.Location = new Point(239, 19);
+            labelPersona.Location = new Point(222, 19);
             labelPersona.Name = "labelPersona";
             labelPersona.Size = new Size(178, 42);
             labelPersona.TabIndex = 27;
@@ -320,7 +323,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(839, 450);
+            ClientSize = new Size(804, 450);
             Controls.Add(panel1);
             Name = "DatosPersona";
             StartPosition = FormStartPosition.CenterScreen;
@@ -336,7 +339,7 @@
         private Label labelPersona;
         private TextBox txbEmail;
         private Label lEmail;
-        private TextBox txbTlf;
+        private TextBox txbTele;
         private Label lTelefono;
         private TextBox txbApellido;
         private Label lApellido;

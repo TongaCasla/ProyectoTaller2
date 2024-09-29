@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PharmaSuite.Logica.Query;
+using PharmaSuite.Modelo.DB;
+using PharmaSuite.Vistas.Usuarios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +16,11 @@ namespace PharmaSuite.Vistas
     public partial class BusquedaEnTabla : Form
     {
         private String tituloTabla;
-        //private Restricciones restric
-        public BusquedaEnTabla(String tituloTabla)
+        private Persona usuarioActual;
+        public BusquedaEnTabla(String tituloTabla,Persona usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual = usuarioActual;
             this.setTitulo(verificarCasosTitulo(tituloTabla));
         }
         public BusquedaEnTabla(bool label)
@@ -62,6 +66,19 @@ namespace PharmaSuite.Vistas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            Persona ps = new();
+            QueryPersona qp = new();
+            int dniPersona = int.Parse(txbBusqueda.Text);
+            if (qp.bucarDni(dniPersona) == null){
+                lTablaVacia.Show();
+            }
+            else
+            {
+                ps=qp.bucarDni(dniPersona);
+                DatosPersona p = new(ps,this.usuarioActual);
+                p.Show();
+
+            }
 
         }
     }

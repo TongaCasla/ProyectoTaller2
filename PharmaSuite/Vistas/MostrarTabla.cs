@@ -15,23 +15,33 @@ namespace PharmaSuite.Vistas.Usuarios
 {
     public partial class MostrarTabla : Form
     {
-        private String tituloTabla;
+        private String tituloTabla = "Clientes";
         private BusquedaEnTabla formBuscar;
-
         private Persona usuarioActual;
-        int idPerfil;
-        public MostrarTabla(string tituloLabel,Persona usuarioActual)
+        private string estado = "si";
+        private int tipoPerfil = 1;
 
+        int idPerfil;
+        public MostrarTabla(Persona usuarioActual)
+        {
+            InitializeComponent();
+            this.usuarioActual = usuarioActual;
+            this.setTitulo(tituloTabla);
+            //this.verificarTabla();
+            this.pruebaTablas();
+        }
+
+        public MostrarTabla(String titulo,Persona usuarioActual)
 
         {
             InitializeComponent();
-            this.usuarioActual= usuarioActual;
-            this.setTitulo(tituloLabel);
-            this.pruebaTablas();
+            this.usuarioActual = usuarioActual;
+            this.setTitulo(tituloTabla);
             //this.verificarTabla();
+            this.pruebaTablas();
 
         }
-        public MostrarTabla(String tituloLabel, bool habilitarBotones,Persona usuarioActual)
+        public MostrarTabla(String tituloLabel, bool habilitarBotones, Persona usuarioActual)
         {
             InitializeComponent();
             this.setTitulo(tituloLabel);
@@ -40,30 +50,40 @@ namespace PharmaSuite.Vistas.Usuarios
             btnBuscar.Visible = habilitarBotones;
             btnMostrarActivos.Visible = habilitarBotones;
             btnMostrarInactivos.Visible = habilitarBotones;
-            
+
         }
         private void setTitulo(String tituloLabel)
         {
-            labelTituloTabla.Text += tituloLabel;
-            tituloTabla = tituloLabel;
+           labelTipo.Text = tituloLabel;
+
         }
-        public String getTitulo()
-        {
-            return this.tituloTabla;
-        }
+
         private void pruebaTablas()
         {
-
+            dataGridView1.Rows.Clear();
             QueryPersona query = new QueryPersona();
-            List <Persona> lista = query.listaPersona();
+            List<Persona> lista = query.listaPersona();
 
-            foreach (Persona ps in lista) 
+            foreach (Persona ps in lista)
             {
-                dataGridView1.Rows.Add(ps.Dni, ps.Nombre,ps.Apellido,ps.Email, ps.IdPerfil, ps.Activo,"Modificar","Eliminar");
-            }
+                if (ps.IdPerfil == 1 && tipoPerfil == 1)
+                {
+                    dataGridView1.Rows.Add(ps.Dni, ps.Nombre, ps.Apellido, ps.Email, ps.IdPerfil, ps.Activo, "Modificar", "Eliminar");
+                    dataGridView1.Columns[7].Visible = false;
+                }
+                else if (tipoPerfil != 1 && ps.Activo == estado && ps.IdPerfil != 1)
+                {
+                    dataGridView1.Rows.Add(ps.Dni, ps.Nombre, ps.Apellido, ps.Email, ps.IdPerfil, ps.Activo, "Modificar", "Eliminar");
+                    dataGridView1.Columns[7].Visible = true;
+                }
 
+
+            }
         }
-               
+
+
+
+
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -71,7 +91,7 @@ namespace PharmaSuite.Vistas.Usuarios
             if (formBuscar == null)
             {
                 // Si no existe o ha sido cerrado, crea una nueva instancia
-                formBuscar = new BusquedaEnTabla(this.getTitulo());
+                formBuscar = new BusquedaEnTabla(this.tituloTabla, this.usuarioActual);
                 formBuscar.TopLevel = false;
                 formBuscar.Dock = DockStyle.Right;
                 this.Controls.Add(formBuscar);
@@ -95,53 +115,80 @@ namespace PharmaSuite.Vistas.Usuarios
             {
                 lTablaVacia.Hide();
                 dataGridView1.Show();
+                this.pruebaTablas();
             }
         }
 
-
-
-       
-        //mod
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             DbPharmaSuiteContext cn = new DbPharmaSuiteContext();
             QueryPersona query = new QueryPersona();
             DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-            // Verificar que no sea el encabezado de la columna
             if (e.RowIndex >= 0 && e.ColumnIndex == 7)
-            {
-                    int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
-                    Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
-
-                    if (ps.Activo == "si")
-                    {
-                        ps.Activo = "no";
-                        cn.SaveChanges();
-                    
-                     }
-                    else
-                    {
-                        ps.Activo = "si";
-                        cn.SaveChanges();
-    
-
-                    }
-                    this.pruebaTablas();
-                    MessageBox.Show("Se ha modificado el campo correctamente");
-
-            }else if (e.RowIndex >= 0 && e.ColumnIndex == 6) 
             {
                 int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
                 Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
 
-                DatosPersona dtPer = new DatosPersona(ps,usuarioActual);
+                if (ps.Activo == "si")
+                {
+                    ps.Activo = "no";
+                    cn.SaveChanges();
+
+                }
+                else
+                {
+                    ps.Activo = "si";
+                    cn.SaveChanges();
+
+
+                }
+                this.pruebaTablas();
+                MessageBox.Show("Se ha modificado el campo correctamente");
+
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == 6)
+            {
+                int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
+
+                DatosPersona dtPer = new DatosPersona(ps, usuarioActual);
 
                 dtPer.Show();
             }
-            
+
         }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            tipoPerfil = 1;
+            this.setTitulo("Clientes");
+            this.pruebaTablas();
+
         }
+
+        private void btnEmpleado_Click(object sender, EventArgs e)
+        {
+            tipoPerfil = 0;
+            this.setTitulo("Empleados");
+            this.pruebaTablas();
+        }
+
+        private void btnMostrarActivos_Click(object sender, EventArgs e)
+        {
+            estado = "si";
+            this.pruebaTablas();
+        }
+
+        private void btnMostrarInactivos_Click(object sender, EventArgs e)
+        {
+            estado = "no";
+            this.pruebaTablas();
+        }
+
+        
     }
+}
 
 
 

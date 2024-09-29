@@ -604,6 +604,7 @@
             Controls.Add(navSup);
             Controls.Add(navbarIzq);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VistaMenuPpal";
             Text = "Menu principal";

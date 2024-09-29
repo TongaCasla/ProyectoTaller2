@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaLogin));
             panel1 = new Panel();
-            button1 = new Button();
+            btnLogin = new Button();
             pictureBox1 = new PictureBox();
             label3 = new Label();
             txtbContra = new TextBox();
@@ -46,7 +46,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(227, 242, 253);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(txtbContra);
@@ -59,22 +59,22 @@
             panel1.Size = new Size(800, 494);
             panel1.TabIndex = 0;
             // 
-            // button1
+            // btnLogin
             // 
-            button1.BackColor = Color.FromArgb(187, 222, 251);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleRight;
-            button1.Location = new Point(71, 343);
-            button1.Name = "button1";
-            button1.Padding = new Padding(0, 0, 5, 0);
-            button1.Size = new Size(169, 43);
-            button1.TabIndex = 6;
-            button1.Text = "Enviar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnLogin.BackColor = Color.FromArgb(187, 222, 251);
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogin.Image = (Image)resources.GetObject("btnLogin.Image");
+            btnLogin.ImageAlign = ContentAlignment.MiddleRight;
+            btnLogin.Location = new Point(71, 343);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Padding = new Padding(0, 0, 5, 0);
+            btnLogin.Size = new Size(169, 43);
+            btnLogin.TabIndex = 6;
+            btnLogin.Text = "Enviar";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // pictureBox1
             // 
@@ -90,49 +90,49 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.FromArgb(227, 242, 253);
-            label3.Font = new Font("Century Gothic", 50F, FontStyle.Italic);
+            label3.Font = new Font("Microsoft Sans Serif", 50F, FontStyle.Italic);
             label3.Location = new Point(163, 38);
             label3.Name = "label3";
-            label3.Size = new Size(398, 81);
+            label3.Size = new Size(361, 76);
             label3.TabIndex = 4;
             label3.Text = "Bienvenido";
             // 
             // txtbContra
             // 
-            txtbContra.Font = new Font("Century Gothic", 16F);
+            txtbContra.Font = new Font("Microsoft Sans Serif", 16F);
             txtbContra.Location = new Point(46, 269);
             txtbContra.Name = "txtbContra";
             txtbContra.PasswordChar = '*';
             txtbContra.PlaceholderText = "Ingrese contraseña";
-            txtbContra.Size = new Size(217, 34);
+            txtbContra.Size = new Size(217, 32);
             txtbContra.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 20F);
+            label2.Font = new Font("Microsoft Sans Serif", 20F);
             label2.Location = new Point(46, 235);
             label2.Name = "label2";
-            label2.Size = new Size(169, 33);
+            label2.Size = new Size(155, 31);
             label2.TabIndex = 2;
             label2.Text = "Contraseña";
             // 
             // txtbUsuario
             // 
-            txtbUsuario.Font = new Font("Century Gothic", 16F);
+            txtbUsuario.Font = new Font("Microsoft Sans Serif", 16F);
             txtbUsuario.Location = new Point(46, 176);
             txtbUsuario.Name = "txtbUsuario";
             txtbUsuario.PlaceholderText = "Ingrese usuario";
-            txtbUsuario.Size = new Size(217, 34);
+            txtbUsuario.Size = new Size(217, 32);
             txtbUsuario.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 20F);
+            label1.Font = new Font("Microsoft Sans Serif", 20F);
             label1.Location = new Point(46, 136);
             label1.Name = "label1";
-            label1.Size = new Size(108, 33);
+            label1.Size = new Size(108, 31);
             label1.TabIndex = 0;
             label1.Text = "Usuario";
             // 
@@ -150,7 +150,7 @@
             // 
             // VistaLogin
             // 
-            AcceptButton = button1;
+            AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(227, 242, 253);
@@ -178,7 +178,7 @@
         private Label label2;
         private TextBox txtbUsuario;
         private PictureBox pictureBox1;
-        private Button button1;
+        private Button btnLogin;
         private PictureBox btnSalir;
     }
 }
