@@ -42,7 +42,7 @@ namespace PharmaSuite.Logica
            Validacion val = new Validacion();
            QueryPersona query = new QueryPersona();
 
-           if (val.EsNumero(dni))
+           if (val.EsNumero(dni) && val.longitudDni(dni))
            {
                 Persona ps = query.bucarDni(int.Parse(dni));
                 if (ps == null) { return true; }

@@ -23,6 +23,7 @@ namespace PharmaSuite.Vistas.Usuarios
         public DatosPersona(Persona ps, Persona usuarioActual)
         {
             InitializeComponent();
+            this.KeyPreview = true; 
             this.usuarioActual = usuarioActual;
             this.asignarValores(ps);
 
@@ -33,6 +34,14 @@ namespace PharmaSuite.Vistas.Usuarios
             this.Text = "Datos de " + ps.Nombre + " " + ps.Apellido;
 
         }
+        private void DatosPersona_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();  // Cierra el formulario
+            }
+        }
+
         private void verificarTipoPerfil(int tipoPerfil)
         {
             switch (tipoPerfil)
