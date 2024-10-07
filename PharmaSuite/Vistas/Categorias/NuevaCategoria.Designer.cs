@@ -87,6 +87,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(140, 30);
             comboBox1.TabIndex = 4;
+            comboBox1.Visible = false;
             // 
             // button1
             // 
@@ -162,6 +163,7 @@
             btnGuardar.Text = "Guardar";
             btnGuardar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // lTele
             // 
@@ -172,6 +174,7 @@
             lTele.Size = new Size(77, 22);
             lTele.TabIndex = 12;
             lTele.Text = "Estado:";
+            lTele.Visible = false;
             // 
             // lDni
             // 
@@ -198,6 +201,7 @@
             txbCodProd.Font = new Font("Century Gothic", 14.25F);
             txbCodProd.Location = new Point(226, 124);
             txbCodProd.Name = "txbCodProd";
+            txbCodProd.ReadOnly = true;
             txbCodProd.Size = new Size(140, 31);
             txbCodProd.TabIndex = 1;
             // 
