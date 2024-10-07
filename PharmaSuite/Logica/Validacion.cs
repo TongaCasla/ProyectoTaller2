@@ -74,6 +74,28 @@ namespace PharmaSuite.Logica
             var regex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z]+$");
             return regex.IsMatch(lt);
         }
+
+        public bool longitudDni(int dni)
+        {
+            if(dni.ToString().Length == 8){
+                return true;
+            }else {
+                return false;
+            }
+
+        }
+        public bool longitudDni(string dni)
+        {
+            if (dni.Length == 8)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 
 

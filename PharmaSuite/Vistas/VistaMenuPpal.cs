@@ -19,8 +19,7 @@ namespace Vistas
         private bool isVisibleNavbarIzq = true;
         private Persona usuarioActual;
         private Button btnActivo;
-
-
+        private List<Button> botonesDesactivadosPermanente = new List<Button>();
         public VistaMenuPpal(Persona usuarioActual)
         {
             InitializeComponent();
@@ -46,23 +45,22 @@ namespace Vistas
                 //Perfil Gerente 
                 case 3:
                     {
-                        btnNuevaCategoria.Enabled = false;
-                        btnNuevaVenta.Enabled = false;
-                        btnNuevoProducto.Enabled = false;
-                        btnAgregarUsuario.Enabled = false;
-                        btnBackup.Enabled = false;
+                        this.desactivarBtn(btnNuevaCategoria);
+                        this.desactivarBtn(btnNuevaVenta);
+                        this.desactivarBtn(btnNuevoProducto);
+                        this.desactivarBtn(btnAgregarUsuario);
+                        this.desactivarBtn(btnNuevaCategoria);
                         labelTipoPerfil.Text = "Gerente";
                         break;
                     }
                 //Perfil Empleado
                 case 2:
                     {
-                        btnAgregarUsuario.Enabled = false;
-                        btnReportes.Enabled = false;
-                        btnProductos.Enabled = false;
-                        btnBackup.Enabled = false;
-                        btnCategorias.Enabled = false;
-                        btnHistorialVentas.Enabled = false;
+                        this.desactivarBtnPermanentemente(btnAgregarUsuario);
+                        this.desactivarBtnPermanentemente(btnReportes);
+                        this.desactivarBtnPermanentemente(btnProductos);
+                        this.desactivarBtnPermanentemente(btnBackup);
+                        this.desactivarBtnPermanentemente(btnCategorias);
                         labelTipoPerfil.Text = "Empleado";
                         break;
 
@@ -83,6 +81,57 @@ namespace Vistas
             // Muestra el panel seleccionado
             panel.Visible = true;
         }
+        // Lista para guardar los botones deshabilitados permanentemente
+
+        // Función para desactivar permanentemente un botón
+        private void desactivarBtnPermanentemente(Button btn)
+        {
+            btn.Enabled = false;
+            btn.BackColor = Color.FromArgb(211, 211, 211); 
+            if (!botonesDesactivadosPermanente.Contains(btn))
+            {
+                botonesDesactivadosPermanente.Add(btn); 
+            }
+        }
+
+        // Función para desactivar un botón temporalmente
+        private void desactivarBtn(Button btn)
+        {
+            if (!botonesDesactivadosPermanente.Contains(btn)) 
+            {
+                btn.Enabled = false;
+                btn.BackColor = Color.FromArgb(176, 196, 222);
+            }
+        }
+
+        // Función para activar el botón cuando se hace clic
+        private void activarBtn(object btnSender)
+        {
+            if (btnSender != null)
+            {
+                if (btnActivo != (Button)btnSender && !botonesDesactivadosPermanente.Contains((Button)btnSender)) 
+                {
+                    this.desactivarBtn(); 
+                    btnActivo = (Button)btnSender;
+                    btnActivo.BackColor = Color.FromArgb(147, 182, 211); 
+                    btnActivo.Font = new Font("Microsoft Sans Serif", 19.75F);
+                }
+            }
+        }
+
+        // Función para desactivar todos los botones
+        private void desactivarBtn()
+        {
+            foreach (Control btnAnterior in navbarIzq.Controls)
+            {
+                if (btnAnterior.GetType() == typeof(Button) && !botonesDesactivadosPermanente.Contains((Button)btnAnterior)) 
+                {
+                    btnAnterior.BackColor = Color.FromArgb(187, 222, 251); 
+                    btnAnterior.Font = new Font("Microsoft Sans Serif", 18F);
+                }
+            }
+        }
+
 
 
         private void btnDesplegable_Click(object sender, EventArgs e)
@@ -142,30 +191,7 @@ namespace Vistas
         }
 
         //Metodos para activar/desactivar botones
-        private void activarBtn(object btnSender)
-        {
-            if (btnSender != null)
-            {
-                if (btnActivo != (Button)btnSender)
-                {
-                    this.desactivarBtn();
-                    btnActivo= (Button)btnSender;
-            btnActivo.BackColor = Color.FromArgb(147, 182, 211);
-                    btnActivo.Font = new Font("Microsoft Sans Serif",19.75F);
-                }
-            }
-        }
-        private void desactivarBtn()
-        {
-            foreach(Control btnAnterior in navbarIzq.Controls)
-            {
-                if (btnAnterior.GetType() == typeof(Button))
-                {
-                    btnAnterior.BackColor = Color.FromArgb(187, 222, 251);
-                    btnAnterior.Font = new Font("Microsoft Sans Serif", 18F);
-                }
-            }
-        }
+        
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
@@ -179,7 +205,7 @@ namespace Vistas
         }
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new MostrarTabla(this.getUsuario()));
+            this.agregarNuevoForm(new ListaUsuarios(this.usuarioActual));
         }
 
         //Boton productos

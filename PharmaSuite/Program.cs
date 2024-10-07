@@ -15,7 +15,7 @@ namespace PharmaSuite
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Codigo de test
-            /*
+            
             Persona p = new Persona();
             p.IdPersona = 1;
             p.Nombre = "Administrador";
@@ -26,15 +26,18 @@ namespace PharmaSuite
             p.Email = "";
             p.Sexo = "";
             p.IdPerfil = 4;
+            //2 = empleado
+            //3 = gerente
+            //4 = admin
             ///////////////////////////////////////////////
             Usuario t = new Usuario();
             t.Nombre = "Administrador";
             t.Pass = "1234";
             t.IdPersona = 1;
-            */
+            
             //Fin codigo test
-            Application.Run(new VistaLogin());
-            //Application.Run(new VistaMenuPpal(p));
+            //Application.Run(new VistaLogin());
+            Application.Run(new VistaMenuPpal(p));
 
         }
        

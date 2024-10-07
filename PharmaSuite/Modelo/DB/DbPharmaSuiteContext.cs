@@ -20,10 +20,11 @@ public partial class DbPharmaSuiteContext : DbContext
     public virtual DbSet<Persona> Personas { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Categoria> Categorias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,6 +39,32 @@ public partial class DbPharmaSuiteContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("descripcion");
+        });
+
+        modelBuilder.Entity<Categoria>(entity =>
+        {
+            entity.HasKey(e => e.IdCategoria).HasName("PK_categoria_id");
+
+            entity.ToTable("categoria");
+
+            entity.Property(e => e.IdCategoria).HasColumnName("id_categoria");
+
+            entity.Property(e => e.NombreCategoria)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("nombre_categoria");
+
+            entity.Property(e => e.estadoCategoria)
+               .HasMaxLength(50)
+               .IsUnicode(false)
+               .HasDefaultValue("Activa")
+               .HasColumnName("estado_categoria");
+
+            entity.Property(e => e.DescripcionCategoria)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("descripcion_categoria");
+
         });
 
         modelBuilder.Entity<Persona>(entity =>

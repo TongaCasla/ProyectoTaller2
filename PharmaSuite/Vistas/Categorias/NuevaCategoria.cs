@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PharmaSuite.Logica;
+using PharmaSuite.Modelo.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,5 +33,44 @@ namespace PharmaSuite.Vistas.Categorias
 
             txbCodProd.Text = codigoBarras;
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+            if(string.IsNullOrEmpty(txbCodProd.Text) || string.IsNullOrEmpty(txbDescProd.Text) || 
+                string.IsNullOrEmpty(txbNombreProd.Text))
+            {
+                MessageBox.Show("No pueden haber campos vacíos.",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                // Mostramos un mensaje y guardamos la respuesta
+                DialogResult ask = MessageBox.Show(
+                    "¿Desea agregar una nueva categoría?",
+                    "Agregar cliente",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (ask == DialogResult.Yes)
+                {
+                    //Enviamos
+                    DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                    Categoria categoria = new();
+                    categoria.IdCategoria = int.Parse(txbCodProd.Text);
+                    categoria.NombreCategoria = txbNombreProd.Text;
+                    categoria.DescripcionCategoria = txbDescProd.Text;
+
+                    dc.Categorias.Add(categoria);
+                    dc.SaveChanges();
+                    MessageBox.Show("Se ha agregado al cliente correctamente");
+                }
+            }
+            
+        }
+
+       
     }
 }

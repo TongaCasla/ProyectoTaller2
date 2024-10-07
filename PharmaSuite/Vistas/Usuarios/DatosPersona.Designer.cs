@@ -320,11 +320,13 @@
             // 
             // DatosPersona
             // 
+            KeyDown += new KeyEventHandler(DatosPersona_KeyDown);
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(804, 450);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DatosPersona";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DatosUsuario";
