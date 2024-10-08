@@ -28,4 +28,6 @@ public partial class Persona
     public virtual Perfil IdPerfilNavigation { get; set; } = null!;
 
     public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

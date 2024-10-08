@@ -15,5 +15,5 @@ public partial class Usuario
 
     public virtual Persona IdPersonaNavigation { get; set; } = null!;
 
-    
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

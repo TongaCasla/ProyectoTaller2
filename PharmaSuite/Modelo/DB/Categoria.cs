@@ -7,11 +7,9 @@ public partial class Categoria
 {
     public int IdCategoria { get; set; }
 
-    public string NombreCategoria { get; set; } = null!;
+    public string Descripcion { get; set; } = null!;
 
-    public string DescripcionCategoria { get; set; } = null!;
-    public string estadoCategoria { get; set; } = null!;
+    public string Activo { get; set; } = null!;
 
-
-
+    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

@@ -60,8 +60,7 @@ namespace PharmaSuite.Vistas.Categorias
                     DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
                     Categoria categoria = new();
                     categoria.IdCategoria = int.Parse(txbCodProd.Text);
-                    categoria.NombreCategoria = txbNombreProd.Text;
-                    categoria.DescripcionCategoria = txbDescProd.Text;
+                    categoria.Descripcion = txbDescProd.Text;
 
                     dc.Categorias.Add(categoria);
                     dc.SaveChanges();
