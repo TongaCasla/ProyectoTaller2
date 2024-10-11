@@ -130,7 +130,7 @@ namespace PharmaSuite.Vistas.Usuarios
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             DialogResult ask = MessageBox.Show(
-                "¿Desea modificar los datops de la persona?",
+                "¿Desea modificar los datos de la persona?",
                 "Modificar datos",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 

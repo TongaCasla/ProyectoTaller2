@@ -16,7 +16,6 @@ namespace PharmaSuite.Vistas.Usuarios
     public partial class MostrarTabla : Form
     {
         private String tituloTabla = "Clientes";
-        private BusquedaEnTabla formBuscar;
         private Persona usuarioActual;
         private string estado = "si";
         private int tipoPerfil = 1;
@@ -81,28 +80,6 @@ namespace PharmaSuite.Vistas.Usuarios
             }
         }
 
-
-
-
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            // Verifica si el formulario ya existe y está visible
-            if (formBuscar == null)
-            {
-                // Si no existe o ha sido cerrado, crea una nueva instancia
-                formBuscar = new BusquedaEnTabla(this.tituloTabla, this.usuarioActual);
-                formBuscar.TopLevel = false;
-                formBuscar.Dock = DockStyle.Right;
-                this.Controls.Add(formBuscar);
-                formBuscar.Show();
-            }
-            else
-            {
-                // Si ya está abierto, lo trae al frente
-                formBuscar.BringToFront();
-            }
-        }
         private void verificarTabla()
         {
             if (dataGridView1.Rows.Count == 0)

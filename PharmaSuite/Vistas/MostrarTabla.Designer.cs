@@ -125,7 +125,6 @@
             btnBuscar.Text = "Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // lTablaVacia
             // 

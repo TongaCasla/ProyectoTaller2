@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NuevaVenta));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnCliente = new Button();
@@ -50,14 +49,6 @@
             btnCancelar = new Button();
             btnGuardar = new Button();
             dataGridView1 = new DataGridView();
-            DnI = new DataGridViewTextBoxColumn();
-            NombrePersona = new DataGridViewTextBoxColumn();
-            Apellido = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            TipoPerfilPersona = new DataGridViewTextBoxColumn();
-            EstadoPersona = new DataGridViewTextBoxColumn();
-            Modificar = new DataGridViewButtonColumn();
-            Eliminar = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -73,9 +64,9 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(TBDni);
             panel1.Controls.Add(btnBuscarDNI);
-            panel1.Location = new Point(12, 17);
+            panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(313, 242);
+            panel1.Size = new Size(322, 256);
             panel1.TabIndex = 0;
             // 
             // btnCliente
@@ -166,9 +157,9 @@
             panel2.Controls.Add(btnBuscar);
             panel2.Controls.Add(TBCodigoprod);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(331, 17);
+            panel2.Location = new Point(331, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(276, 242);
+            panel2.Size = new Size(309, 256);
             panel2.TabIndex = 1;
             // 
             // label4
@@ -198,7 +189,7 @@
             btnBuscarNombreProd.TabIndex = 34;
             btnBuscarNombreProd.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnBuscarNombreProd.UseVisualStyleBackColor = false;
-            btnBuscarNombreProd.Visible = false;
+            btnBuscarNombreProd.Click += btnBuscarNombreProd_Click;
             // 
             // TBNombreprod
             // 
@@ -207,7 +198,6 @@
             TBNombreprod.Name = "TBNombreprod";
             TBNombreprod.Size = new Size(196, 31);
             TBNombreprod.TabIndex = 33;
-            TBNombreprod.Visible = false;
             // 
             // label3
             // 
@@ -218,7 +208,6 @@
             label3.Size = new Size(213, 25);
             label3.TabIndex = 32;
             label3.Text = "Nombre de producto:";
-            label3.Visible = false;
             // 
             // btnBuscar
             // 
@@ -258,7 +247,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.Anchor = AnchorStyles.Top;
             btnCancelar.BackColor = Color.LightCoral;
             btnCancelar.BackgroundImageLayout = ImageLayout.None;
             btnCancelar.Cursor = Cursors.Hand;
@@ -268,7 +257,7 @@
             btnCancelar.ForeColor = Color.Black;
             btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(238, 522);
+            btnCancelar.Location = new Point(441, 522);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(166, 40);
             btnCancelar.TabIndex = 38;
@@ -278,7 +267,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Top;
             btnGuardar.BackColor = Color.FromArgb(187, 222, 251);
             btnGuardar.BackgroundImageLayout = ImageLayout.None;
             btnGuardar.Cursor = Cursors.Hand;
@@ -288,7 +277,7 @@
             btnGuardar.ForeColor = Color.Black;
             btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(412, 522);
+            btnGuardar.Location = new Point(159, 522);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(166, 40);
             btnGuardar.TabIndex = 37;
@@ -302,7 +291,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -316,15 +305,14 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DnI, NombrePersona, Apellido, Email, TipoPerfilPersona, EstadoPersona, Modificar, Eliminar });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(187, 222, 251);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Location = new Point(12, 278);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
@@ -332,84 +320,8 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(656, 227);
+            dataGridView1.Size = new Size(844, 227);
             dataGridView1.TabIndex = 51;
-            // 
-            // DnI
-            // 
-            DnI.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DnI.HeaderText = "DNI";
-            DnI.Name = "DnI";
-            DnI.ReadOnly = true;
-            DnI.Width = 62;
-            // 
-            // NombrePersona
-            // 
-            NombrePersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            NombrePersona.HeaderText = "Nombre";
-            NombrePersona.Name = "NombrePersona";
-            NombrePersona.ReadOnly = true;
-            NombrePersona.Width = 90;
-            // 
-            // Apellido
-            // 
-            Apellido.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            Apellido.HeaderText = "Apellido";
-            Apellido.Name = "Apellido";
-            Apellido.ReadOnly = true;
-            Apellido.Width = 90;
-            // 
-            // Email
-            // 
-            Email.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.Width = 73;
-            // 
-            // TipoPerfilPersona
-            // 
-            TipoPerfilPersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            TipoPerfilPersona.HeaderText = "Perfil";
-            TipoPerfilPersona.Name = "TipoPerfilPersona";
-            TipoPerfilPersona.ReadOnly = true;
-            TipoPerfilPersona.Width = 69;
-            // 
-            // EstadoPersona
-            // 
-            EstadoPersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            EstadoPersona.HeaderText = "Activo";
-            EstadoPersona.Name = "EstadoPersona";
-            EstadoPersona.ReadOnly = true;
-            EstadoPersona.Width = 77;
-            // 
-            // Modificar
-            // 
-            Modificar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Azure;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(187, 222, 251);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            Modificar.DefaultCellStyle = dataGridViewCellStyle2;
-            Modificar.HeaderText = "Modificar";
-            Modificar.Name = "Modificar";
-            Modificar.ReadOnly = true;
-            Modificar.Resizable = DataGridViewTriState.True;
-            Modificar.SortMode = DataGridViewColumnSortMode.Automatic;
-            Modificar.Text = "Eliminar";
-            Modificar.Width = 98;
-            // 
-            // Eliminar
-            // 
-            Eliminar.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            Eliminar.HeaderText = "Eliminar";
-            Eliminar.Name = "Eliminar";
-            Eliminar.ReadOnly = true;
-            Eliminar.Resizable = DataGridViewTriState.True;
-            Eliminar.SortMode = DataGridViewColumnSortMode.Automatic;
-            Eliminar.Width = 90;
             // 
             // NuevaVenta
             // 
@@ -452,13 +364,5 @@
         private Button btnCancelar;
         private Button btnGuardar;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn DnI;
-        private DataGridViewTextBoxColumn NombrePersona;
-        private DataGridViewTextBoxColumn Apellido;
-        private DataGridViewTextBoxColumn Email;
-        private DataGridViewTextBoxColumn TipoPerfilPersona;
-        private DataGridViewTextBoxColumn EstadoPersona;
-        private DataGridViewButtonColumn Modificar;
-        private DataGridViewButtonColumn Eliminar;
     }
 }

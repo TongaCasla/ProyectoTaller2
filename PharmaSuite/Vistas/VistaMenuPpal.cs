@@ -259,7 +259,8 @@ namespace Vistas
 
         private void btnNuevaVenta_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new NuevaVenta());
+            //this.agregarNuevoForm(new NuevaVenta());
+            this.agregarNuevoForm(new VentaActual(this.usuarioActual));
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)

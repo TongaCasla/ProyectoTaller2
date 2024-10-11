@@ -30,8 +30,8 @@ namespace PharmaSuite.Vistas.Usuarios
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             // Si no existe o ha sido cerrado, crea una nueva instancia
-            BusquedaEnTabla formBuscar = new("DNI", this.usuarioActual);
-            formBuscar.Show();
+           //BusquedaEnTabla formBuscar = new("DNI", this.usuarioActual);
+            //formBuscar.Show();
         }
         private void mostrarClientes()
         {
@@ -226,14 +226,11 @@ namespace PharmaSuite.Vistas.Usuarios
                 {
                     ps.Activo = "no";
                     cn.SaveChanges();
-
                 }
                 else
                 {
                     ps.Activo = "si";
                     cn.SaveChanges();
-
-
                 }
                 this.mostrarTodosEmpleados();
                 MessageBox.Show("Se ha modificado el campo correctamente");

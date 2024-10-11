@@ -3,6 +3,7 @@ using PharmaSuite.Logica;
 using PharmaSuite.Logica.Query;
 using PharmaSuite.Modelo.DB;
 using PharmaSuite.Vistas.Usuarios;
+using PharmaSuite.Vistas.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,23 +16,19 @@ using System.Windows.Forms;
 
 namespace PharmaSuite.Vistas
 {
-    public partial class BusquedaEnTabla : Form
+    public partial class BusquedaCliente : Form
     {
-        private String tituloTabla;
-        private Persona usuarioActual;
-        public BusquedaEnTabla(String tituloTabla, Persona usuarioActual)
-        {
-            InitializeComponent();
-            this.usuarioActual = usuarioActual;
-            this.setTitulo(verificarCasosTitulo(tituloTabla));
-            this.KeyPreview = true; 
+        private VentaActual VentaActual;
 
-        }
-        public BusquedaEnTabla(bool label)
+        public BusquedaCliente(VentaActual venta)
         {
             InitializeComponent();
-            labelTitulo.Visible = label;
-            this.setTitulo("");
+            this.KeyPreview = true; 
+            VentaActual=venta;
+        }
+        public BusquedaCliente()
+        {
+            InitializeComponent();
 
         }
         private void BusquedaEnTabla_KeyDown(object sender, KeyEventArgs e)
@@ -43,34 +40,7 @@ namespace PharmaSuite.Vistas
         }
 
 
-        private void setTitulo(String tituloLabel)
-        {
-            labelTitulo.Text += tituloLabel;
-        }
-        private String getTitulo(String tituloLabel)
-        {
-            return this.tituloTabla;
-        }
-
-        private String verificarCasosTitulo(String tituloVista)
-        {
-            String tituloBusqueda = "";
-
-            switch (tituloVista)
-            {
-                case "Productos":
-                    tituloBusqueda = "Nombre";
-                    break;
-                case "Categorías":
-                    tituloBusqueda = "Categoría";
-                    break;
-                default:
-                    tituloBusqueda = "DNI";
-                    break;
-            }
-            return tituloBusqueda;
-        }
-
+        
         //Metodo que realiza la buqueda
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -115,12 +85,11 @@ namespace PharmaSuite.Vistas
             else
             {
                 ps = qp.bucarDni(dniPersona);
-                DatosPersona p = new(ps, this.usuarioActual);
-                p.Show();
-                lTablaVacia.Hide();
-
+                VentaActual.setCliente(ps);
+                this.Close();
             }
 
         }
+       
     }
 }
