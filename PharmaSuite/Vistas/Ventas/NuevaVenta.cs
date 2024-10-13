@@ -16,14 +16,15 @@ namespace PharmaSuite.Vistas
 {
     public partial class NuevaVenta : Form
     {
-        private BusquedaEnTabla formBuscar;
+        private BusquedaPersona formBuscar;
 
 
         public NuevaVenta()
         {
             InitializeComponent();
-            this.iniciarBuscador();
+            //this.iniciarBuscador();
         }
+        /*
         private void iniciarBuscador()
         {
             this.formBuscar = new BusquedaEnTabla("Productos",null);
@@ -33,7 +34,7 @@ namespace PharmaSuite.Vistas
             this.Controls.Add(formBuscar);
             formBuscar.Show();
         }
-        
+        */
 
         //Metodo para bloquear los campos si es consumidor final
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

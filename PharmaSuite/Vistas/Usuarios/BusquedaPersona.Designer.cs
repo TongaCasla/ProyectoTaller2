@@ -1,4 +1,4 @@
-﻿namespace PharmaSuite.Vistas
+﻿namespace PharmaSuite.Vistas.Usuarios
 {
     partial class BusquedaPersona
     {
@@ -44,16 +44,17 @@
             panel1.Controls.Add(btnBuscar);
             panel1.Controls.Add(txbBusqueda);
             panel1.Controls.Add(labelTitulo);
+            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(390, 386);
-            panel1.TabIndex = 0;
+            panel1.Size = new Size(438, 183);
+            panel1.TabIndex = 1;
             // 
             // lTablaVacia
             // 
             lTablaVacia.AutoSize = true;
             lTablaVacia.Font = new Font("Microsoft Sans Serif", 20F);
-            lTablaVacia.Location = new Point(55, 138);
+            lTablaVacia.Location = new Point(76, 104);
             lTablaVacia.Name = "lTablaVacia";
             lTablaVacia.Size = new Size(237, 62);
             lTablaVacia.TabIndex = 51;
@@ -71,7 +72,7 @@
             btnBuscar.ForeColor = Color.Black;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(274, 68);
+            btnBuscar.Location = new Point(319, 56);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(43, 34);
             btnBuscar.TabIndex = 30;
@@ -82,34 +83,35 @@
             // txbBusqueda
             // 
             txbBusqueda.Font = new Font("Microsoft Sans Serif", 16F);
-            txbBusqueda.Location = new Point(55, 68);
+            txbBusqueda.Location = new Point(76, 58);
             txbBusqueda.Name = "txbBusqueda";
-            txbBusqueda.Size = new Size(200, 32);
+            txbBusqueda.PlaceholderText = "Ingrese DNI sin puntos";
+            txbBusqueda.Size = new Size(237, 32);
             txbBusqueda.TabIndex = 28;
             // 
             // labelTitulo
             // 
             labelTitulo.AutoSize = true;
             labelTitulo.Font = new Font("Microsoft Sans Serif", 20F);
-            labelTitulo.Location = new Point(55, 27);
+            labelTitulo.Location = new Point(76, 17);
             labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(112, 31);
+            labelTitulo.Size = new Size(219, 31);
             labelTitulo.TabIndex = 27;
-            labelTitulo.Text = "Ingrese ";
+            labelTitulo.Text = "Ingrese Nro. DNI";
             // 
-            // BusquedaEnTabla
+            // BusquedaPersona
             // 
             AcceptButton = btnBuscar;
-            KeyDown += new KeyEventHandler(BusquedaEnTabla_KeyDown);
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(390, 385);
+            ClientSize = new Size(438, 183);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "BusquedaEnTabla";
+            Name = "BusquedaPersona";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "BusquedaEnTabla";
+            Text = "Busqueda";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -118,9 +120,9 @@
         #endregion
 
         private Panel panel1;
-        private Label labelTitulo;
-        private TextBox txbBusqueda;
-        private Button btnBuscar;
         private Label lTablaVacia;
+        private Button btnBuscar;
+        private TextBox txbBusqueda;
+        private Label labelTitulo;
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using PharmaSuite.Logica;
 using PharmaSuite.Logica.Query;
+using PharmaSuite.Logica;
 using PharmaSuite.Modelo.DB;
-using PharmaSuite.Vistas.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,65 +12,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PharmaSuite.Vistas
+namespace PharmaSuite.Vistas.Usuarios
 {
     public partial class BusquedaPersona : Form
     {
-        private String tituloTabla;
         private Persona usuarioActual;
-        public BusquedaPersona(String tituloTabla, Persona usuarioActual)
+        public BusquedaPersona(Persona usuarioActual)
         {
             InitializeComponent();
             this.usuarioActual = usuarioActual;
-            this.setTitulo(verificarCasosTitulo(tituloTabla));
-            this.KeyPreview = true; 
-
-        }
-        public BusquedaPersona(bool label)
-        {
-            InitializeComponent();
-            labelTitulo.Visible = label;
-            this.setTitulo("");
+            this.KeyPreview = true;
 
         }
         private void BusquedaEnTabla_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();  
+                this.Close();
             }
         }
 
-
-        private void setTitulo(String tituloLabel)
-        {
-            labelTitulo.Text += tituloLabel;
-        }
-        private String getTitulo(String tituloLabel)
-        {
-            return this.tituloTabla;
-        }
-
-        private String verificarCasosTitulo(String tituloVista)
-        {
-            String tituloBusqueda = "";
-
-            switch (tituloVista)
-            {
-                case "Productos":
-                    tituloBusqueda = "Nombre";
-                    break;
-                case "Categorías":
-                    tituloBusqueda = "Categoría";
-                    break;
-                default:
-                    tituloBusqueda = "DNI";
-                    break;
-            }
-            return tituloBusqueda;
-        }
-
-        //Metodo que realiza la buqueda
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             Persona ps = new();
@@ -88,7 +48,7 @@ namespace PharmaSuite.Vistas
                 return;
             }
             //Validamos que sea numero
-            if(!int.TryParse(txbBusqueda.Text, out int numero))
+            if (!int.TryParse(txbBusqueda.Text, out int numero))
             {
                 MessageBox.Show("Datos incorrectos. Por favor, ingrese un número válido",
                 "Error",
@@ -100,7 +60,8 @@ namespace PharmaSuite.Vistas
             //Validamos que sea un dni correcto (8 digitos)
             int dniPersona = int.Parse(txbBusqueda.Text);
             Validacion val = new();
-            if (!val.longitudDni(dniPersona)){
+            if (!val.longitudDni(dniPersona))
+            {
                 MessageBox.Show("Datos incorrectos. Por favor, ingrese un número de DNI válido",
                 "Error",
                 MessageBoxButtons.OK,
@@ -122,5 +83,6 @@ namespace PharmaSuite.Vistas
             }
 
         }
+    
     }
 }
