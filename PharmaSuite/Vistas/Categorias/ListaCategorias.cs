@@ -60,6 +60,7 @@ namespace PharmaSuite.Vistas.Categorias
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.agregarCategoria();
+            this.mostrarCategorias();
         }
 
         private void agregarCategoria()
@@ -174,7 +175,7 @@ namespace PharmaSuite.Vistas.Categorias
             this.cargarTabla(categoriasInactivas);
         }
 
-        private void btnCliente_Click(object sender, EventArgs e)
+        private void btnCategorias_Click(object sender, EventArgs e)
         {
             this.mostrarCategorias();
         }
@@ -194,13 +195,13 @@ namespace PharmaSuite.Vistas.Categorias
                 {
                     c.Activo = "no";
                     cn.SaveChanges();
-                MessageBox.Show("Se ha desactiva correctamente");
+                    MessageBox.Show("Se ha desactiva correctamente");
                 }
                 else
                 {
                     c.Activo = "si";
                     cn.SaveChanges();
-                MessageBox.Show("Se ha activada correctamente");
+                    MessageBox.Show("Se ha activada correctamente");
                 }
                 this.mostrarCategorias();
 
