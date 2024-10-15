@@ -45,9 +45,6 @@
             pProductos = new Panel();
             btnMostrarProductos = new Button();
             btnNuevoProducto = new Button();
-            pCategorias = new Panel();
-            btnMostrarCategorias = new Button();
-            btnNuevaCategoria = new Button();
             pReportes = new Panel();
             btnNuevoReporte = new Button();
             btnUsuarios = new Button();
@@ -64,6 +61,7 @@
             pBackup = new Panel();
             button1 = new Button();
             button3 = new Button();
+            pCategorias = new Panel();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             navSup.SuspendLayout();
@@ -72,7 +70,6 @@
             pUsuarios.SuspendLayout();
             pVentas.SuspendLayout();
             pProductos.SuspendLayout();
-            pCategorias.SuspendLayout();
             pReportes.SuspendLayout();
             pSesion.SuspendLayout();
             navbarIzq.SuspendLayout();
@@ -297,52 +294,6 @@
             btnNuevoProducto.UseVisualStyleBackColor = true;
             btnNuevoProducto.Click += btnNuevoProducto_Click;
             // 
-            // pCategorias
-            // 
-            pCategorias.Controls.Add(btnMostrarCategorias);
-            pCategorias.Controls.Add(btnNuevaCategoria);
-            pCategorias.Location = new Point(5, 202);
-            pCategorias.Name = "pCategorias";
-            pCategorias.Size = new Size(694, 87);
-            pCategorias.TabIndex = 28;
-            pCategorias.Visible = false;
-            // 
-            // btnMostrarCategorias
-            // 
-            btnMostrarCategorias.BackgroundImageLayout = ImageLayout.None;
-            btnMostrarCategorias.FlatAppearance.BorderSize = 0;
-            btnMostrarCategorias.FlatStyle = FlatStyle.Flat;
-            btnMostrarCategorias.Font = new Font("Microsoft Sans Serif", 16F);
-            btnMostrarCategorias.ForeColor = Color.Black;
-            btnMostrarCategorias.Image = (Image)resources.GetObject("btnMostrarCategorias.Image");
-            btnMostrarCategorias.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMostrarCategorias.Location = new Point(179, 2);
-            btnMostrarCategorias.Name = "btnMostrarCategorias";
-            btnMostrarCategorias.Size = new Size(173, 81);
-            btnMostrarCategorias.TabIndex = 27;
-            btnMostrarCategorias.Text = "Ver Categorías";
-            btnMostrarCategorias.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnMostrarCategorias.UseVisualStyleBackColor = true;
-            btnMostrarCategorias.Click += btnMostrarCategorias_Click;
-            // 
-            // btnNuevaCategoria
-            // 
-            btnNuevaCategoria.BackgroundImageLayout = ImageLayout.None;
-            btnNuevaCategoria.FlatAppearance.BorderSize = 0;
-            btnNuevaCategoria.FlatStyle = FlatStyle.Flat;
-            btnNuevaCategoria.Font = new Font("Microsoft Sans Serif", 16F);
-            btnNuevaCategoria.ForeColor = Color.Black;
-            btnNuevaCategoria.Image = (Image)resources.GetObject("btnNuevaCategoria.Image");
-            btnNuevaCategoria.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNuevaCategoria.Location = new Point(3, 3);
-            btnNuevaCategoria.Name = "btnNuevaCategoria";
-            btnNuevaCategoria.Size = new Size(164, 81);
-            btnNuevaCategoria.TabIndex = 25;
-            btnNuevaCategoria.Text = "Nueva Categoría";
-            btnNuevaCategoria.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnNuevaCategoria.UseVisualStyleBackColor = true;
-            btnNuevaCategoria.Click += btnNuevaCategoria_Click;
-            // 
             // pReportes
             // 
             pReportes.Controls.Add(btnNuevoReporte);
@@ -537,9 +488,9 @@
             pFondo.BackColor = Color.Azure;
             pFondo.BackgroundImage = (Image)resources.GetObject("pFondo.BackgroundImage");
             pFondo.BackgroundImageLayout = ImageLayout.Zoom;
+            pFondo.Controls.Add(pCategorias);
             pFondo.Controls.Add(pBackup);
             pFondo.Controls.Add(pUsuarios);
-            pFondo.Controls.Add(pCategorias);
             pFondo.Controls.Add(pVentas);
             pFondo.Controls.Add(pProductos);
             pFondo.Controls.Add(pReportes);
@@ -593,6 +544,14 @@
             button3.TextImageRelation = TextImageRelation.ImageBeforeText;
             button3.UseVisualStyleBackColor = true;
             // 
+            // pCategorias
+            // 
+            pCategorias.Location = new Point(5, 205);
+            pCategorias.Name = "pCategorias";
+            pCategorias.Size = new Size(695, 87);
+            pCategorias.TabIndex = 32;
+            pCategorias.Visible = false;
+            // 
             // VistaMenuPpal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -617,7 +576,6 @@
             pUsuarios.ResumeLayout(false);
             pVentas.ResumeLayout(false);
             pProductos.ResumeLayout(false);
-            pCategorias.ResumeLayout(false);
             pReportes.ResumeLayout(false);
             pSesion.ResumeLayout(false);
             pSesion.PerformLayout();
@@ -650,9 +608,6 @@
         private Button btnNuevoProducto;
         private Button btnMostrarProductos;
         private Button btnCategorias;
-        private Panel pCategorias;
-        private Button btnMostrarCategorias;
-        private Button btnNuevaCategoria;
         private Button btnHistorialVentas;
         private Button btnNuevaVenta;
         private Panel pReportes;
@@ -663,5 +618,6 @@
         private Button button1;
         private Button button3;
         private Panel panel6;
+        private Panel pCategorias;
     }
 }

@@ -47,14 +47,14 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(675, 208);
+            panel1.Size = new Size(422, 208);
             panel1.TabIndex = 0;
             // 
             // lTablaVacia
             // 
             lTablaVacia.AutoSize = true;
             lTablaVacia.Font = new Font("Microsoft Sans Serif", 20F);
-            lTablaVacia.Location = new Point(206, 122);
+            lTablaVacia.Location = new Point(80, 120);
             lTablaVacia.Name = "lTablaVacia";
             lTablaVacia.Size = new Size(237, 62);
             lTablaVacia.TabIndex = 51;
@@ -72,7 +72,7 @@
             btnBuscar.ForeColor = Color.Black;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(425, 68);
+            btnBuscar.Location = new Point(299, 66);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(43, 34);
             btnBuscar.TabIndex = 30;
@@ -83,7 +83,7 @@
             // txbBusqueda
             // 
             txbBusqueda.Font = new Font("Microsoft Sans Serif", 16F);
-            txbBusqueda.Location = new Point(206, 68);
+            txbBusqueda.Location = new Point(80, 66);
             txbBusqueda.Name = "txbBusqueda";
             txbBusqueda.Size = new Size(200, 32);
             txbBusqueda.TabIndex = 28;
@@ -92,7 +92,7 @@
             // 
             labelTitulo.AutoSize = true;
             labelTitulo.Font = new Font("Microsoft Sans Serif", 20F);
-            labelTitulo.Location = new Point(206, 27);
+            labelTitulo.Location = new Point(80, 25);
             labelTitulo.Name = "labelTitulo";
             labelTitulo.Size = new Size(219, 31);
             labelTitulo.TabIndex = 27;
@@ -104,7 +104,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(675, 208);
+            ClientSize = new Size(422, 208);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");

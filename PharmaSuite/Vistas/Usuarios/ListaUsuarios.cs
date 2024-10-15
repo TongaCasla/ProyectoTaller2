@@ -29,9 +29,9 @@ namespace PharmaSuite.Vistas.Usuarios
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Si no existe o ha sido cerrado, crea una nueva instancia
-           //BusquedaEnTabla formBuscar = new("DNI", this.usuarioActual);
-            //formBuscar.Show();
+            /*
+           BusquedaCliente formBuscar = new(this.usuarioActual);
+           formBuscar.Show();*/
         }
         private void mostrarClientes()
         {

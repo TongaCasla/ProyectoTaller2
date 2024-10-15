@@ -5,6 +5,7 @@ using PharmaSuite.Vistas.Productos;
 using PharmaSuite.Vistas.Reportes;
 using PharmaSuite.Vistas.Usuarios;
 using PharmaSuite.Vistas.Ventas;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata.Ecma335;
 using Vistas;
@@ -45,11 +46,9 @@ namespace Vistas
                 //Perfil Gerente 
                 case 3:
                     {
-                        this.desactivarBtn(btnNuevaCategoria);
                         this.desactivarBtn(btnNuevaVenta);
                         this.desactivarBtn(btnNuevoProducto);
                         this.desactivarBtn(btnAgregarUsuario);
-                        this.desactivarBtn(btnNuevaCategoria);
                         labelTipoPerfil.Text = "Gerente";
                         break;
                     }
@@ -233,13 +232,13 @@ namespace Vistas
         {
             this.activarBtn(sender);
             this.MostrarPanel(pCategorias);
-            this.limpiarFondo();
+            this.agregarNuevoForm(new ListaCategorias());
 
         }
 
         private void btnMostrarCategorias_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new MostrarTabla("Categorías",this.getUsuario()));
+            this.agregarNuevoForm(new ListaCategorias());
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -275,7 +274,7 @@ namespace Vistas
 
         private void btnNuevaCategoria_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new NuevaCategoria());
+            //this.agregarNuevoForm(new NuevaCategoria());
         }
 
         private void button4_Click(object sender, EventArgs e)

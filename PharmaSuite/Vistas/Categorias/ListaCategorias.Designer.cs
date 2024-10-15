@@ -1,6 +1,6 @@
-﻿namespace PharmaSuite.Vistas.Usuarios
+﻿namespace PharmaSuite.Vistas.Categorias
 {
-    partial class ListaUsuarios
+    partial class ListaCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -28,80 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaUsuarios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaCategorias));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            panel1 = new Panel();
-            labelTipo = new Label();
-            btnEmpleado = new Button();
+            panel2 = new Panel();
             btnCliente = new Button();
-            lTablaVacia = new Label();
-            btnBuscar = new Button();
             labelTituloTabla = new Label();
             btnMostrarInactivos = new Button();
             btnMostrarActivos = new Button();
+            panel3 = new Panel();
+            lTablaVacia = new Label();
             dataGridView1 = new DataGridView();
-            DnI = new DataGridViewTextBoxColumn();
+            Cod = new DataGridViewTextBoxColumn();
             NombrePersona = new DataGridViewTextBoxColumn();
-            ape = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            TipoPerfilPersona = new DataGridViewTextBoxColumn();
             EstadoPersona = new DataGridViewTextBoxColumn();
             Modificar = new DataGridViewButtonColumn();
             Eliminar = new DataGridViewButtonColumn();
-            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // panel2
             // 
-            panel1.Controls.Add(labelTipo);
-            panel1.Controls.Add(btnEmpleado);
-            panel1.Controls.Add(btnCliente);
-            panel1.Controls.Add(lTablaVacia);
-            panel1.Controls.Add(btnBuscar);
-            panel1.Controls.Add(labelTituloTabla);
-            panel1.Controls.Add(btnMostrarInactivos);
-            panel1.Controls.Add(btnMostrarActivos);
-            panel1.Controls.Add(dataGridView1);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 516);
-            panel1.TabIndex = 0;
-            // 
-            // labelTipo
-            // 
-            labelTipo.Anchor = AnchorStyles.Top;
-            labelTipo.AutoSize = true;
-            labelTipo.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelTipo.Location = new Point(374, 24);
-            labelTipo.Name = "labelTipo";
-            labelTipo.Size = new Size(153, 42);
-            labelTipo.TabIndex = 62;
-            labelTipo.Text = "Clientes";
-            // 
-            // btnEmpleado
-            // 
-            btnEmpleado.Anchor = AnchorStyles.Top;
-            btnEmpleado.BackColor = Color.FromArgb(187, 222, 251);
-            btnEmpleado.BackgroundImageLayout = ImageLayout.None;
-            btnEmpleado.Cursor = Cursors.Hand;
-            btnEmpleado.FlatAppearance.BorderSize = 0;
-            btnEmpleado.FlatStyle = FlatStyle.Flat;
-            btnEmpleado.Font = new Font("Microsoft Sans Serif", 18F);
-            btnEmpleado.ForeColor = Color.Black;
-            btnEmpleado.Image = Properties.Resources.hombre_empleado_alt;
-            btnEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmpleado.Location = new Point(191, 95);
-            btnEmpleado.Name = "btnEmpleado";
-            btnEmpleado.Size = new Size(179, 40);
-            btnEmpleado.TabIndex = 61;
-            btnEmpleado.Text = "Empleados";
-            btnEmpleado.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEmpleado.UseVisualStyleBackColor = false;
-            btnEmpleado.Click += btnEmpleado_Click;
+            panel2.Controls.Add(btnCliente);
+            panel2.Controls.Add(labelTituloTabla);
+            panel2.Controls.Add(btnMostrarInactivos);
+            panel2.Controls.Add(btnMostrarActivos);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(800, 140);
+            panel2.TabIndex = 2;
             // 
             // btnCliente
             // 
@@ -113,59 +72,27 @@
             btnCliente.FlatStyle = FlatStyle.Flat;
             btnCliente.Font = new Font("Microsoft Sans Serif", 18F);
             btnCliente.ForeColor = Color.Black;
-            btnCliente.Image = Properties.Resources.bolsa_de_usuario;
+            btnCliente.Image = (Image)resources.GetObject("btnCliente.Image");
             btnCliente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCliente.Location = new Point(7, 95);
+            btnCliente.Location = new Point(183, 73);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(178, 40);
-            btnCliente.TabIndex = 60;
-            btnCliente.Text = "Clientes";
+            btnCliente.Size = new Size(130, 40);
+            btnCliente.TabIndex = 67;
+            btnCliente.Text = "Todas";
             btnCliente.TextAlign = ContentAlignment.MiddleLeft;
             btnCliente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCliente.UseVisualStyleBackColor = false;
-            btnCliente.Click += btnCliente_Click;
-            // 
-            // lTablaVacia
-            // 
-            lTablaVacia.AutoSize = true;
-            lTablaVacia.Font = new Font("Microsoft Sans Serif", 20F);
-            lTablaVacia.Location = new Point(81, 270);
-            lTablaVacia.Name = "lTablaVacia";
-            lTablaVacia.Size = new Size(394, 31);
-            lTablaVacia.TabIndex = 58;
-            lTablaVacia.Text = "No se encontraron resultados...";
-            lTablaVacia.Visible = false;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Anchor = AnchorStyles.Top;
-            btnBuscar.BackColor = Color.Transparent;
-            btnBuscar.BackgroundImageLayout = ImageLayout.None;
-            btnBuscar.Cursor = Cursors.Hand;
-            btnBuscar.FlatAppearance.BorderSize = 0;
-            btnBuscar.FlatStyle = FlatStyle.Flat;
-            btnBuscar.Font = new Font("Microsoft Sans Serif", 18F);
-            btnBuscar.ForeColor = Color.Black;
-            btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
-            btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(736, 95);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(42, 40);
-            btnBuscar.TabIndex = 57;
-            btnBuscar.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // labelTituloTabla
             // 
             labelTituloTabla.Anchor = AnchorStyles.Top;
             labelTituloTabla.AutoSize = true;
             labelTituloTabla.Font = new Font("Microsoft Sans Serif", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelTituloTabla.Location = new Point(229, 24);
+            labelTituloTabla.Location = new Point(234, 9);
             labelTituloTabla.Name = "labelTituloTabla";
-            labelTituloTabla.Size = new Size(159, 42);
-            labelTituloTabla.TabIndex = 56;
-            labelTituloTabla.Text = "Lista de ";
+            labelTituloTabla.Size = new Size(332, 42);
+            labelTituloTabla.TabIndex = 65;
+            labelTituloTabla.Text = "Lista de categorías";
             // 
             // btnMostrarInactivos
             // 
@@ -177,16 +104,15 @@
             btnMostrarInactivos.FlatStyle = FlatStyle.Flat;
             btnMostrarInactivos.Font = new Font("Microsoft Sans Serif", 18F);
             btnMostrarInactivos.ForeColor = Color.Black;
-            btnMostrarInactivos.Image = Properties.Resources.marcar_mensaje__1_;
+            btnMostrarInactivos.Image = (Image)resources.GetObject("btnMostrarInactivos.Image");
             btnMostrarInactivos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMostrarInactivos.Location = new Point(560, 95);
+            btnMostrarInactivos.Location = new Point(505, 73);
             btnMostrarInactivos.Name = "btnMostrarInactivos";
             btnMostrarInactivos.Size = new Size(159, 40);
-            btnMostrarInactivos.TabIndex = 55;
+            btnMostrarInactivos.TabIndex = 64;
             btnMostrarInactivos.Text = "Inactivos";
             btnMostrarInactivos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMostrarInactivos.UseVisualStyleBackColor = false;
-            btnMostrarInactivos.Click += btnMostrarInactivos_Click;
             // 
             // btnMostrarActivos
             // 
@@ -198,17 +124,37 @@
             btnMostrarActivos.FlatStyle = FlatStyle.Flat;
             btnMostrarActivos.Font = new Font("Microsoft Sans Serif", 18F);
             btnMostrarActivos.ForeColor = Color.Black;
-            btnMostrarActivos.Image = Properties.Resources.comenta_alt_check__1_;
+            btnMostrarActivos.Image = (Image)resources.GetObject("btnMostrarActivos.Image");
             btnMostrarActivos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMostrarActivos.Location = new Point(395, 95);
+            btnMostrarActivos.Location = new Point(330, 73);
             btnMostrarActivos.Name = "btnMostrarActivos";
             btnMostrarActivos.Size = new Size(159, 40);
-            btnMostrarActivos.TabIndex = 54;
+            btnMostrarActivos.TabIndex = 63;
             btnMostrarActivos.Text = "Activos";
             btnMostrarActivos.TextAlign = ContentAlignment.MiddleLeft;
             btnMostrarActivos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMostrarActivos.UseVisualStyleBackColor = false;
-            btnMostrarActivos.Click += btnMostrarActivos_Click;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(lTablaVacia);
+            panel3.Controls.Add(dataGridView1);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 140);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(800, 310);
+            panel3.TabIndex = 4;
+            // 
+            // lTablaVacia
+            // 
+            lTablaVacia.AutoSize = true;
+            lTablaVacia.Font = new Font("Microsoft Sans Serif", 20F);
+            lTablaVacia.Location = new Point(183, 109);
+            lTablaVacia.Name = "lTablaVacia";
+            lTablaVacia.Size = new Size(394, 31);
+            lTablaVacia.TabIndex = 60;
+            lTablaVacia.Text = "No se encontraron resultados...";
+            lTablaVacia.Visible = false;
             // 
             // dataGridView1
             // 
@@ -216,7 +162,6 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -230,7 +175,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DnI, NombrePersona, ape, Email, TipoPerfilPersona, EstadoPersona, Modificar, Eliminar });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Cod, NombrePersona, EstadoPersona, Modificar, Eliminar });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -239,23 +184,23 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Location = new Point(12, 157);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(766, 348);
-            dataGridView1.TabIndex = 59;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.Size = new Size(800, 310);
+            dataGridView1.TabIndex = 61;
             // 
-            // DnI
+            // Cod
             // 
-            DnI.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            DnI.HeaderText = "DNI";
-            DnI.Name = "DnI";
-            DnI.ReadOnly = true;
+            Cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Cod.HeaderText = "Código";
+            Cod.Name = "Cod";
+            Cod.ReadOnly = true;
             // 
             // NombrePersona
             // 
@@ -263,29 +208,6 @@
             NombrePersona.HeaderText = "Nombre";
             NombrePersona.Name = "NombrePersona";
             NombrePersona.ReadOnly = true;
-            // 
-            // ape
-            // 
-            ape.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ape.HeaderText = "Apellido";
-            ape.Name = "ape";
-            ape.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.Width = 73;
-            // 
-            // TipoPerfilPersona
-            // 
-            TipoPerfilPersona.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            TipoPerfilPersona.HeaderText = "Perfil";
-            TipoPerfilPersona.Name = "TipoPerfilPersona";
-            TipoPerfilPersona.ReadOnly = true;
-            TipoPerfilPersona.Width = 69;
             // 
             // EstadoPersona
             // 
@@ -321,38 +243,36 @@
             Eliminar.Text = "Cambiar";
             Eliminar.Width = 90;
             // 
-            // ListaUsuarios
+            // ListaCategorias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(800, 516);
-            Controls.Add(panel1);
-            Name = "ListaUsuarios";
-            Text = "ListaUsuarios";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ClientSize = new Size(800, 450);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Name = "ListaCategorias";
+            Text = "ListaCategorias";
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Label labelTipo;
-        private Button btnEmpleado;
+        private Panel panel2;
+        private Panel panel3;
         private Button btnCliente;
-        private Label lTablaVacia;
-        private Button btnBuscar;
         private Label labelTituloTabla;
         private Button btnMostrarInactivos;
         private Button btnMostrarActivos;
+        private Label lTablaVacia;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn DnI;
+        private DataGridViewTextBoxColumn Cod;
         private DataGridViewTextBoxColumn NombrePersona;
-        private DataGridViewTextBoxColumn ape;
-        private DataGridViewTextBoxColumn Email;
-        private DataGridViewTextBoxColumn TipoPerfilPersona;
         private DataGridViewTextBoxColumn EstadoPersona;
         private DataGridViewButtonColumn Modificar;
         private DataGridViewButtonColumn Eliminar;
