@@ -70,6 +70,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 16F);
             label1.Location = new Point(12, 44);
@@ -80,7 +81,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Left;
+            btnGuardar.Anchor = AnchorStyles.Top;
             btnGuardar.BackColor = Color.FromArgb(187, 222, 251);
             btnGuardar.BackgroundImageLayout = ImageLayout.None;
             btnGuardar.Cursor = Cursors.Hand;
@@ -92,7 +93,7 @@
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
             btnGuardar.Location = new Point(183, 73);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(41, 31);
+            btnGuardar.Size = new Size(41, 40);
             btnGuardar.TabIndex = 70;
             btnGuardar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnGuardar.UseVisualStyleBackColor = false;
@@ -100,15 +101,17 @@
             // 
             // txbNombreCat
             // 
-            txbNombreCat.Font = new Font("Microsoft Sans Serif", 15.75F);
-            txbNombreCat.Location = new Point(12, 73);
+            txbNombreCat.Anchor = AnchorStyles.Top;
+            txbNombreCat.Font = new Font("Microsoft Sans Serif", 18F);
+            txbNombreCat.Location = new Point(12, 78);
             txbNombreCat.Name = "txbNombreCat";
             txbNombreCat.PlaceholderText = "Categoría";
-            txbNombreCat.Size = new Size(165, 31);
+            txbNombreCat.Size = new Size(165, 35);
             txbNombreCat.TabIndex = 68;
             // 
             // lUsuario
             // 
+            lUsuario.Anchor = AnchorStyles.Top;
             lUsuario.AutoSize = true;
             lUsuario.Font = new Font("Microsoft Sans Serif", 20F);
             lUsuario.Location = new Point(12, 9);
@@ -166,7 +169,7 @@
             btnMostrarInactivos.Name = "btnMostrarInactivos";
             btnMostrarInactivos.Size = new Size(159, 40);
             btnMostrarInactivos.TabIndex = 64;
-            btnMostrarInactivos.Text = "Inactivos";
+            btnMostrarInactivos.Text = "Inactivas";
             btnMostrarInactivos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMostrarInactivos.UseVisualStyleBackColor = false;
             btnMostrarInactivos.Click += btnMostrarInactivos_Click;
@@ -187,7 +190,7 @@
             btnMostrarActivos.Name = "btnMostrarActivos";
             btnMostrarActivos.Size = new Size(159, 40);
             btnMostrarActivos.TabIndex = 63;
-            btnMostrarActivos.Text = "Activos";
+            btnMostrarActivos.Text = "Activas";
             btnMostrarActivos.TextAlign = ContentAlignment.MiddleLeft;
             btnMostrarActivos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMostrarActivos.UseVisualStyleBackColor = false;
@@ -242,6 +245,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";

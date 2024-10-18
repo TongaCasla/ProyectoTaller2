@@ -43,7 +43,7 @@ namespace PharmaSuite.Vistas.Categorias
             dataGridView1.Columns[2].ReadOnly = true;
             dataGridView1.Columns[3].ReadOnly = true;
 
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
 
         private void cargarTabla(List<Categoria> lista)
@@ -141,6 +141,7 @@ namespace PharmaSuite.Vistas.Categorias
                 dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = valorAnterior;
                 return;
             }
+
             //Modificamos la descripcion de la categoria
             //Guardamos el valor nuevo
             valorNuevo = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
@@ -153,7 +154,11 @@ namespace PharmaSuite.Vistas.Categorias
             Categoria c = dc.Categorias.Where(u => u.IdCategoria == idCategoria).First();
             c.Descripcion = valorNuevo;
             dc.SaveChanges();
+            if(valorNuevo != valorAnterior)
+            {
             MessageBox.Show("Se ha modificado correctamente", "Modificación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void btnMostrarActivos_Click(object sender, EventArgs e)
@@ -207,6 +212,8 @@ namespace PharmaSuite.Vistas.Categorias
 
             }
         }
+
+
     }
 }
 
