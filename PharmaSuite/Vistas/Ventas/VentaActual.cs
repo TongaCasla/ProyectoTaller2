@@ -116,8 +116,10 @@ namespace PharmaSuite.Vistas.Ventas
             }
             else
             {
+                DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                Producto producto = dc.Productos.Where(u => u.NombreProd == this.productoActual.NombreProd).First();
                 int cantidadProductoAComprar = int.Parse(cantidadProductoSelec.Value.ToString());
-                if (cantidadProductoAComprar > int.Parse(lStock.Text))
+                if (cantidadProductoAComprar > producto.Stock)
                 {
                     MessageBox.Show("No hay stock suficiente.",
                     "Error",
@@ -127,6 +129,10 @@ namespace PharmaSuite.Vistas.Ventas
                 }
                 else
                 {
+                   
+                    producto.Stock = producto.Stock - cantidadProductoAComprar;
+                    lStock.Text = producto.Stock.ToString();
+                    dc.SaveChanges();
                     this.agregarProductoAVenta(this.productoActual, cantidadProductoAComprar);
                 }
             }
@@ -175,14 +181,18 @@ namespace PharmaSuite.Vistas.Ventas
 
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Borrar")
             {
-
+                DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                Producto producto = dc.Productos.Where(u => u.CodBarra == this.listaVentaDetalle[e.RowIndex].CodBarra).First();
+                producto.Stock = producto.Stock + this.listaVentaDetalle[e.RowIndex].Cantidad;
+                lStock.Text = producto.Stock.ToString();
+                dc.SaveChanges();
                 this.listaVentaDetalle.RemoveAt(e.RowIndex);
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("Se eliminó correctamente",
                 "Aceptar",
                 MessageBoxButtons.OK,
                  MessageBoxIcon.Information);
-            totalVenta.Text = this.calcularTotal().ToString();
+                totalVenta.Text = this.calcularTotal().ToString();
             }
 
         }
@@ -196,9 +206,9 @@ namespace PharmaSuite.Vistas.Ventas
 
             if (ask == DialogResult.Yes)
             {
-               /* this.listaVentaDetalle.Clear();
-                dataGridView1.Rows.Clear();
-                this.clienteVenta = null;*/
+                
+
+
                this.Close();
                
             }
@@ -206,7 +216,31 @@ namespace PharmaSuite.Vistas.Ventas
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //venta
+            DialogResult ask = MessageBox.Show(
+               "¿Confirmar compra?",
+               "Confirmar compra",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (ask == DialogResult.Yes)
+            {
+                DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                Venta venta = new Venta();
+                venta.IdUsuario = dc.Usuarios.Where(u => u.IdPersona == this.usuarioActual.IdPersona).First().IdUsuario;
+                //verificar que haya un cliente
+                venta.Cliente = this.clienteVenta.IdPersona;
+                venta.Total = float.Parse(totalVenta.Text);
+                dc.Venta.Add(venta);
+                dc.SaveChanges();
+                int idVenta = dc.Venta.OrderByDescending(u=>u.IdVenta).First().IdVenta;
+                foreach (VentaDetalle vd in listaVentaDetalle)
+                {
+                    vd.IdVenta = idVenta;
+                    dc.VentaDetalles.Add(vd);
+                    dc.SaveChanges();
+                }
+                //agregar mensaje exitoso 
+                
+            }
         }
 
         private void btnCliente_Click(object sender, EventArgs e)

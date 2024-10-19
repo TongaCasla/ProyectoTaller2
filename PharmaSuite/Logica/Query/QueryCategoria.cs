@@ -1,4 +1,5 @@
-﻿using PharmaSuite.Modelo.DB;
+﻿using Microsoft.IdentityModel.Tokens;
+using PharmaSuite.Modelo.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,16 @@ namespace PharmaSuite.Logica.Query
     {
         public List<Categoria> listaCategoria()
         {
-            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-
-            return new List<Categoria>(dc.Categorias);
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();      
+            if (dc.Categorias.IsNullOrEmpty()) 
+            {
+                return new List<Categoria>();
+            }
+            else 
+            {
+                return new List<Categoria>(dc.Categorias);
+            }
+            
         }
 
         public Categoria buscarPorID(int id)
