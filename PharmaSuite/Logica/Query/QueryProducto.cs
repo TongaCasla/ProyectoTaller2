@@ -1,4 +1,6 @@
-﻿using PharmaSuite.Modelo.DB;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using PharmaSuite.Modelo.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,46 @@ namespace PharmaSuite.Logica.Query
         {
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
 
-            return new List<Producto>(dc.Productos);
+            if (dc.Productos.IsNullOrEmpty())
+            {
+                return new List<Producto>();
+            }
+            else
+            {
+                return new List<Producto>(dc.Productos);
+            }
+        }
+        
+        public List<Producto> listaProductosInactivos()
+        {
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+
+            if (dc.Productos.IsNullOrEmpty())
+            {
+                return this.listaProductos();
+            }
+            else
+            {
+                    return dc.Productos
+                         .Where(c => c.Activo != "si")
+                         .ToList(); 
+            }
+        }
+
+        public List<Producto> listaProductosActivos()
+        {
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+
+            if (dc.Productos.IsNullOrEmpty())
+            {
+                return this.listaProductos();
+            }
+            else
+            {
+                return dc.Productos
+                     .Where(c => c.Activo == "si")
+                     .ToList();
+            }
         }
         public List<Producto> listaNombreCodBarra(string cadena)
         {

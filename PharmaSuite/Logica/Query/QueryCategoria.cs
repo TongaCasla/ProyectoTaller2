@@ -36,17 +36,33 @@ namespace PharmaSuite.Logica.Query
 
         public List<Categoria> mostrarActivas()
         {
+
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                
+            if (dc.Categorias.IsNullOrEmpty())
+            {
+                return this.listaCategoria();
+            }
+            else
+            {
                 return dc.Categorias
                          .Where(c => c.Activo == "si")
-                         .ToList(); 
+                         .ToList();
+            }
         }
         public List<Categoria> mostrarInactivas()
         {
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-            return dc.Categorias
-                     .Where(c => c.Activo != "si")
-                     .ToList();
+            if (dc.Categorias.IsNullOrEmpty())
+            {
+                return this.listaCategoria();
+            }
+            else
+            {
+                return dc.Categorias
+                         .Where(c => c.Activo != "si")
+                         .ToList();
+            }
         }
 
     }

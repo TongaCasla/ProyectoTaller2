@@ -31,11 +31,11 @@ namespace PharmaSuite.Logica
         }
 
         // Método para validar si un número de teléfono es válido
-        public  bool EsNumeroEntero(string telefono)
+        public  bool EsNumeroEntero(string numero)
         {
             // 10 dígitos como ejemplo
             var regex = new System.Text.RegularExpressions.Regex(@"^\d{10}$"); 
-            return regex.IsMatch(telefono);
+            return regex.IsMatch(numero);
         }
         public bool EsFechaValida(DateTime fechaUsuario)
         {
