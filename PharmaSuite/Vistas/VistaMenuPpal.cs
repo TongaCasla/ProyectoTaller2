@@ -225,7 +225,7 @@ namespace Vistas
 
         private void btnMostrarProductos_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new MostrarTabla("Productos",this.getUsuario()));
+            this.agregarNuevoForm(new ListaProductos());
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
