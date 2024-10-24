@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentaActual));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pSup = new Panel();
             lnrodni = new Label();
             label11 = new Label();
@@ -54,7 +54,7 @@
             label3 = new Label();
             button2 = new Button();
             btnCliente = new Button();
-            checkBox1 = new CheckBox();
+            CKBConsumidorFinal = new CheckBox();
             label1 = new Label();
             btnBuscar = new Button();
             panel1 = new Panel();
@@ -110,7 +110,7 @@
             pSup.Controls.Add(label3);
             pSup.Controls.Add(button2);
             pSup.Controls.Add(btnCliente);
-            pSup.Controls.Add(checkBox1);
+            pSup.Controls.Add(CKBConsumidorFinal);
             pSup.Controls.Add(label1);
             pSup.Location = new Point(0, 0);
             pSup.Name = "pSup";
@@ -369,17 +369,18 @@
             btnCliente.UseVisualStyleBackColor = false;
             btnCliente.Click += btnCliente_Click;
             // 
-            // checkBox1
+            // CKBConsumidorFinal
             // 
-            checkBox1.Anchor = AnchorStyles.None;
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(12, 109);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(192, 29);
-            checkBox1.TabIndex = 49;
-            checkBox1.Text = "Consumidor final";
-            checkBox1.UseVisualStyleBackColor = true;
+            CKBConsumidorFinal.Anchor = AnchorStyles.None;
+            CKBConsumidorFinal.AutoSize = true;
+            CKBConsumidorFinal.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CKBConsumidorFinal.Location = new Point(12, 109);
+            CKBConsumidorFinal.Name = "CKBConsumidorFinal";
+            CKBConsumidorFinal.Size = new Size(192, 29);
+            CKBConsumidorFinal.TabIndex = 49;
+            CKBConsumidorFinal.Text = "Consumidor final";
+            CKBConsumidorFinal.UseVisualStyleBackColor = true;
+            CKBConsumidorFinal.CheckedChanged += CKBConsumidorFinal_CheckedChanged;
             // 
             // label1
             // 
@@ -518,24 +519,24 @@
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nombre, Cantidad, Precio, Subtotal, Borrar });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(187, 222, 251);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.MultiSelect = false;
@@ -593,24 +594,24 @@
             dataGridView2.BackgroundColor = Color.Azure;
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { nombreProductoBuscado });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(187, 222, 251);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(187, 222, 251);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridView2.Location = new Point(3, 0);
             dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
@@ -712,7 +713,7 @@
         private Panel panel2;
         private Button btnBuscar;
         private Button btnCliente;
-        private CheckBox checkBox1;
+        private CheckBox CKBConsumidorFinal;
         private Label label1;
         private Button button2;
         private Button btnCancelar;
