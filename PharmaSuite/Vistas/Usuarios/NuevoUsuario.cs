@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using PharmaSuite.Modelo.DB;
 using PharmaSuite.Logica;
+using PharmaSuite.Vistas.Ventas;
 
 
 
@@ -20,13 +21,15 @@ namespace Vistas
     {
         //Variable para mostrar/ocultar la contraseña
         private bool isPasswordHidden = true;
+        private bool habTipoPerfil = true;
+        private VentaActual VentaActual;
 
         public NuevoUsuario()
         {
             InitializeComponent();
             comboPerfil.SelectedIndex = 0;
         }
-        public NuevoUsuario(bool habilitarTipoPerfil)
+        public NuevoUsuario(VentaActual vta,bool habilitarTipoPerfil)
         {
             InitializeComponent();
             comboPerfil.Visible = habilitarTipoPerfil;
@@ -36,7 +39,12 @@ namespace Vistas
             lContra.Visible = habilitarTipoPerfil;
             txbContra.Visible=habilitarTipoPerfil;
             btnMostrarContra.Visible = habilitarTipoPerfil;
+
+            VentaActual = vta;  
+            habTipoPerfil = habilitarTipoPerfil;
+            comboPerfil.SelectedIndex = 0;
         }
+
 
         //Evento para mostrar la contraseña
         private void btnMostrarContra_Click(object sender, EventArgs e)
@@ -175,6 +183,7 @@ namespace Vistas
                     dc.Personas.Add(persona);
                     dc.SaveChanges();
                     MessageBox.Show("Se ha agregado al cliente correctamente");
+                    CrearClienteVta(persona);
 
                 }
                 else if (verificarUsuario())
@@ -190,7 +199,7 @@ namespace Vistas
                     MessageBox.Show("Se ha agregado al usuario correctamente");
 
                 }
-
+                
                 //y luego limpiamos los datos 
                 this.LimpiarTextBoxes(panel1);
             }
@@ -212,5 +221,18 @@ namespace Vistas
         {
             this.LimpiarTextBoxes(panel1);
         }
+
+
+
+        private void CrearClienteVta(Persona ps)
+        {
+            if (!habTipoPerfil)
+            {
+                VentaActual.setCliente(ps);
+                this.Close();
+            }
+        }
     }
+
+    
 }

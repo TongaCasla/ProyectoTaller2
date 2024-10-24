@@ -57,7 +57,7 @@ namespace PharmaSuite.Vistas
         private void btnCliente_Click(object sender, EventArgs e)
         {
             //Agregamos el formulario para un nuevo cliente
-            NuevoUsuario nuevoUsuario = new NuevoUsuario(false);
+            NuevoUsuario nuevoUsuario = new NuevoUsuario();
             nuevoUsuario.Text = "Nuevo cliente";
             //nuevoUsuario.Icon = new(Path.Combine(Application.StartupPath, "farmacia.ico"));
             nuevoUsuario.Show();

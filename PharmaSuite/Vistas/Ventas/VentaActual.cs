@@ -51,7 +51,7 @@ namespace PharmaSuite.Vistas.Ventas
             this.busquedaProducto(TBCodigoprod.Text);
         }
 
-       
+
         private void busquedaProducto(string cadena)
         {
             QueryProducto qp = new();
@@ -117,7 +117,7 @@ namespace PharmaSuite.Vistas.Ventas
             else
             {
                 DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-                Producto producto = dc.Productos.Where(u => u.NombreProd == this.productoActual.NombreProd).First();
+                Producto producto = dc.Productos.Where(u => u.CodBarra == this.productoActual.CodBarra).First();
                 int cantidadProductoAComprar = int.Parse(cantidadProductoSelec.Value.ToString());
                 if (cantidadProductoAComprar > producto.Stock)
                 {
@@ -129,7 +129,7 @@ namespace PharmaSuite.Vistas.Ventas
                 }
                 else
                 {
-                   
+
                     producto.Stock = producto.Stock - cantidadProductoAComprar;
                     lStock.Text = producto.Stock.ToString();
                     dc.SaveChanges();
@@ -149,7 +149,7 @@ namespace PharmaSuite.Vistas.Ventas
             dataGridView1.Rows.Add(p.NombreProd, cantidad, p.PrecioVenta, (cantidad * p.PrecioVenta), "Borrar");
             totalVenta.Text = this.calcularTotal().ToString();
         }
-        
+
         private double calcularTotal()
         {
             double total = 0;
@@ -206,11 +206,23 @@ namespace PharmaSuite.Vistas.Ventas
 
             if (ask == DialogResult.Yes)
             {
-                
+                DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+                foreach (VentaDetalle vd in this.listaVentaDetalle)
+                {
+                    Producto producto = dc.Productos.Where(u => u.CodBarra == vd.CodBarra).First();
+                    producto.Stock = producto.Stock + vd.Cantidad;
+                    dc.SaveChanges();
+
+                }
+                this.listaVentaDetalle.Clear();
+                dataGridView1.Rows.Clear();
+                MessageBox.Show("Se eliminó correctamente el carrito",
+                "Aceptar",
+                 MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
 
-               this.Close();
-               
+
             }
         }
 
@@ -231,7 +243,7 @@ namespace PharmaSuite.Vistas.Ventas
                 venta.Total = float.Parse(totalVenta.Text);
                 dc.Venta.Add(venta);
                 dc.SaveChanges();
-                int idVenta = dc.Venta.OrderByDescending(u=>u.IdVenta).First().IdVenta;
+                int idVenta = dc.Venta.OrderByDescending(u => u.IdVenta).First().IdVenta;
                 foreach (VentaDetalle vd in listaVentaDetalle)
                 {
                     vd.IdVenta = idVenta;
@@ -239,13 +251,13 @@ namespace PharmaSuite.Vistas.Ventas
                     dc.SaveChanges();
                 }
                 //agregar mensaje exitoso 
-                
+
             }
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            NuevoUsuario nuevoUsuario = new NuevoUsuario(false);
+            NuevoUsuario nuevoUsuario = new NuevoUsuario(this, false);
             nuevoUsuario.Text = "Nuevo cliente";
             nuevoUsuario.Show();
         }
@@ -256,12 +268,16 @@ namespace PharmaSuite.Vistas.Ventas
             busqueda.Show();
             if (clienteVenta != null)
             {
-            checkBox1.Enabled = false;
+                CKBConsumidorFinal.Enabled = false;
             }
-            
-            
+
+
         }
-       
+
+        private void CKBConsumidorFinal_CheckedChanged(object sender, EventArgs e)
+        {
+            //query al CF y asignar cliente
+        }
     }
 
 }
