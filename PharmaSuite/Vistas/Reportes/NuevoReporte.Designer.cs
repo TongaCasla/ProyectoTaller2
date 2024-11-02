@@ -32,9 +32,9 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pSup = new Panel();
             button2 = new Button();
-            dateTimePicker1 = new DateTimePicker();
+            dateFin = new DateTimePicker();
             label2 = new Label();
-            dateFecha = new DateTimePicker();
+            dateInicio = new DateTimePicker();
             comboReporte = new ComboBox();
             lNombreProd = new Label();
             lCodigoProd = new Label();
@@ -55,9 +55,9 @@
             // pSup
             // 
             pSup.Controls.Add(button2);
-            pSup.Controls.Add(dateTimePicker1);
+            pSup.Controls.Add(dateFin);
             pSup.Controls.Add(label2);
-            pSup.Controls.Add(dateFecha);
+            pSup.Controls.Add(dateInicio);
             pSup.Controls.Add(comboReporte);
             pSup.Controls.Add(lNombreProd);
             pSup.Controls.Add(lCodigoProd);
@@ -89,16 +89,18 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click_1;
             // 
-            // dateTimePicker1
+            // dateFin
             // 
-            dateTimePicker1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            dateTimePicker1.Font = new Font("Century Gothic", 15.75F);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(451, 87);
-            dateTimePicker1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(154, 33);
-            dateTimePicker1.TabIndex = 46;
+            dateFin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dateFin.Font = new Font("Century Gothic", 15.75F);
+            dateFin.Format = DateTimePickerFormat.Short;
+            dateFin.Location = new Point(451, 87);
+            dateFin.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
+            dateFin.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
+            dateFin.Name = "dateFin";
+            dateFin.Size = new Size(154, 33);
+            dateFin.TabIndex = 46;
+            dateFin.Value = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -111,16 +113,18 @@
             label2.TabIndex = 45;
             label2.Text = "Fecha de fin:";
             // 
-            // dateFecha
+            // dateInicio
             // 
-            dateFecha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            dateFecha.Font = new Font("Century Gothic", 15.75F);
-            dateFecha.Format = DateTimePickerFormat.Short;
-            dateFecha.Location = new Point(251, 87);
-            dateFecha.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            dateFecha.Name = "dateFecha";
-            dateFecha.Size = new Size(154, 33);
-            dateFecha.TabIndex = 44;
+            dateInicio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dateInicio.Font = new Font("Century Gothic", 15.75F);
+            dateInicio.Format = DateTimePickerFormat.Short;
+            dateInicio.Location = new Point(251, 87);
+            dateInicio.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
+            dateInicio.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
+            dateInicio.Name = "dateInicio";
+            dateInicio.Size = new Size(154, 33);
+            dateInicio.TabIndex = 44;
+            dateInicio.Value = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             // 
             // comboReporte
             // 
@@ -235,7 +239,7 @@
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -246,7 +250,7 @@
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -312,9 +316,9 @@
         private Label label1;
         private ComboBox comboReporte;
         private Label lCodigoProd;
-        private DateTimePicker dateFecha;
+        private DateTimePicker dateInicio;
         private Label lNombreProd;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateFin;
         private Label label2;
         private Button button2;
         private Button btnEliminar;
