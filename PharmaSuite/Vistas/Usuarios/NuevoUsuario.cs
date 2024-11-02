@@ -157,8 +157,8 @@ namespace Vistas
 
             // Mostramos un mensaje y guardamos la respuesta
             DialogResult ask = MessageBox.Show(
-                "¿Desea agregar un nuevo cliente?",
-                "Agregar cliente",
+                "¿Desea agregar un nuevo usuario?",
+                "Agregar usuario",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (ask == DialogResult.Yes && verificarPersona())

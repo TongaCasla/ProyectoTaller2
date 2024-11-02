@@ -161,7 +161,7 @@
             txbUsuario.Font = new Font("Microsoft Sans Serif", 15.75F);
             txbUsuario.Location = new Point(170, 421);
             txbUsuario.Name = "txbUsuario";
-            txbUsuario.PlaceholderText = "Usuario123";
+            txbUsuario.PlaceholderText = "Usuario";
             txbUsuario.Size = new Size(196, 31);
             txbUsuario.TabIndex = 5;
             // 

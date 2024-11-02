@@ -25,7 +25,7 @@ namespace PharmaSuite
             p.Telefono = "";
             p.Email = "";
             p.Sexo = "";
-            p.IdPerfil = 4;
+            p.IdPerfil = 3;
             //2 = empleado
             //3 = gerente
             //4 = admin
