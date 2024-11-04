@@ -4,6 +4,16 @@ using System.Data.SqlClient;
 using PharmaSuite.Vistas.Reportes;
 using PharmaSuite.Vistas.Usuarios;
 using PharmaSuite.Logica.Query;
+using System.Drawing.Printing;
+using System.Reflection.Metadata;
+using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Globalization;
+
 
 
 namespace PharmaSuite.Vistas.Reportes
@@ -12,6 +22,7 @@ namespace PharmaSuite.Vistas.Reportes
     {
         private Persona usuarioActual;
         private Persona empleadoSeleccionado;
+        private String reporteActual;
         public NuevoReporte(Persona usuarioActual)
         {
             InitializeComponent();
@@ -46,6 +57,8 @@ namespace PharmaSuite.Vistas.Reportes
                         comboReporte.Items.Add("Lista de Empleados activos");
                         comboReporte.Items.Add("Productos por categoría");
                         comboReporte.Items.Add("Ventas por empleado");
+                        comboReporte.Items.Add("Ventas por fecha");
+                        comboReporte.Items.Add("Productos con stock bajo");
                         break;
                     }
             }
@@ -83,26 +96,37 @@ namespace PharmaSuite.Vistas.Reportes
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (comboReporte.SelectedItem.ToString() == "Ventas por empleado")
-            {
-                using (ListaEmpleados seleccionEmpl = new())
-                {
-                    if (seleccionEmpl.ShowDialog() == DialogResult.OK)
-                    {
-                        // Obtener el empleado seleccionado del Form B
-                        this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
-                    }
-                }
-                this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
-            }
-            else
-            {
+            string fechaInicio = DateOnly.FromDateTime(dateInicio.Value).ToString();
+            string fechaFin = DateOnly.FromDateTime(dateFin.Value).ToString();
 
-                //MessageBox.Show(comboReporte.SelectedItem.ToString());
-                DateOnly fechaInicio = DateOnly.FromDateTime(dateInicio.Value);
-                DateOnly fechaFin = DateOnly.FromDateTime(dateFin.Value);
-                this.cargarReporte(verificarReporte(comboReporte.SelectedItem.ToString()));
+            switch (comboReporte.SelectedItem.ToString())
+            {
+                case "Ventas por empleado":
+                    {
+                    using (ListaEmpleados seleccionEmpl = new())
+                        {
+                        if (seleccionEmpl.ShowDialog() == DialogResult.OK)
+                        {
+                            // Obtener el empleado seleccionado del Form B
+                            this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
+                        }
+                        }
+                        this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
+                        break;
+                    }
+                case "Ventas por fecha":
+                    {
+                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio,fechaFin);
+
+                        break;
+                    }
+                default:
+                    {
+                        this.cargarReporte(verificarReporte(comboReporte.SelectedItem.ToString()));
+                        break;
+                    }
             }
+
         }
 
         private string verificarReporte(string opcionSeleccionada)
@@ -113,14 +137,56 @@ namespace PharmaSuite.Vistas.Reportes
                 "Lista de Empleados activos" => "ListaEmpleadosActivos",
                 "Productos por categoría" => "ListaProductosPorCategoria",
                 "Ventas por empleado" => "ListaVentasEmpleado",
+                "Ventas por fecha" => "ListaVentasPorFecha",
+                "Productos con stock bajo" => "ListaProductosStockBajo",
                 _ => "Sin acceso"
             };
 
             return acceso;
 
         }
+        private void cargarReporteConFecha(string procedimientoSeleccionado, string fechaInicio, string fechaFin)
+        {
+            this.reporteActual = procedimientoSeleccionado;
+            lreporte.Hide();
+            dataGridView1.Show();
+            using (SqlConnection conn = new SqlConnection("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True"))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Crear un SqlCommand para ejecutar el procedimiento almacenado
+                    using (SqlCommand cmd = new SqlCommand(procedimientoSeleccionado, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@fecha_inicio", fechaInicio);
+                        cmd.Parameters.AddWithValue("@fecha_fin", fechaFin);
+
+
+                        // Crear un SqlDataAdapter para llenar el DataTable con los datos
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        // Crear un DataTable para almacenar los resultados
+                        DataTable dt = new DataTable();
+
+                        // Llenar el DataTable con los resultados del procedimiento almacenado
+                        da.Fill(dt);
+
+                        // Asignar el DataTable como el origen de datos del DataGridView
+                        dataGridView1.DataSource = dt;
+                        dataGridView1.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+    }
         private void cargarReporteConParametro(string procedimientoSeleccionado, Persona usuario)
         {
+            this.reporteActual = procedimientoSeleccionado;
             lreporte.Hide();
             dataGridView1.Show();
             using (SqlConnection conn = new SqlConnection("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True"))
@@ -161,6 +227,7 @@ namespace PharmaSuite.Vistas.Reportes
 
         private void cargarReporte(string procedimientoSeleccionado)
         {
+            this.reporteActual = procedimientoSeleccionado;
             lreporte.Hide();
             dataGridView1.Show();
             using (SqlConnection conn = new SqlConnection("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True"))
@@ -194,46 +261,80 @@ namespace PharmaSuite.Vistas.Reportes
                 }
             }
         }
-        /*
-        private void guardarPdf()
-        {
 
-            // Supongamos que tienes un DataGridView llamado "dataGridView1"
-
-            IronPdf.PdfDocument pdf = new PdfDocument();
-            PdfTable table = new PdfTable();
-
-            // Configuración del tamaño y estilo de la tabla
-            table.SetWidth(PageSize.A4.Width);
-            table.SetHeight(PageSize.A4.Height);
-            table.SetBorderWidth(1);
-            table.SetBorderColor(Color.Black);
-
-            // Poblar la tabla con los datos del DataGridView
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                table.AddRow();
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    table.AddCell(row.Cells[column.Index].Value.ToString());
-                }
-            }
-
-            // Agregar la tabla al documento PDF
-            pdf.AddPage(table);
-
-            // Guardar el archivo PDF
-            pdf.SaveAs("dataGridView1.pdf");
-        }*/
 
         private void btnImp_Click(object sender, EventArgs e)
         {
+            //Obtenemos la fecha y hora actual segun nuestro formato
+            string fechaActual = DateTime.Now.ToString("dd-MM-yyyy");
+            string horaActual = DateTime.Now.ToString("h.mm.ss tt").Replace(" p.m.", " PM").Replace(" a.m.", " AM");
+
+
+            // Crear el documento PDF
+            iTextSharp.text.Document pdfDoc = new(PageSize.A4.Rotate(), 56.7f, 56.7f, 56.7f, 56.7f);
+                
+
+            try
+            {
+                // Seleccionar la ruta y el nombre del archivo PDF
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
+                //Creamos el nombre del archivo
+                //Formato esperado: ListaClientes 03-11-2024 10.57.11 PM.pdf
+                saveFileDialog.FileName = reporteActual+" "+fechaActual+" "+ horaActual +".pdf";
+
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Crear un writer para escribir el archivo PDF
+                    PdfWriter.GetInstance(pdfDoc, new FileStream(saveFileDialog.FileName, FileMode.Create));
+
+                    // Abrir el documento para añadir contenido
+                    pdfDoc.Open();
+
+                    // Crear una tabla PDF con el número de columnas del DataGridView
+                    PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
+
+                    // Añadir los encabezados del DataGridView a la tabla
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText))
+                        {
+                            BackgroundColor = new BaseColor(187, 222, 251) // Color  para los encabezados
+                        };
+                        pdfTable.AddCell(cell);
+                    }
+
+                    // Añadir las filas del DataGridView a la tabla
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value != null)
+                            {
+                                pdfTable.AddCell(cell.Value.ToString());
+                            }
+                        }
+                    }
+
+                    // Añadir la tabla al documento PDF
+                    pdfDoc.Add(pdfTable);
+
+                    // Cerrar el documento
+                    pdfDoc.Close();
+
+                    //Mostramos el mensaje de correctamente
+                    MessageBox.Show("Reporte guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Mostramos mensaje de error si no se pudo generar
+                MessageBox.Show("Error al generar el PDF: " + ex.Message);
+            }
         }
 
-        private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
+       
     }
 }
+

@@ -80,7 +80,7 @@
             button2.ForeColor = Color.Black;
             button2.Image = Properties.Resources.avion_de_papel;
             button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(624, 83);
+            button2.Location = new Point(667, 83);
             button2.Name = "button2";
             button2.Size = new Size(127, 40);
             button2.TabIndex = 47;
@@ -94,7 +94,7 @@
             dateFin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dateFin.Font = new Font("Century Gothic", 15.75F);
             dateFin.Format = DateTimePickerFormat.Short;
-            dateFin.Location = new Point(451, 87);
+            dateFin.Location = new Point(494, 87);
             dateFin.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             dateFin.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             dateFin.Name = "dateFin";
@@ -107,7 +107,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
-            label2.Location = new Point(451, 62);
+            label2.Location = new Point(494, 62);
             label2.Name = "label2";
             label2.Size = new Size(143, 24);
             label2.TabIndex = 45;
@@ -118,7 +118,7 @@
             dateInicio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dateInicio.Font = new Font("Century Gothic", 15.75F);
             dateInicio.Format = DateTimePickerFormat.Short;
-            dateInicio.Location = new Point(251, 87);
+            dateInicio.Location = new Point(294, 87);
             dateInicio.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             dateInicio.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             dateInicio.Name = "dateInicio";
@@ -134,7 +134,7 @@
             comboReporte.FormattingEnabled = true;
             comboReporte.Location = new Point(12, 91);
             comboReporte.Name = "comboReporte";
-            comboReporte.Size = new Size(206, 29);
+            comboReporte.Size = new Size(256, 29);
             comboReporte.TabIndex = 44;
             // 
             // lNombreProd
@@ -142,7 +142,7 @@
             lNombreProd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lNombreProd.AutoSize = true;
             lNombreProd.Font = new Font("Century Gothic", 15.75F);
-            lNombreProd.Location = new Point(251, 62);
+            lNombreProd.Location = new Point(294, 62);
             lNombreProd.Name = "lNombreProd";
             lNombreProd.Size = new Size(170, 24);
             lNombreProd.TabIndex = 43;
@@ -228,6 +228,7 @@
             pCentral.Controls.Add(lreporte);
             pCentral.Dock = DockStyle.Fill;
             pCentral.Location = new Point(0, 134);
+            pCentral.Margin = new Padding(3, 3, 20, 3);
             pCentral.Name = "pCentral";
             pCentral.Size = new Size(800, 237);
             pCentral.TabIndex = 2;
@@ -238,8 +239,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -261,6 +261,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Margin = new Padding(20, 3, 3, 3);
             dataGridView1.MultiSelect = false;
@@ -283,10 +284,6 @@
             lreporte.Size = new Size(473, 39);
             lreporte.TabIndex = 48;
             lreporte.Text = "Seleccione un nuevo reporte";
-            // 
-            // saveFileDialog1
-            // 
-            saveFileDialog1.FileOk += saveFileDialog1_FileOk;
             // 
             // NuevoReporte
             // 
