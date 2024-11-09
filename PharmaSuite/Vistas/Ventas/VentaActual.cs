@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vistas;
+using System.Globalization;
+
+// Formato de moneda de Argentina
 
 namespace PharmaSuite.Vistas.Ventas
 {
@@ -34,6 +37,8 @@ namespace PharmaSuite.Vistas.Ventas
             {
                 ltablavacia.Hide();
             }
+
+
         }
         public void setCliente(Persona cliente)
         {
@@ -147,7 +152,7 @@ namespace PharmaSuite.Vistas.Ventas
             ventaActual.Subtotal = (cantidad * p.PrecioVenta);
             this.listaVentaDetalle.Add(ventaActual);
             dataGridView1.Rows.Add(p.NombreProd, cantidad, p.PrecioVenta, (cantidad * p.PrecioVenta), "Borrar");
-            totalVenta.Text = this.calcularTotal().ToString();
+            totalVenta.Text = this.calcularTotal().ToString("C", CultureInfo.CreateSpecificCulture("es-AR"));
         }
 
         private double calcularTotal()
@@ -192,7 +197,7 @@ namespace PharmaSuite.Vistas.Ventas
                 "Aceptar",
                 MessageBoxButtons.OK,
                  MessageBoxIcon.Information);
-                totalVenta.Text = this.calcularTotal().ToString();
+                totalVenta.Text = this.calcularTotal().ToString("C", CultureInfo.CreateSpecificCulture("es-AR"));
             }
 
         }

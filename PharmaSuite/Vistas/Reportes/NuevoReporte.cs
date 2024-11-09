@@ -22,6 +22,7 @@ namespace PharmaSuite.Vistas.Reportes
     {
         private Persona usuarioActual;
         private Persona empleadoSeleccionado;
+        private Categoria categoriaSeleccionada;
         private String reporteActual;
         public NuevoReporte(Persona usuarioActual)
         {
@@ -29,6 +30,16 @@ namespace PharmaSuite.Vistas.Reportes
             this.usuarioActual = usuarioActual;
             this.verificarTipoUsuario();
             comboReporte.SelectedIndex = 0;
+            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) != "ListaVentasPorFecha")
+            {
+                dateInicio.Enabled = false;
+                dateFin.Enabled = false;
+            }
+            else
+            {
+                dateInicio.Enabled=true;
+                dateFin.Enabled=true;
+            }
         }
 
         private void verificarTipoUsuario()
@@ -46,8 +57,7 @@ namespace PharmaSuite.Vistas.Reportes
                 case 4:
                     {
                         comboReporte.Items.Add("Recaudación");
-                        comboReporte.Items.Add("Producto más vendido");
-                        comboReporte.Items.Add("Total ventas");
+                        comboReporte.Items.Add("Margen de Ganancia por Producto");
                         break;
                     }
                 //Gerente
@@ -59,6 +69,7 @@ namespace PharmaSuite.Vistas.Reportes
                         comboReporte.Items.Add("Ventas por empleado");
                         comboReporte.Items.Add("Ventas por fecha");
                         comboReporte.Items.Add("Productos con stock bajo");
+                        comboReporte.Items.Add("Productos próximos a vencer");
                         break;
                     }
             }
@@ -103,23 +114,38 @@ namespace PharmaSuite.Vistas.Reportes
             {
                 case "Ventas por empleado":
                     {
-                    using (ListaEmpleados seleccionEmpl = new())
-                        {
-                        if (seleccionEmpl.ShowDialog() == DialogResult.OK)
-                        {
-                            // Obtener el empleado seleccionado del Form B
-                            this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
-                        }
-                        }
-                        this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
+                            // Abre el formulario modal para seleccionar el empleado
+                            using (ListaEmpleados seleccionEmpl = new ListaEmpleados())
+                            {
+                                // Si el usuario selecciona un empleado y confirma con OK
+                                if (seleccionEmpl.ShowDialog() == DialogResult.OK)
+                                {
+                                    // Obtener el empleado seleccionado del Form B (ListaEmpleados)
+                                    this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
+                                    this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
+                                }
+                                else
+                                {
+                                    // Si el usuario cancela la selección, 
+                                    MessageBox.Show("No se seleccionó ningún empleado.");
+                                    return; 
+                                }
+                            }
                         break;
                     }
+                case "Ventas realizadas":
+                    {
+                        this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), usuarioActual);
+                        break;
+                    }
+
                 case "Ventas por fecha":
                     {
                         this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio,fechaFin);
 
                         break;
                     }
+                
                 default:
                     {
                         this.cargarReporte(verificarReporte(comboReporte.SelectedItem.ToString()));
@@ -139,6 +165,10 @@ namespace PharmaSuite.Vistas.Reportes
                 "Ventas por empleado" => "ListaVentasEmpleado",
                 "Ventas por fecha" => "ListaVentasPorFecha",
                 "Productos con stock bajo" => "ListaProductosStockBajo",
+                "Ventas realizadas" => "ListaVentasIndividual",
+                "Recaudación" => "Recaudacion",
+                "Cierre de caja" => "CierreCaja",
+                "Margen de Ganancia por Producto" => "GananciaPorProducto",
                 _ => "Sin acceso"
             };
 

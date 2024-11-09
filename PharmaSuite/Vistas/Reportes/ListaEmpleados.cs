@@ -16,7 +16,7 @@ namespace PharmaSuite.Vistas.Reportes
 {
     public partial class ListaEmpleados : Form
     {
-        public Persona empleadoSeleccionado { get; private set; } 
+        public Persona empleadoSeleccionado { get; private set; }
 
         public ListaEmpleados()
         {
@@ -59,8 +59,8 @@ namespace PharmaSuite.Vistas.Reportes
             }
             int dniEmpl = int.Parse(txbBusqueda.Text);
             Persona p;
-            p=qp.bucarDni(dniEmpl);
-            if(p != null)
+            p = qp.bucarDni(dniEmpl);
+            if (p != null)
             {
                 this.empleadoSeleccionado = p;
                 this.DialogResult = DialogResult.OK;
@@ -79,22 +79,26 @@ namespace PharmaSuite.Vistas.Reportes
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-                if (e.RowIndex < 0) return;
-                DbPharmaSuiteContext cn = new DbPharmaSuiteContext();
-                QueryPersona query = new QueryPersona();
-                QueryUsuario qu = new();
-                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-                
-                if (e.RowIndex >= 0)
-                {
-                    int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
-                    Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
-                    this.empleadoSeleccionado = ps;
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+            if (e.RowIndex < 0) return;
+            DbPharmaSuiteContext cn = new DbPharmaSuiteContext();
+            QueryPersona query = new QueryPersona();
+            QueryUsuario qu = new();
+            DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
 
-         }
-        
+            if (e.RowIndex >= 0)
+            {
+                int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
+                Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
+                this.empleadoSeleccionado = ps;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

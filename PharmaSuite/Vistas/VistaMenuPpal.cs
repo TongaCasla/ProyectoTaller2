@@ -56,7 +56,6 @@ namespace Vistas
                 case 2:
                     {
                         this.desactivarBtnPermanentemente(btnAgregarUsuario);
-                        this.desactivarBtnPermanentemente(btnReportes);
                         this.desactivarBtnPermanentemente(btnProductos);
                         this.desactivarBtnPermanentemente(btnBackup);
                         this.desactivarBtnPermanentemente(btnCategorias);

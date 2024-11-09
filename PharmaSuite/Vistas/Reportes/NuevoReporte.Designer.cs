@@ -43,6 +43,7 @@
             btnEliminar = new Button();
             btnImp = new Button();
             pCentral = new Panel();
+            pGraficos = new Panel();
             dataGridView1 = new DataGridView();
             lreporte = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -224,14 +225,21 @@
             // 
             // pCentral
             // 
+            pCentral.Controls.Add(pGraficos);
             pCentral.Controls.Add(dataGridView1);
             pCentral.Controls.Add(lreporte);
-            pCentral.Dock = DockStyle.Fill;
             pCentral.Location = new Point(0, 134);
             pCentral.Margin = new Padding(3, 3, 20, 3);
             pCentral.Name = "pCentral";
-            pCentral.Size = new Size(800, 237);
+            pCentral.Size = new Size(405, 237);
             pCentral.TabIndex = 2;
+            // 
+            // pGraficos
+            // 
+            pGraficos.Location = new Point(411, 0);
+            pGraficos.Name = "pGraficos";
+            pGraficos.Size = new Size(389, 237);
+            pGraficos.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -261,7 +269,6 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Margin = new Padding(20, 3, 3, 3);
             dataGridView1.MultiSelect = false;
@@ -270,7 +277,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(800, 237);
+            dataGridView1.Size = new Size(405, 237);
             dataGridView1.TabIndex = 61;
             dataGridView1.Visible = false;
             // 
@@ -278,10 +285,10 @@
             // 
             lreporte.Anchor = AnchorStyles.Top;
             lreporte.AutoSize = true;
-            lreporte.Font = new Font("Century Gothic", 24F);
-            lreporte.Location = new Point(164, 110);
+            lreporte.Font = new Font("Century Gothic", 14F);
+            lreporte.Location = new Point(55, 104);
             lreporte.Name = "lreporte";
-            lreporte.Size = new Size(473, 39);
+            lreporte.Size = new Size(277, 22);
             lreporte.TabIndex = 48;
             lreporte.Text = "Seleccione un nuevo reporte";
             // 
@@ -323,5 +330,6 @@
         private Label lreporte;
         private DataGridView dataGridView1;
         private SaveFileDialog saveFileDialog1;
+        private Panel pGraficos;
     }
 }
