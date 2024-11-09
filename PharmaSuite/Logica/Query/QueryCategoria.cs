@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using PharmaSuite.Modelo.DB;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,16 @@ namespace PharmaSuite.Logica.Query
     {
         public List<Categoria> listaCategoria()
         {
-            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();      
-            if (dc.Categorias.IsNullOrEmpty()) 
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+            if (dc.Categorias.IsNullOrEmpty())
             {
                 return new List<Categoria>();
             }
-            else 
+            else
             {
                 return new List<Categoria>(dc.Categorias);
             }
-            
+
         }
 
         public Categoria buscarPorID(int id)
@@ -38,7 +39,7 @@ namespace PharmaSuite.Logica.Query
         {
 
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-                
+
             if (dc.Categorias.IsNullOrEmpty())
             {
                 return this.listaCategoria();
@@ -65,5 +66,17 @@ namespace PharmaSuite.Logica.Query
             }
         }
 
+        public List<Categoria> buscarPorDescripcion(string descripcion)
+        {
+            using (var context = new DbPharmaSuiteContext())
+            {
+
+                var categorias = context.Categorias
+                                        .Where(c => EF.Functions.Like(c.Descripcion, "%" + descripcion + "%"))
+                                        .ToList();
+                return categorias;
+            }
+        }
     }
+
 }

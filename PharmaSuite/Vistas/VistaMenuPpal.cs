@@ -56,7 +56,6 @@ namespace Vistas
                 case 2:
                     {
                         this.desactivarBtnPermanentemente(btnAgregarUsuario);
-                        this.desactivarBtnPermanentemente(btnReportes);
                         this.desactivarBtnPermanentemente(btnProductos);
                         this.desactivarBtnPermanentemente(btnBackup);
                         this.desactivarBtnPermanentemente(btnCategorias);
@@ -161,7 +160,7 @@ namespace Vistas
                 this.Hide();
                 VistaLogin vistaLogin = new VistaLogin();
                 vistaLogin.Show();
-                //this.setUsuario(null);
+               this.setUsuario(null);
             }
         }
         //Metodo para agregar un nuevo form al fondo
@@ -279,7 +278,7 @@ namespace Vistas
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.agregarNuevoForm(new NuevoReporte());
+            this.agregarNuevoForm(new NuevoReporte(this.usuarioActual));
         }
     }
 }
