@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+        }
+
+        .reporte-header {
+            display: flex;
+            align-items: center; /* Centra verticalmente todo el contenido */
+            margin-bottom: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            height: 140px; /* Alinea el contenido con el tamaño del logo */
+        }
+
+        .logo {
+            width: 400px;
+            height: 200px;
+            padding-right: 20px;
+        }
+
+            .logo img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* Ajusta la imagen al contenedor manteniendo la proporción */
+            }
+
+        .titulo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .columna {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra verticalmente el texto dentro de la columna */
+        }
+
+            .columna p {
+                margin: 5px 0;
+            }
+
+        .contenedor-texto {
+            padding-top: 30px;
+            display: flex;
+            width: 100%;
+            gap: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reporte-header">
+        <!-- Logo de la farmacia -->
+        <div class="logo">
+            <img src="logo bg transparente.jpg" alt="Logo de la farmacia">
+        </div>
+
+        <!-- Título del encabezado en el centro absoluto -->
+        <div class="titulo">Reporte solicitado:</div>
+
+        <!-- Contenedor del texto alineado a la derecha del logo -->
+        <div class="contenedor-texto">
+            <!-- Columna izquierda (información de la farmacia) -->
+            <div class="columna">
+                <p><strong>Razón social:</strong> PharmaSuite C.A</p>
+                <p><strong>Domicilio comercial:</strong> Santa Fe 4500 - Corrientes, Corrientes</p>
+                <p><strong>Teléfono:</strong> 3795 152229</p>
+            </div>
+
+            <!-- Columna derecha (información del empleado) -->
+            <div class="columna">
+                <p><strong>Fecha de emisión:</strong> 30/12/2024 10:57</p>
+                <p><strong>Nombre empleado:</strong> Pineda Carlos</p>
+                <p><strong>DNI empleado:</strong> 95.963.784</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

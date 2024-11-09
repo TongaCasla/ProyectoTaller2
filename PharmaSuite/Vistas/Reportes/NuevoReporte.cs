@@ -30,15 +30,26 @@ namespace PharmaSuite.Vistas.Reportes
             this.usuarioActual = usuarioActual;
             this.verificarTipoUsuario();
             comboReporte.SelectedIndex = 0;
-            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) != "ListaVentasPorFecha")
+            this.desactivarOpciones();
+
+        }
+
+        private void desactivarOpciones()
+        {
+            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha")
             {
-                dateInicio.Enabled = false;
+                dateInicio.Enabled = true;
+                dateFin.Enabled = true;
+            }
+            else if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion")
+            {
+                dateInicio.Enabled = true;
                 dateFin.Enabled = false;
             }
             else
             {
-                dateInicio.Enabled=true;
-                dateFin.Enabled=true;
+                dateInicio.Enabled = false;
+                dateFin.Enabled = false;
             }
         }
 
@@ -57,17 +68,17 @@ namespace PharmaSuite.Vistas.Reportes
                 case 4:
                     {
                         comboReporte.Items.Add("Recaudación");
-                        comboReporte.Items.Add("Margen de Ganancia por Producto");
+                        comboReporte.Items.Add("Margen de ganancia");
+                        comboReporte.Items.Add("Ventas por empleado");
+                        comboReporte.Items.Add("Ventas por fecha");
                         break;
                     }
                 //Gerente
                 case 3:
                     {
-                        comboReporte.Items.Add("Lista de Clientes");
-                        comboReporte.Items.Add("Lista de Empleados activos");
+                        comboReporte.Items.Add("Lista de clientes");
+                        comboReporte.Items.Add("Lista de empleados activos");
                         comboReporte.Items.Add("Productos por categoría");
-                        comboReporte.Items.Add("Ventas por empleado");
-                        comboReporte.Items.Add("Ventas por fecha");
                         comboReporte.Items.Add("Productos con stock bajo");
                         comboReporte.Items.Add("Productos próximos a vencer");
                         break;
@@ -114,23 +125,33 @@ namespace PharmaSuite.Vistas.Reportes
             {
                 case "Ventas por empleado":
                     {
-                            // Abre el formulario modal para seleccionar el empleado
-                            using (ListaEmpleados seleccionEmpl = new ListaEmpleados())
+                        // Abre el formulario modal para seleccionar el empleado
+                        using (ListaEmpleados seleccionEmpl = new ListaEmpleados())
+                        {
+                            // Si el usuario selecciona un empleado y confirma con OK
+                            if (seleccionEmpl.ShowDialog() == DialogResult.OK)
                             {
-                                // Si el usuario selecciona un empleado y confirma con OK
-                                if (seleccionEmpl.ShowDialog() == DialogResult.OK)
-                                {
-                                    // Obtener el empleado seleccionado del Form B (ListaEmpleados)
-                                    this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
-                                    this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
-                                }
-                                else
-                                {
-                                    // Si el usuario cancela la selección, 
-                                    MessageBox.Show("No se seleccionó ningún empleado.");
-                                    return; 
-                                }
+                                // Obtener el empleado seleccionado del Form B (ListaEmpleados)
+                                this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
+                                this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
                             }
+                            else
+                            {
+                                // Si el usuario cancela la selección, 
+                                MessageBox.Show("No se seleccionó ningún empleado.");
+                                return;
+                            }
+                        }
+                        break;
+                    }
+                case "Recaudación":
+                    {
+                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio,fechaFin);
+                        break;
+                    }
+                case "Cierre de caja":
+                    {
+                        this.cargarReporteConParametro(comboReporte.SelectedItem.ToString(), usuarioActual);
                         break;
                     }
                 case "Ventas realizadas":
@@ -141,11 +162,11 @@ namespace PharmaSuite.Vistas.Reportes
 
                 case "Ventas por fecha":
                     {
-                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio,fechaFin);
+                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio, fechaFin);
 
                         break;
                     }
-                
+
                 default:
                     {
                         this.cargarReporte(verificarReporte(comboReporte.SelectedItem.ToString()));
@@ -168,13 +189,14 @@ namespace PharmaSuite.Vistas.Reportes
                 "Ventas realizadas" => "ListaVentasIndividual",
                 "Recaudación" => "Recaudacion",
                 "Cierre de caja" => "CierreCaja",
-                "Margen de Ganancia por Producto" => "GananciaPorProducto",
+                "Margen de Ganancia" => "GananciaPorProducto",
                 _ => "Sin acceso"
             };
 
             return acceso;
 
         }
+
         private void cargarReporteConFecha(string procedimientoSeleccionado, string fechaInicio, string fechaFin)
         {
             this.reporteActual = procedimientoSeleccionado;
@@ -213,7 +235,7 @@ namespace PharmaSuite.Vistas.Reportes
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
-    }
+        }
         private void cargarReporteConParametro(string procedimientoSeleccionado, Persona usuario)
         {
             this.reporteActual = procedimientoSeleccionado;
@@ -302,7 +324,7 @@ namespace PharmaSuite.Vistas.Reportes
 
             // Crear el documento PDF
             iTextSharp.text.Document pdfDoc = new(PageSize.A4.Rotate(), 56.7f, 56.7f, 56.7f, 56.7f);
-                
+
 
             try
             {
@@ -311,7 +333,7 @@ namespace PharmaSuite.Vistas.Reportes
                 saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
                 //Creamos el nombre del archivo
                 //Formato esperado: ListaClientes 03-11-2024 10.57.11 PM.pdf
-                saveFileDialog.FileName = reporteActual+" "+fechaActual+" "+ horaActual +".pdf";
+                saveFileDialog.FileName = reporteActual + " " + fechaActual + " " + horaActual + ".pdf";
 
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -364,7 +386,10 @@ namespace PharmaSuite.Vistas.Reportes
             }
         }
 
-       
+        private void comboReporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.desactivarOpciones();
+        }
     }
 }
 

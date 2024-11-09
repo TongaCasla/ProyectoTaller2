@@ -43,7 +43,6 @@
             btnEliminar = new Button();
             btnImp = new Button();
             pCentral = new Panel();
-            pGraficos = new Panel();
             dataGridView1 = new DataGridView();
             lreporte = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -137,6 +136,7 @@
             comboReporte.Name = "comboReporte";
             comboReporte.Size = new Size(256, 29);
             comboReporte.TabIndex = 44;
+            comboReporte.SelectedIndexChanged += comboReporte_SelectedIndexChanged;
             // 
             // lNombreProd
             // 
@@ -225,7 +225,6 @@
             // 
             // pCentral
             // 
-            pCentral.Controls.Add(pGraficos);
             pCentral.Controls.Add(dataGridView1);
             pCentral.Controls.Add(lreporte);
             pCentral.Location = new Point(0, 134);
@@ -234,19 +233,13 @@
             pCentral.Size = new Size(405, 237);
             pCentral.TabIndex = 2;
             // 
-            // pGraficos
-            // 
-            pGraficos.Location = new Point(411, 0);
-            pGraficos.Name = "pGraficos";
-            pGraficos.Size = new Size(389, 237);
-            pGraficos.TabIndex = 3;
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.Azure;
@@ -277,7 +270,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(405, 237);
+            dataGridView1.Size = new Size(800, 237);
             dataGridView1.TabIndex = 61;
             dataGridView1.Visible = false;
             // 
@@ -330,6 +323,5 @@
         private Label lreporte;
         private DataGridView dataGridView1;
         private SaveFileDialog saveFileDialog1;
-        private Panel pGraficos;
     }
 }
