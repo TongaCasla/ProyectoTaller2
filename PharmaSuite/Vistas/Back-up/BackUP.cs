@@ -20,6 +20,7 @@ namespace PharmaSuite.Vistas.Back_up
         Persona usuarioActual;
         Usuario usuario;
         string cadena = "Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
+        // string cadena = "Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
         string backupPath;
 
         public BackUP(Persona usuario)
