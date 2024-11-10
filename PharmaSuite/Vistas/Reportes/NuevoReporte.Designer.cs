@@ -227,10 +227,11 @@
             // 
             pCentral.Controls.Add(dataGridView1);
             pCentral.Controls.Add(lreporte);
+            pCentral.Dock = DockStyle.Fill;
             pCentral.Location = new Point(0, 134);
             pCentral.Margin = new Padding(3, 3, 20, 3);
             pCentral.Name = "pCentral";
-            pCentral.Size = new Size(405, 237);
+            pCentral.Size = new Size(800, 237);
             pCentral.TabIndex = 2;
             // 
             // dataGridView1
@@ -239,7 +240,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.Azure;
@@ -254,7 +255,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
@@ -279,7 +280,7 @@
             lreporte.Anchor = AnchorStyles.Top;
             lreporte.AutoSize = true;
             lreporte.Font = new Font("Century Gothic", 14F);
-            lreporte.Location = new Point(55, 104);
+            lreporte.Location = new Point(253, 104);
             lreporte.Name = "lreporte";
             lreporte.Size = new Size(277, 22);
             lreporte.TabIndex = 48;
