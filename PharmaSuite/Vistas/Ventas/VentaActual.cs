@@ -13,6 +13,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vistas;
 using System.Globalization;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Html2pdf;
 
 // Formato de moneda de Argentina
 
@@ -245,18 +253,24 @@ namespace PharmaSuite.Vistas.Ventas
                 venta.IdUsuario = dc.Usuarios.Where(u => u.IdPersona == this.usuarioActual.IdPersona).First().IdUsuario;
                 //verificar que haya un cliente
                 venta.Cliente = this.clienteVenta.IdPersona;
-                venta.Total = float.Parse(totalVenta.Text);
+                venta.Total = this.calcularTotal();
+                venta.IdFormapago = this.formaPago();
                 dc.Venta.Add(venta);
                 dc.SaveChanges();
-                int idVenta = dc.Venta.OrderByDescending(u => u.IdVenta).First().IdVenta;
+                int idventa = dc.Venta.OrderByDescending(u => u.IdVenta).First().IdVenta;
                 foreach (VentaDetalle vd in listaVentaDetalle)
                 {
-                    vd.IdVenta = idVenta;
+                    vd.IdVenta = idventa;
                     dc.VentaDetalles.Add(vd);
                     dc.SaveChanges();
                 }
-                //agregar mensaje exitoso 
+                
+                MessageBox.Show("Se realizo la venta con éxito",
+                "Aceptar",
+                 MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
+                //this.generarFactura(idventa);
             }
         }
 
@@ -281,8 +295,83 @@ namespace PharmaSuite.Vistas.Ventas
 
         private void CKBConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
-            //query al CF y asignar cliente
+            QueryPersona qp = new QueryPersona();
+            this.setCliente(qp.bucarPorId(2));
         }
+
+        private int formaPago() 
+        {
+            int i = 0;
+            if (RBEfectivo.Checked)
+            {
+                i = 1;
+            }else if (RBDebito.Checked)
+            {
+                i = 2;
+            } else if (RBTransferencia.Checked) 
+            {
+                i = 3;
+            }
+            return i;
+        }
+
+        /*
+        private void generarFactura(int idventa)
+        {
+            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
+            SaveFileDialog factura= new SaveFileDialog();
+            string nombreArchivo = idventa.ToString()+"-"+ DateTime.Now.ToString("ddMMyyyyHHmmss");
+            factura.FileName = string.Format("{0}.pdf",nombreArchivo);
+
+            string PlantillaHTML = Properties.Resources.Factura;
+            string cliente = this.clienteVenta.Nombre + " " + this.clienteVenta.Apellido;
+            PlantillaHTML = PlantillaHTML.Replace("@CLIENTE",cliente);
+            PlantillaHTML = PlantillaHTML.Replace("@DOCUMENTO", this.clienteVenta.Dni.ToString());
+            PlantillaHTML = PlantillaHTML.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+
+            string filas = string.Empty;
+            decimal total = 0;
+            foreach (VentaDetalle vd in this.listaVentaDetalle)
+            {
+                Producto prod= dc.Productos.First(d => d.CodBarra.Equals(vd.CodBarra));
+                filas += "<tr>";
+                filas += "<td>" + prod.NombreProd + "</td>";
+                filas += "<td>" + vd.Cantidad.ToString() + "</td>";
+                filas += "<td>" + prod.PrecioVenta.ToString() + "</td>";
+                filas += "<td>" + vd.Subtotal + "</td>";
+                filas += "</tr>";
+                total += decimal.Parse(vd.Subtotal.ToString());
+            }
+            PlantillaHTML = PlantillaHTML.Replace("@FILAS", filas);
+            PlantillaHTML = PlantillaHTML.Replace("@TOTAL", total.ToString());
+            PlantillaHTML = PlantillaHTML.Replace("@idventa",idventa.ToString());
+
+
+            if (factura.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(factura.FileName, FileMode.Create))
+                {
+                    
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(new Phrase(""));
+
+                    using (StringReader sr = new StringReader(PlantillaHTML))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+
+            }
+        }
+        */
+
+
     }
 
 }

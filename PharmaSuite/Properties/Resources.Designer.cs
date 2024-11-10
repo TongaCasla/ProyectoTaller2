@@ -131,6 +131,15 @@ namespace PharmaSuite.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Factura.html.
+        /// </summary>
+        internal static string Factura {
+            get {
+                return ResourceManager.GetString("Factura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap hombre_empleado_alt {

@@ -1,5 +1,6 @@
 using PharmaSuite.Modelo.DB;
 using PharmaSuite.Vistas;
+using PharmaSuite.Vistas.Back_up;
 using PharmaSuite.Vistas.Categorias;
 using PharmaSuite.Vistas.Productos;
 using PharmaSuite.Vistas.Reportes;
@@ -28,7 +29,7 @@ namespace Vistas
             this.verificarTipoUsuario(this.getUsuario());
             labelUsuario.Text = usuarioActual.Nombre;
         }
-        
+
         private void setUsuario(Persona usuarioActual)
         {
             this.usuarioActual = usuarioActual;
@@ -65,8 +66,8 @@ namespace Vistas
                     }
             }
         }
-    
-        
+
+
         //Metodo para mostrar el panel correspondiente
         private void MostrarPanel(Panel panel)
         {
@@ -85,17 +86,17 @@ namespace Vistas
         private void desactivarBtnPermanentemente(Button btn)
         {
             btn.Enabled = false;
-            btn.BackColor = Color.FromArgb(211, 211, 211); 
+            btn.BackColor = Color.FromArgb(211, 211, 211);
             if (!botonesDesactivadosPermanente.Contains(btn))
             {
-                botonesDesactivadosPermanente.Add(btn); 
+                botonesDesactivadosPermanente.Add(btn);
             }
         }
 
         // Función para desactivar un botón temporalmente
         private void desactivarBtn(Button btn)
         {
-            if (!botonesDesactivadosPermanente.Contains(btn)) 
+            if (!botonesDesactivadosPermanente.Contains(btn))
             {
                 btn.Enabled = false;
                 btn.BackColor = Color.FromArgb(176, 196, 222);
@@ -107,11 +108,11 @@ namespace Vistas
         {
             if (btnSender != null)
             {
-                if (btnActivo != (Button)btnSender && !botonesDesactivadosPermanente.Contains((Button)btnSender)) 
+                if (btnActivo != (Button)btnSender && !botonesDesactivadosPermanente.Contains((Button)btnSender))
                 {
-                    this.desactivarBtn(); 
+                    this.desactivarBtn();
                     btnActivo = (Button)btnSender;
-                    btnActivo.BackColor = Color.FromArgb(147, 182, 211); 
+                    btnActivo.BackColor = Color.FromArgb(147, 182, 211);
                     btnActivo.Font = new Font("Microsoft Sans Serif", 19.75F);
                 }
             }
@@ -122,9 +123,9 @@ namespace Vistas
         {
             foreach (Control btnAnterior in navbarIzq.Controls)
             {
-                if (btnAnterior.GetType() == typeof(Button) && !botonesDesactivadosPermanente.Contains((Button)btnAnterior)) 
+                if (btnAnterior.GetType() == typeof(Button) && !botonesDesactivadosPermanente.Contains((Button)btnAnterior))
                 {
-                    btnAnterior.BackColor = Color.FromArgb(187, 222, 251); 
+                    btnAnterior.BackColor = Color.FromArgb(187, 222, 251);
                     btnAnterior.Font = new Font("Microsoft Sans Serif", 18F);
                 }
             }
@@ -160,7 +161,7 @@ namespace Vistas
                 this.Hide();
                 VistaLogin vistaLogin = new VistaLogin();
                 vistaLogin.Show();
-               this.setUsuario(null);
+                this.setUsuario(null);
             }
         }
         //Metodo para agregar un nuevo form al fondo
@@ -189,7 +190,7 @@ namespace Vistas
         }
 
         //Metodos para activar/desactivar botones
-        
+
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
@@ -279,6 +280,11 @@ namespace Vistas
         private void button4_Click(object sender, EventArgs e)
         {
             this.agregarNuevoForm(new NuevoReporte(this.usuarioActual));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.agregarNuevoForm(new BackUP(this.usuarioActual));
         }
     }
 }

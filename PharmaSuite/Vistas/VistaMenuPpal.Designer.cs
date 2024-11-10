@@ -58,10 +58,10 @@
             btnReportes = new Button();
             btnProductos = new Button();
             pFondo = new Panel();
+            pCategorias = new Panel();
             pBackup = new Panel();
             button1 = new Button();
             button3 = new Button();
-            pCategorias = new Panel();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             navSup.SuspendLayout();
@@ -500,6 +500,14 @@
             pFondo.Size = new Size(835, 633);
             pFondo.TabIndex = 6;
             // 
+            // pCategorias
+            // 
+            pCategorias.Location = new Point(5, 205);
+            pCategorias.Name = "pCategorias";
+            pCategorias.Size = new Size(695, 87);
+            pCategorias.TabIndex = 32;
+            pCategorias.Visible = false;
+            // 
             // pBackup
             // 
             pBackup.Controls.Add(button1);
@@ -543,14 +551,7 @@
             button3.Text = "Descargar";
             button3.TextImageRelation = TextImageRelation.ImageBeforeText;
             button3.UseVisualStyleBackColor = true;
-            // 
-            // pCategorias
-            // 
-            pCategorias.Location = new Point(5, 205);
-            pCategorias.Name = "pCategorias";
-            pCategorias.Size = new Size(695, 87);
-            pCategorias.TabIndex = 32;
-            pCategorias.Visible = false;
+            button3.Click += button3_Click;
             // 
             // VistaMenuPpal
             // 
