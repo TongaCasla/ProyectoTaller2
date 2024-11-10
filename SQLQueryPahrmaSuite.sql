@@ -84,6 +84,28 @@ constraint FK_presentacion_producto FOREIGN KEY(id_prod) references producto(cod
 constraint FK_presentacion_medida FOREIGN KEY(id_medida) references medida(id_medida),
 );
 
+create table forma_pago
+(
+	id_forma_pago int not null identity(1,1),
+	forma varchar(50) not null,
+	constraint PK_forma_pago primary key (id_forma_pago),
+);
+
+
+create table venta
+(
+	id_venta int not null identity(1,1),
+	id_usuario int not null,
+	id_formapago int not null,
+	cliente int,
+	total float not null,
+	fecha_vta datetime not null constraint DF_venta_fecha default getdate(),
+	constraint PK_venta primary key (id_venta),
+	constraint FK_venta_usuario foreign key (id_usuario) references usuario(id_usuario),
+	constraint FK_venta_cliente foreign key (cliente) references persona(id_persona),
+	constraint FK_venta_formapago foreign key (id_formapago) references forma_pago(id_forma_pago)
+);
+
 create table venta_detalle
 (
 	id_venta_detalle int not null identity(1,1),
@@ -96,39 +118,45 @@ create table venta_detalle
 	constraint FK_venta_detalle_venta foreign key (id_venta) references venta(id_venta),
 );
 
-create table venta
+create table registro_buckup
 (
-	id_venta int not null identity(1,1),
+	id_registro_backup int identity(1,1),
 	id_usuario int not null,
-	cliente int constraint DF_venta_consFinal default 1,
-	total float not null,
-	fecha_vta datetime not null constraint DF_venta_fecha default getdate(),
-	constraint PK_venta primary key (id_venta),
-	constraint FK_venta_usuario foreign key (id_usuario) references usuario(id_usuario),
-	--constraint FK_venta_cliente foreign key (cliente) references persona(id_persona),
+	ruta_guardado varchar(300)not null,
+	fecha_guardado datetime not null constraint DF_backup_fecha default getdate()
+	constraint PK_registro_backup primary key (id_registro_backup),
+	constraint FK_backup_usuario foreign key (id_usuario) references usuario(id_usuario)
 );
 
-create table forma_pago
-(
-	id_forma_pago int not null identity(1,1),
-	forma varchar(50) not null,
-	descuento float not null,
-	constraint PK_forma_pago primary key (id_forma_pago),
-);
 
-create table venta_pago
-(
-	id_venta int not null,
-	id_forma_pago int not null,
-	monto float not null,
-	constraint PK_venta_pago primary key (id_venta,id_forma_pago),
-	constraint FK_venta_pago_venta foreign key (id_venta) references venta(id_venta),
-	constraint FK_venta_pago_forma foreign key (id_forma_pago) references forma_pago(id_forma_pago),
-);
+-- Perfiles--
 
--- hasta aca --
+insert into perfil (descripcion) values ('Cliente'),('Empleado'),('Gerente'),('Administrador');
 
-insert into perfil (descripcion) values ('Cliente'),('Empleado'),('Gerente'),('Administrador'),;
+--Ingreso de administrador
+INSERT INTO PERSONA VALUES('Admin','Sistema',00000000,'1900-01-01','123456789','admin@gmail.com','otro','si',4);
+--Usuario: admin contraseña: admin (Todo minusculas)
+insert into usuario values ('admin','admin',1);
+--Ingreso de gerente
+INSERT INTO PERSONA VALUES('Consumidor','Final',00000001,'1900-01-01','123456780','cf@gmail.com','otro','si',3);
+--Usuario: admin contraseña: admin (Todo minusculas)
+insert into usuario values ('gerente','gerente',2);
+
+--Ingreso de formas de pago
+INSERT INTO forma_pago VALUES ('Efectivo');
+INSERT INTO forma_pago VALUES ('Debito');
+INSERT INTO forma_pago VALUES ('Transferencia');
+
+
+---Insert medida
+insert into medida values ('ud'),('gr'),('mg'),('lt'),('ml');
+----Producto proximo a vencer p/ test
+insert into producto values(316306900,1,'Hilo dental',2300,5000,30,15,'2024-11-30','si','si');
+--Producto con stock bajo p/ test
+insert into producto values(316306912,3,'Enjuague Sedal',2800,3200,10,20,GETDATE(),'si','si');
+--Ventas p/ test
+insert into venta (id_usuario,cliente,total,fecha_vta) values(2,4,1000,GETDATE());
+insert into venta (id_usuario,cliente,total,fecha_vta) values(2,4,10000,'2024-03-11');
 
 
  /*
@@ -137,4 +165,6 @@ insert into perfil (descripcion) values ('Cliente'),('Empleado'),('Gerente'),('A
  alter table usuario
  add constraint FK_usuario_id_persona Foreign key (id_persona) references persona(id_persona);
  */
-
+  select * from venta
+ select * from venta_detalle
+ select * from registro_buckup
