@@ -13,6 +13,9 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Globalization;
+using System.Reflection;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
@@ -30,15 +33,22 @@ namespace PharmaSuite.Vistas.Reportes
             this.usuarioActual = usuarioActual;
             this.verificarTipoUsuario();
             comboReporte.SelectedIndex = 0;
-            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) != "ListaVentasPorFecha")
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.desactivarOpciones();
+
+        }
+
+        private void desactivarOpciones()
+        {
+            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha" || this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion")
             {
-                dateInicio.Enabled = false;
-                dateFin.Enabled = false;
+                dateInicio.Enabled = true;
+                dateFin.Enabled = true;
             }
             else
             {
-                dateInicio.Enabled=true;
-                dateFin.Enabled=true;
+                dateInicio.Enabled = false;
+                dateFin.Enabled = false;
             }
         }
 
@@ -56,18 +66,18 @@ namespace PharmaSuite.Vistas.Reportes
                 //Administrador
                 case 4:
                     {
-                        comboReporte.Items.Add("Recaudación");
-                        comboReporte.Items.Add("Margen de Ganancia por Producto");
+                        comboReporte.Items.Add("Margen de ganancia");
+                        comboReporte.Items.Add("Recaudación mensual");
+                        comboReporte.Items.Add("Ventas por empleado");
+                        comboReporte.Items.Add("Ventas por fecha");
                         break;
                     }
                 //Gerente
                 case 3:
                     {
-                        comboReporte.Items.Add("Lista de Clientes");
-                        comboReporte.Items.Add("Lista de Empleados activos");
+                        comboReporte.Items.Add("Lista de clientes");
+                        comboReporte.Items.Add("Lista de empleados activos");
                         comboReporte.Items.Add("Productos por categoría");
-                        comboReporte.Items.Add("Ventas por empleado");
-                        comboReporte.Items.Add("Ventas por fecha");
                         comboReporte.Items.Add("Productos con stock bajo");
                         comboReporte.Items.Add("Productos próximos a vencer");
                         break;
@@ -112,25 +122,14 @@ namespace PharmaSuite.Vistas.Reportes
 
             switch (comboReporte.SelectedItem.ToString())
             {
-                case "Ventas por empleado":
+                case "Recaudación mensual":
                     {
-                            // Abre el formulario modal para seleccionar el empleado
-                            using (ListaEmpleados seleccionEmpl = new ListaEmpleados())
-                            {
-                                // Si el usuario selecciona un empleado y confirma con OK
-                                if (seleccionEmpl.ShowDialog() == DialogResult.OK)
-                                {
-                                    // Obtener el empleado seleccionado del Form B (ListaEmpleados)
-                                    this.empleadoSeleccionado = seleccionEmpl.empleadoSeleccionado;
-                                    this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), this.empleadoSeleccionado);
-                                }
-                                else
-                                {
-                                    // Si el usuario cancela la selección, 
-                                    MessageBox.Show("No se seleccionó ningún empleado.");
-                                    return; 
-                                }
-                            }
+                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio, fechaFin);
+                        break;
+                    }
+                case "Cierre de caja":
+                    {
+                        this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), usuarioActual);
                         break;
                     }
                 case "Ventas realizadas":
@@ -141,11 +140,11 @@ namespace PharmaSuite.Vistas.Reportes
 
                 case "Ventas por fecha":
                     {
-                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio,fechaFin);
+                        this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio, fechaFin);
 
                         break;
                     }
-                
+
                 default:
                     {
                         this.cargarReporte(verificarReporte(comboReporte.SelectedItem.ToString()));
@@ -159,22 +158,24 @@ namespace PharmaSuite.Vistas.Reportes
         {
             string acceso = opcionSeleccionada switch
             {
-                "Lista de Clientes" => "ListaClientes",
-                "Lista de Empleados activos" => "ListaEmpleadosActivos",
+                "Lista de clientes" => "ListaClientes",
+                "Lista de empleados activos" => "ListaEmpleadosActivos",
                 "Productos por categoría" => "ListaProductosPorCategoria",
                 "Ventas por empleado" => "ListaVentasEmpleado",
                 "Ventas por fecha" => "ListaVentasPorFecha",
                 "Productos con stock bajo" => "ListaProductosStockBajo",
+                "Productos próximos a vencer" => "ProductosProximosAVencer",
                 "Ventas realizadas" => "ListaVentasIndividual",
-                "Recaudación" => "Recaudacion",
+                "Recaudación mensual" => "Recaudacion",
                 "Cierre de caja" => "CierreCaja",
-                "Margen de Ganancia por Producto" => "GananciaPorProducto",
+                "Margen de ganancia" => "GananciaPorProducto",
                 _ => "Sin acceso"
             };
 
             return acceso;
 
         }
+
         private void cargarReporteConFecha(string procedimientoSeleccionado, string fechaInicio, string fechaFin)
         {
             this.reporteActual = procedimientoSeleccionado;
@@ -213,7 +214,7 @@ namespace PharmaSuite.Vistas.Reportes
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
-    }
+        }
         private void cargarReporteConParametro(string procedimientoSeleccionado, Persona usuario)
         {
             this.reporteActual = procedimientoSeleccionado;
@@ -292,27 +293,20 @@ namespace PharmaSuite.Vistas.Reportes
             }
         }
 
-
-        private void btnImp_Click(object sender, EventArgs e)
+        private void crearEncabezadoReporte()
         {
-            //Obtenemos la fecha y hora actual segun nuestro formato
+            // Obtener la fecha y hora actual según nuestro formato
             string fechaActual = DateTime.Now.ToString("dd-MM-yyyy");
             string horaActual = DateTime.Now.ToString("h.mm.ss tt").Replace(" p.m.", " PM").Replace(" a.m.", " AM");
 
-
             // Crear el documento PDF
-            iTextSharp.text.Document pdfDoc = new(PageSize.A4.Rotate(), 56.7f, 56.7f, 56.7f, 56.7f);
-                
-
+            iTextSharp.text.Document pdfDoc = new(PageSize.A4.Rotate(), 30f, 10f, 10f, 10f);
             try
             {
                 // Seleccionar la ruta y el nombre del archivo PDF
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
-                //Creamos el nombre del archivo
-                //Formato esperado: ListaClientes 03-11-2024 10.57.11 PM.pdf
-                saveFileDialog.FileName = reporteActual+" "+fechaActual+" "+ horaActual +".pdf";
-
+                saveFileDialog.FileName = reporteActual + " " + fechaActual + " " + horaActual + ".pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -322,6 +316,68 @@ namespace PharmaSuite.Vistas.Reportes
                     // Abrir el documento para añadir contenido
                     pdfDoc.Open();
 
+                    // Crear una tabla con 2 columnas para el encabezado
+                    PdfPTable table = new PdfPTable(2);
+                    table.WidthPercentage = 100; // Ancho al 100% del documento
+                    float[] columnWidths = { 2f, 3f }; // Definir el ancho de las columnas (relación 2:3)
+                    table.SetWidths(columnWidths);
+
+                    // 1. Cargar y agregar la imagen (logo)
+                    using (Stream inputStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PharmaSuite.Vistas.Reportes.logo.png"))
+                    {
+                        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(inputStream);
+                        //logo.ScaleToFit(222f, 112.5f); // Ajustar tamaño de la imagen
+                        logo.ScaleToFit(300f, 150f); // Ajustar tamaño de la imagen
+                        logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
+                        PdfPCell imageCell = new PdfPCell(logo);
+                        imageCell.Border = PdfPCell.NO_BORDER; // Sin borde
+                        imageCell.VerticalAlignment = Element.ALIGN_MIDDLE; // Alinear verticalmente
+                        table.AddCell(imageCell); // Agregar la celda con la imagen a la tabla
+                    }
+
+                    // 2. Crear el texto alineado a la derecha
+                    // Usamos un Paragraph con frases en negrita para simular lo que se muestra en la imagen
+                    Paragraph text = new Paragraph();
+                    text.Add(new Chunk("Reporte: " + this.reporteActual + "\n", FontFactory.GetFont("Arial", "24", Font.Bold)));
+                    text.Add(new Chunk("Razón social: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    text.Add(new Chunk("PharmaSuite C.A\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("Domicilio comercial: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    text.Add(new Chunk("Santa Fe 4500 - Corrientes, Corrientes\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("Teléfono: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    text.Add(new Chunk("3795 152229\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("\nFecha de emisión: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    string fechaEmision = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+                    text.Add(new Chunk(fechaEmision + "\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("Nombre empleado: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    string nombreCompletoEmpleado = this.usuarioActual.Nombre.ToString() + " " + this.usuarioActual.Apellido.ToString();
+                    string cargoEmpleado;
+                    if (this.usuarioActual.IdPerfil == 2)
+                    {
+                        cargoEmpleado = "Empleado";
+                    }
+                    else if (this.usuarioActual.IdPerfil == 3)
+                    {
+                        cargoEmpleado = "Gerente";
+                    }
+                    else
+                    {
+                        cargoEmpleado = "Administrador";
+                    }
+                    text.Add(new Chunk(nombreCompletoEmpleado + " - " + cargoEmpleado + "\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("DNI empleado: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    string dniEmpleado = this.usuarioActual.Dni.ToString();
+                    text.Add(new Chunk(dniEmpleado + "\n", FontFactory.GetFont("Arial", 12)));
+
+
+                    PdfPCell textCell = new PdfPCell(text);
+                    textCell.Border = PdfPCell.NO_BORDER; // Sin borde
+                    textCell.HorizontalAlignment = Element.ALIGN_LEFT; // Alineación horizontal a la izquierda
+                    textCell.VerticalAlignment = Element.ALIGN_MIDDLE; // Alinear verticalmente
+                    table.AddCell(textCell); // Agregar la celda con el texto a la tabla
+                    table.SpacingAfter = 25f;
+                    // 3. Añadir la tabla completa al documento
+                    pdfDoc.Add(table);
+
                     // Crear una tabla PDF con el número de columnas del DataGridView
                     PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
 
@@ -330,7 +386,7 @@ namespace PharmaSuite.Vistas.Reportes
                     {
                         PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText))
                         {
-                            BackgroundColor = new BaseColor(187, 222, 251) // Color  para los encabezados
+                            BackgroundColor = new BaseColor(187, 222, 251) // Color para los encabezados
                         };
                         pdfTable.AddCell(cell);
                     }
@@ -346,25 +402,36 @@ namespace PharmaSuite.Vistas.Reportes
                             }
                         }
                     }
-
-                    // Añadir la tabla al documento PDF
                     pdfDoc.Add(pdfTable);
-
                     // Cerrar el documento
                     pdfDoc.Close();
-
-                    //Mostramos el mensaje de correctamente
+                    // Mostrar el mensaje de éxito
                     MessageBox.Show("Reporte guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                //Mostramos mensaje de error si no se pudo generar
+                // Manejar el error
                 MessageBox.Show("Error al generar el PDF: " + ex.Message);
             }
         }
+        private void btnImp_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                this.crearEncabezadoReporte();
+            }
+            else
+            {
+                MessageBox.Show("Primero seleccione un reporte de la lista");
+            }
+        }
+        private void comboReporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.desactivarOpciones();
+            this.button2_Click_1(sender, e);
+        }
 
-       
     }
 }
 

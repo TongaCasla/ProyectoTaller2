@@ -43,7 +43,6 @@
             btnEliminar = new Button();
             btnImp = new Button();
             pCentral = new Panel();
-            pGraficos = new Panel();
             dataGridView1 = new DataGridView();
             lreporte = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -71,7 +70,6 @@
             // 
             // button2
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             button2.BackColor = Color.FromArgb(187, 222, 251);
             button2.BackgroundImageLayout = ImageLayout.None;
             button2.Cursor = Cursors.Hand;
@@ -92,7 +90,6 @@
             // 
             // dateFin
             // 
-            dateFin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dateFin.Font = new Font("Century Gothic", 15.75F);
             dateFin.Format = DateTimePickerFormat.Short;
             dateFin.Location = new Point(494, 87);
@@ -105,7 +102,6 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 15.75F);
             label2.Location = new Point(494, 62);
@@ -116,7 +112,6 @@
             // 
             // dateInicio
             // 
-            dateInicio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dateInicio.Font = new Font("Century Gothic", 15.75F);
             dateInicio.Format = DateTimePickerFormat.Short;
             dateInicio.Location = new Point(294, 87);
@@ -129,18 +124,17 @@
             // 
             // comboReporte
             // 
-            comboReporte.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             comboReporte.DropDownStyle = ComboBoxStyle.DropDownList;
             comboReporte.Font = new Font("Century Gothic", 13F);
             comboReporte.FormattingEnabled = true;
             comboReporte.Location = new Point(12, 91);
             comboReporte.Name = "comboReporte";
-            comboReporte.Size = new Size(256, 29);
+            comboReporte.Size = new Size(276, 29);
             comboReporte.TabIndex = 44;
+            comboReporte.SelectedIndexChanged += comboReporte_SelectedIndexChanged;
             // 
             // lNombreProd
             // 
-            lNombreProd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lNombreProd.AutoSize = true;
             lNombreProd.Font = new Font("Century Gothic", 15.75F);
             lNombreProd.Location = new Point(294, 62);
@@ -151,7 +145,6 @@
             // 
             // lCodigoProd
             // 
-            lCodigoProd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lCodigoProd.AutoSize = true;
             lCodigoProd.Font = new Font("Century Gothic", 15.75F);
             lCodigoProd.Location = new Point(12, 62);
@@ -162,7 +155,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 24F);
             label1.Location = new Point(268, 11);
@@ -225,21 +217,14 @@
             // 
             // pCentral
             // 
-            pCentral.Controls.Add(pGraficos);
             pCentral.Controls.Add(dataGridView1);
             pCentral.Controls.Add(lreporte);
+            pCentral.Dock = DockStyle.Fill;
             pCentral.Location = new Point(0, 134);
-            pCentral.Margin = new Padding(3, 3, 20, 3);
             pCentral.Name = "pCentral";
-            pCentral.Size = new Size(405, 237);
+            pCentral.Padding = new Padding(30, 0, 0, 0);
+            pCentral.Size = new Size(800, 237);
             pCentral.TabIndex = 2;
-            // 
-            // pGraficos
-            // 
-            pGraficos.Location = new Point(411, 0);
-            pGraficos.Name = "pGraficos";
-            pGraficos.Size = new Size(389, 237);
-            pGraficos.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -261,7 +246,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
@@ -269,7 +254,8 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(30, 0);
             dataGridView1.Margin = new Padding(20, 3, 3, 3);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
@@ -277,7 +263,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(405, 237);
+            dataGridView1.Size = new Size(770, 237);
             dataGridView1.TabIndex = 61;
             dataGridView1.Visible = false;
             // 
@@ -286,7 +272,7 @@
             lreporte.Anchor = AnchorStyles.Top;
             lreporte.AutoSize = true;
             lreporte.Font = new Font("Century Gothic", 14F);
-            lreporte.Location = new Point(55, 104);
+            lreporte.Location = new Point(268, 104);
             lreporte.Name = "lreporte";
             lreporte.Size = new Size(277, 22);
             lreporte.TabIndex = 48;
@@ -294,6 +280,7 @@
             // 
             // NuevoReporte
             // 
+            AcceptButton = button2;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
@@ -330,6 +317,5 @@
         private Label lreporte;
         private DataGridView dataGridView1;
         private SaveFileDialog saveFileDialog1;
-        private Panel pGraficos;
     }
 }
