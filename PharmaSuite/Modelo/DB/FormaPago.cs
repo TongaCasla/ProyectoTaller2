@@ -9,7 +9,5 @@ public partial class FormaPago
 
     public string Forma { get; set; } = null!;
 
-    public double Descuento { get; set; }
-
-    public virtual ICollection<VentaPago> VentaPagos { get; set; } = new List<VentaPago>();
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

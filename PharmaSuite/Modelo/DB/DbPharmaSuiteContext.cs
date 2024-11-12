@@ -33,15 +33,11 @@ public partial class DbPharmaSuiteContext : DbContext
 
     public virtual DbSet<VentaDetalle> VentaDetalles { get; set; }
 
-    public virtual DbSet<VentaPago> VentaPagos { get; set; }
-
     public virtual DbSet<Venta> Venta { get; set; }
 
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        //=> optionsBuilder.UseSqlServer("Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
-    => optionsBuilder.UseSqlServer("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
+    // => optionsBuilder.UseSqlServer("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categoria>(entity =>
@@ -69,7 +65,6 @@ public partial class DbPharmaSuiteContext : DbContext
             entity.ToTable("forma_pago");
 
             entity.Property(e => e.IdFormaPago).HasColumnName("id_forma_pago");
-            entity.Property(e => e.Descuento).HasColumnName("descuento");
             entity.Property(e => e.Forma)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -259,27 +254,6 @@ public partial class DbPharmaSuiteContext : DbContext
                 .HasConstraintName("FK_venta_detalle_venta");
         });
 
-        modelBuilder.Entity<VentaPago>(entity =>
-        {
-            entity.HasKey(e => new { e.IdVenta, e.IdFormaPago });
-
-            entity.ToTable("venta_pago");
-
-            entity.Property(e => e.IdVenta).HasColumnName("id_venta");
-            entity.Property(e => e.IdFormaPago).HasColumnName("id_forma_pago");
-            entity.Property(e => e.Monto).HasColumnName("monto");
-
-            entity.HasOne(d => d.IdFormaPagoNavigation).WithMany(p => p.VentaPagos)
-                .HasForeignKey(d => d.IdFormaPago)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_venta_pago_forma");
-
-            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.VentaPagos)
-                .HasForeignKey(d => d.IdVenta)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_venta_pago_venta");
-        });
-
         modelBuilder.Entity<Venta>(entity =>
         {
             entity.HasKey(e => e.IdVenta);
@@ -292,13 +266,18 @@ public partial class DbPharmaSuiteContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_vta");
+            entity.Property(e => e.IdFormapago).HasColumnName("id_formapago");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
             entity.Property(e => e.Total).HasColumnName("total");
 
             entity.HasOne(d => d.ClienteNavigation).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.Cliente)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_venta_cliente");
+
+            entity.HasOne(d => d.IdFormapagoNavigation).WithMany(p => p.Venta)
+                .HasForeignKey(d => d.IdFormapago)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_venta_formapago");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.IdUsuario)

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+
     <None Remove="Vistas\Reportes\logo.png" />
   </ItemGroup>
 
@@ -27,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="itext7" Version="8.0.5" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.5" />
     <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
