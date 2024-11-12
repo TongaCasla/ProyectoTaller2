@@ -40,15 +40,10 @@ namespace PharmaSuite.Vistas.Reportes
 
         private void desactivarOpciones()
         {
-            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha")
+            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha" || this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion")
             {
                 dateInicio.Enabled = true;
                 dateFin.Enabled = true;
-            }
-            else if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion mensual")
-            {
-                dateInicio.Enabled = true;
-                dateFin.Enabled = false;
             }
             else
             {
@@ -71,8 +66,8 @@ namespace PharmaSuite.Vistas.Reportes
                 //Administrador
                 case 4:
                     {
-                        comboReporte.Items.Add("Recaudación mensual");
                         comboReporte.Items.Add("Margen de ganancia");
+                        comboReporte.Items.Add("Recaudación mensual");
                         comboReporte.Items.Add("Ventas por empleado");
                         comboReporte.Items.Add("Ventas por fecha");
                         break;
@@ -163,12 +158,13 @@ namespace PharmaSuite.Vistas.Reportes
         {
             string acceso = opcionSeleccionada switch
             {
-                "Lista de Clientes" => "ListaClientes",
-                "Lista de Empleados activos" => "ListaEmpleadosActivos",
+                "Lista de clientes" => "ListaClientes",
+                "Lista de empleados activos" => "ListaEmpleadosActivos",
                 "Productos por categoría" => "ListaProductosPorCategoria",
                 "Ventas por empleado" => "ListaVentasEmpleado",
                 "Ventas por fecha" => "ListaVentasPorFecha",
                 "Productos con stock bajo" => "ListaProductosStockBajo",
+                "Productos próximos a vencer" => "ProductosProximosAVencer",
                 "Ventas realizadas" => "ListaVentasIndividual",
                 "Recaudación mensual" => "Recaudacion",
                 "Cierre de caja" => "CierreCaja",
@@ -433,6 +429,7 @@ namespace PharmaSuite.Vistas.Reportes
         private void comboReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.desactivarOpciones();
+            this.button2_Click_1(sender, e);
         }
 
     }
