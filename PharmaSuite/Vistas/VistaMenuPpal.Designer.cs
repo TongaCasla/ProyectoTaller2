@@ -40,12 +40,12 @@
             btnAgregarUsuario = new Button();
             btnClientes = new Button();
             pVentas = new Panel();
-            btnHistorialVentas = new Button();
             btnNuevaVenta = new Button();
             pProductos = new Panel();
             btnMostrarProductos = new Button();
             btnNuevoProducto = new Button();
             pReportes = new Panel();
+            button1 = new Button();
             btnNuevoReporte = new Button();
             btnUsuarios = new Button();
             pSesion = new Panel();
@@ -60,8 +60,6 @@
             pFondo = new Panel();
             pCategorias = new Panel();
             pBackup = new Panel();
-            button1 = new Button();
-            button3 = new Button();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             navSup.SuspendLayout();
@@ -74,7 +72,6 @@
             pSesion.SuspendLayout();
             navbarIzq.SuspendLayout();
             pFondo.SuspendLayout();
-            pBackup.SuspendLayout();
             SuspendLayout();
             // 
             // panel6
@@ -204,31 +201,12 @@
             // 
             // pVentas
             // 
-            pVentas.Controls.Add(btnHistorialVentas);
             pVentas.Controls.Add(btnNuevaVenta);
             pVentas.Location = new Point(5, 295);
             pVentas.Name = "pVentas";
             pVentas.Size = new Size(694, 87);
             pVentas.TabIndex = 29;
             pVentas.Visible = false;
-            // 
-            // btnHistorialVentas
-            // 
-            btnHistorialVentas.BackgroundImageLayout = ImageLayout.None;
-            btnHistorialVentas.FlatAppearance.BorderSize = 0;
-            btnHistorialVentas.FlatStyle = FlatStyle.Flat;
-            btnHistorialVentas.Font = new Font("Microsoft Sans Serif", 16F);
-            btnHistorialVentas.ForeColor = Color.Black;
-            btnHistorialVentas.Image = (Image)resources.GetObject("btnHistorialVentas.Image");
-            btnHistorialVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHistorialVentas.Location = new Point(184, 3);
-            btnHistorialVentas.Name = "btnHistorialVentas";
-            btnHistorialVentas.Size = new Size(164, 78);
-            btnHistorialVentas.TabIndex = 27;
-            btnHistorialVentas.Text = "Historial Ventas";
-            btnHistorialVentas.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnHistorialVentas.UseVisualStyleBackColor = true;
-            btnHistorialVentas.Click += btnHistorialVentas_Click;
             // 
             // btnNuevaVenta
             // 
@@ -296,12 +274,31 @@
             // 
             // pReportes
             // 
+            pReportes.Controls.Add(button1);
             pReportes.Controls.Add(btnNuevoReporte);
             pReportes.Location = new Point(9, 397);
             pReportes.Name = "pReportes";
             pReportes.Size = new Size(647, 87);
             pReportes.TabIndex = 30;
             pReportes.Visible = false;
+            // 
+            // button1
+            // 
+            button1.BackgroundImageLayout = ImageLayout.None;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Microsoft Sans Serif", 16F);
+            button1.ForeColor = Color.Black;
+            button1.Image = PharmaSuite.Properties.Resources.archivo_factura_dolar;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(175, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(155, 73);
+            button1.TabIndex = 26;
+            button1.Text = "Nueva Factura";
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnNuevoReporte
             // 
@@ -510,48 +507,11 @@
             // 
             // pBackup
             // 
-            pBackup.Controls.Add(button1);
-            pBackup.Controls.Add(button3);
             pBackup.Location = new Point(10, 490);
             pBackup.Name = "pBackup";
             pBackup.Size = new Size(647, 87);
             pBackup.TabIndex = 31;
             pBackup.Visible = false;
-            // 
-            // button1
-            // 
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft Sans Serif", 16F);
-            button1.ForeColor = Color.Black;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(186, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(152, 74);
-            button1.TabIndex = 27;
-            button1.Text = "Restaurar";
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.BackgroundImageLayout = ImageLayout.None;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Microsoft Sans Serif", 16F);
-            button3.ForeColor = Color.Black;
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(3, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(155, 73);
-            button3.TabIndex = 25;
-            button3.Text = "Descargar";
-            button3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
             // 
             // VistaMenuPpal
             // 
@@ -582,7 +542,6 @@
             pSesion.PerformLayout();
             navbarIzq.ResumeLayout(false);
             pFondo.ResumeLayout(false);
-            pBackup.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -609,16 +568,14 @@
         private Button btnNuevoProducto;
         private Button btnMostrarProductos;
         private Button btnCategorias;
-        private Button btnHistorialVentas;
         private Button btnNuevaVenta;
         private Panel pReportes;
         private Button btnNuevoReporte;
         private Panel pVentas;
         private Panel pSuperior;
         private Panel pBackup;
-        private Button button1;
-        private Button button3;
         private Panel panel6;
         private Panel pCategorias;
+        private Button button1;
     }
 }

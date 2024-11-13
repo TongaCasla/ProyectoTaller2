@@ -10,7 +10,7 @@ namespace PharmaSuite.Logica.Query
 {
     class QueryUsuario
     {
-        public Usuario bucarNombre(string nombre) 
+        public Usuario bucarNombre(string nombre)
         {
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
             Usuario us = new Usuario();
@@ -19,29 +19,18 @@ namespace PharmaSuite.Logica.Query
             return us;
         }
 
-        public Usuario buscarPorIdPers(int id) 
+        public Usuario buscarPorIdPers(int id)
         {
             DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
             return dc.Usuarios.SingleOrDefault(s => s.IdPersona.Equals(id));
 
         }
-
-
-
-        /*
-        public bool verificarPassword(Usuario usuario, string password)
+        public Usuario buscarPorId(int id)
         {
-            string hashAlmacenado = null;
-
-            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-
-                // Si no se encuentra el usuario, retorna falso
-    if (hashAlmacenado == null)
+            using (DbPharmaSuiteContext dc = new DbPharmaSuiteContext())
             {
-                return false;
+                return dc.Usuarios.SingleOrDefault(s => s.IdUsuario.Equals(id));
             }
-            //string hashIngresado = HashPassword(passwordIngresada);
-            //return hashAlmacenado == hashIngresado;
-        }*/
+        }
     }
 }

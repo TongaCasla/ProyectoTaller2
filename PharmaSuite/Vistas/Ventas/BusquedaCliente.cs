@@ -19,6 +19,7 @@ namespace PharmaSuite.Vistas
     public partial class BusquedaCliente : Form
     {
         private VentaActual VentaActual;
+        private Persona usuarioActual;
 
         public BusquedaCliente(VentaActual venta)
         {
@@ -26,10 +27,10 @@ namespace PharmaSuite.Vistas
             this.KeyPreview = true; 
             VentaActual=venta;
         }
-        public BusquedaCliente()
+        public BusquedaCliente(Persona usuarioActual)
         {
             InitializeComponent();
-
+            this.usuarioActual=usuarioActual;
         }
         private void BusquedaEnTabla_KeyDown(object sender, KeyEventArgs e)
         {
@@ -38,11 +39,7 @@ namespace PharmaSuite.Vistas
                 this.Close();  
             }
         }
-
-
-        
-        //Metodo que realiza la buqueda
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void verificarBusqueda()
         {
             Persona ps = new();
             QueryPersona qp = new();
@@ -58,7 +55,7 @@ namespace PharmaSuite.Vistas
                 return;
             }
             //Validamos que sea numero
-            if(!int.TryParse(txbBusqueda.Text, out int numero))
+            if (!int.TryParse(txbBusqueda.Text, out int numero))
             {
                 MessageBox.Show("Datos incorrectos. Por favor, ingrese un número válido",
                 "Error",
@@ -70,24 +67,43 @@ namespace PharmaSuite.Vistas
             //Validamos que sea un dni correcto (8 digitos)
             int dniPersona = int.Parse(txbBusqueda.Text);
             Validacion val = new();
-            if (!val.longitudDni(dniPersona)){
+            if (!val.longitudDni(dniPersona))
+            {
                 MessageBox.Show("Datos incorrectos. Por favor, ingrese un número de DNI válido",
                 "Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
             }
-
             if (qp.bucarDni(dniPersona) == null)
             {
                 lTablaVacia.Show();
             }
             else
             {
-                ps = qp.bucarDni(dniPersona);
+                if (this.VentaActual != null)
+                {
+                    ps = qp.bucarDni(dniPersona);
                 VentaActual.setCliente(ps);
                 this.Close();
+                }
+                else
+                {
+                ps = qp.bucarDni(dniPersona);
+                DatosPersona ds = new(ps,this.usuarioActual);
+                ds.ShowDialog();
+
+                }
             }
+        }
+
+
+
+
+        //Metodo que realiza la buqueda
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.verificarBusqueda();
 
         }
        

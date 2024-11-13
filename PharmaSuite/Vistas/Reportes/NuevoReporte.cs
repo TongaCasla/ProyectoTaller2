@@ -429,7 +429,6 @@ namespace PharmaSuite.Vistas.Reportes
         private void comboReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.desactivarOpciones();
-            this.button2_Click_1(sender, e);
         }
 
     }

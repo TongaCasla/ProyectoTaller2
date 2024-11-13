@@ -433,9 +433,10 @@
             // RBTransferencia
             // 
             RBTransferencia.AutoSize = true;
-            RBTransferencia.Location = new Point(32, 80);
+            RBTransferencia.Font = new Font("Microsoft Sans Serif", 18F);
+            RBTransferencia.Location = new Point(436, 31);
             RBTransferencia.Name = "RBTransferencia";
-            RBTransferencia.Size = new Size(94, 19);
+            RBTransferencia.Size = new Size(179, 33);
             RBTransferencia.TabIndex = 46;
             RBTransferencia.Text = "Transferencia";
             RBTransferencia.UseVisualStyleBackColor = true;
@@ -443,9 +444,10 @@
             // RBDebito
             // 
             RBDebito.AutoSize = true;
-            RBDebito.Location = new Point(32, 55);
+            RBDebito.Font = new Font("Microsoft Sans Serif", 18F);
+            RBDebito.Location = new Point(319, 31);
             RBDebito.Name = "RBDebito";
-            RBDebito.Size = new Size(60, 19);
+            RBDebito.Size = new Size(102, 33);
             RBDebito.TabIndex = 45;
             RBDebito.Text = "Débito";
             RBDebito.UseVisualStyleBackColor = true;
@@ -454,9 +456,10 @@
             // 
             RBEfectivo.AutoSize = true;
             RBEfectivo.Checked = true;
-            RBEfectivo.Location = new Point(32, 30);
+            RBEfectivo.Font = new Font("Microsoft Sans Serif", 18F);
+            RBEfectivo.Location = new Point(182, 33);
             RBEfectivo.Name = "RBEfectivo";
-            RBEfectivo.Size = new Size(67, 19);
+            RBEfectivo.Size = new Size(116, 33);
             RBEfectivo.TabIndex = 44;
             RBEfectivo.TabStop = true;
             RBEfectivo.Text = "Efectivo";
@@ -567,7 +570,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nombre, Cantidad, Precio, Subtotal, Borrar });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;

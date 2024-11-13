@@ -254,11 +254,11 @@ namespace Vistas
             this.activarBtn(sender);
             this.MostrarPanel(pBackup);
             this.limpiarFondo();
+            this.agregarNuevoForm(new BackUP(this.usuarioActual));
         }
 
         private void btnNuevaVenta_Click(object sender, EventArgs e)
         {
-            //this.agregarNuevoForm(new NuevaVenta());
             this.agregarNuevoForm(new VentaActual(this.usuarioActual));
         }
 
@@ -267,10 +267,7 @@ namespace Vistas
             this.agregarNuevoForm(new NuevoProducto());
         }
 
-        private void btnHistorialVentas_Click(object sender, EventArgs e)
-        {
-            this.agregarNuevoForm(new HistorialVentas());
-        }
+
 
         private void btnNuevaCategoria_Click(object sender, EventArgs e)
         {
@@ -285,6 +282,11 @@ namespace Vistas
         private void button3_Click(object sender, EventArgs e)
         {
             this.agregarNuevoForm(new BackUP(this.usuarioActual));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.agregarNuevoForm(new NuevaFactura());
         }
     }
 }

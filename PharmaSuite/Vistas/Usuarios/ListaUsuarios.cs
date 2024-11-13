@@ -29,9 +29,9 @@ namespace PharmaSuite.Vistas.Usuarios
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            /*
+            
            BusquedaCliente formBuscar = new(this.usuarioActual);
-           formBuscar.Show();*/
+           formBuscar.ShowDialog();
         }
         private void mostrarClientes()
         {
@@ -241,7 +241,7 @@ namespace PharmaSuite.Vistas.Usuarios
                 int dni = int.Parse(selectedRow.Cells["Dni"].Value.ToString());
                 Persona ps = cn.Personas.Where(u => u.Dni == dni).First();
                 DatosPersona dtPer = new DatosPersona(ps, usuarioActual);
-                dtPer.Show();
+                dtPer.ShowDialog();
             }
 
         }

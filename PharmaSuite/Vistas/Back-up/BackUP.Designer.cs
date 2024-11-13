@@ -28,37 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnBackUp = new Button();
-            label1 = new Label();
             label2 = new Label();
             txbRuta = new TextBox();
             btnRuta = new Button();
-            btnRutaRestore = new Button();
-            txbRestore = new TextBox();
-            label4 = new Label();
-            label5 = new Label();
-            btnRestore = new Button();
-            txtbPassGerente = new TextBox();
+            panel1 = new Panel();
+            label3 = new Label();
+            lCodigoProd = new Label();
+            panel2 = new Panel();
+            btnBackUp = new Button();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnBackUp
-            // 
-            btnBackUp.Location = new Point(16, 110);
-            btnBackUp.Name = "btnBackUp";
-            btnBackUp.Size = new Size(75, 23);
-            btnBackUp.TabIndex = 0;
-            btnBackUp.Text = "Back up";
-            btnBackUp.UseVisualStyleBackColor = true;
-            btnBackUp.Click += btnBackUp_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 41);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Ruta de guardado:";
             // 
             // label2
             // 
@@ -70,109 +50,117 @@
             // 
             // txbRuta
             // 
-            txbRuta.Location = new Point(16, 59);
+            txbRuta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            txbRuta.Font = new Font("Century Gothic", 13F);
+            txbRuta.Location = new Point(212, 75);
             txbRuta.Name = "txbRuta";
-            txbRuta.Size = new Size(261, 23);
+            txbRuta.Size = new Size(330, 29);
             txbRuta.TabIndex = 3;
             // 
             // btnRuta
             // 
-            btnRuta.Location = new Point(285, 59);
+            btnRuta.Anchor = AnchorStyles.Top;
+            btnRuta.BackColor = Color.FromArgb(187, 222, 251);
+            btnRuta.FlatStyle = FlatStyle.Flat;
+            btnRuta.Image = Properties.Resources.busqueda2;
+            btnRuta.Location = new Point(548, 76);
             btnRuta.Name = "btnRuta";
-            btnRuta.Size = new Size(32, 23);
+            btnRuta.Size = new Size(30, 28);
             btnRuta.TabIndex = 6;
-            btnRuta.Text = "*";
-            btnRuta.UseVisualStyleBackColor = true;
+            btnRuta.UseVisualStyleBackColor = false;
             btnRuta.Click += btnRuta_Click;
             // 
-            // btnRutaRestore
+            // panel1
             // 
-            btnRutaRestore.Location = new Point(703, 60);
-            btnRutaRestore.Name = "btnRutaRestore";
-            btnRutaRestore.Size = new Size(32, 23);
-            btnRutaRestore.TabIndex = 10;
-            btnRutaRestore.Text = "*";
-            btnRutaRestore.UseVisualStyleBackColor = true;
-            btnRutaRestore.Click += btnRutaRestore_Click;
+            panel1.Controls.Add(label3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(800, 87);
+            panel1.TabIndex = 13;
             // 
-            // txbRestore
+            // label3
             // 
-            txbRestore.Location = new Point(434, 60);
-            txbRestore.Name = "txbRestore";
-            txbRestore.Size = new Size(261, 23);
-            txbRestore.TabIndex = 9;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            label3.AutoSize = true;
+            label3.Font = new Font("Century Gothic", 30F);
+            label3.Location = new Point(249, 26);
+            label3.Name = "label3";
+            label3.Size = new Size(313, 49);
+            label3.TabIndex = 43;
+            label3.Text = "Nuevo backup";
             // 
-            // label4
+            // lCodigoProd
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(479, 42);
-            label4.Name = "label4";
-            label4.Size = new Size(0, 15);
-            label4.TabIndex = 8;
+            lCodigoProd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            lCodigoProd.AutoSize = true;
+            lCodigoProd.Font = new Font("Century Gothic", 20F);
+            lCodigoProd.Location = new Point(249, 39);
+            lCodigoProd.Name = "lCodigoProd";
+            lCodigoProd.Size = new Size(267, 33);
+            lCodigoProd.TabIndex = 44;
+            lCodigoProd.Text = "Ruta de guardado:";
             // 
-            // label5
+            // panel2
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(430, 42);
-            label5.Name = "label5";
-            label5.Size = new Size(89, 15);
-            label5.TabIndex = 7;
-            label5.Text = "Ruta de restore:";
+            panel2.Controls.Add(btnBackUp);
+            panel2.Controls.Add(btnRuta);
+            panel2.Controls.Add(lCodigoProd);
+            panel2.Controls.Add(txbRuta);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 87);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(800, 363);
+            panel2.TabIndex = 49;
             // 
-            // btnRestore
+            // btnBackUp
             // 
-            btnRestore.Location = new Point(434, 150);
-            btnRestore.Name = "btnRestore";
-            btnRestore.Size = new Size(75, 23);
-            btnRestore.TabIndex = 11;
-            btnRestore.Text = "Restore";
-            btnRestore.UseVisualStyleBackColor = true;
-            btnRestore.Click += btnRestore_Click;
-            // 
-            // txtbPassGerente
-            // 
-            txtbPassGerente.Font = new Font("Microsoft Sans Serif", 16F);
-            txtbPassGerente.Location = new Point(434, 103);
-            txtbPassGerente.Name = "txtbPassGerente";
-            txtbPassGerente.PasswordChar = '*';
-            txtbPassGerente.PlaceholderText = "Contraseña Gerente";
-            txtbPassGerente.Size = new Size(217, 32);
-            txtbPassGerente.TabIndex = 12;
+            btnBackUp.Anchor = AnchorStyles.Top;
+            btnBackUp.BackColor = Color.FromArgb(187, 222, 251);
+            btnBackUp.BackgroundImageLayout = ImageLayout.None;
+            btnBackUp.Cursor = Cursors.Hand;
+            btnBackUp.FlatAppearance.BorderSize = 0;
+            btnBackUp.FlatStyle = FlatStyle.Flat;
+            btnBackUp.Font = new Font("Century Gothic", 18F);
+            btnBackUp.ForeColor = Color.Black;
+            btnBackUp.Image = Properties.Resources.disco;
+            btnBackUp.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBackUp.Location = new Point(317, 118);
+            btnBackUp.Name = "btnBackUp";
+            btnBackUp.Size = new Size(166, 40);
+            btnBackUp.TabIndex = 48;
+            btnBackUp.Text = "Guardar";
+            btnBackUp.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnBackUp.UseVisualStyleBackColor = false;
+            btnBackUp.Click += btnBackUp_Click;
             // 
             // BackUP
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Azure;
             ClientSize = new Size(800, 450);
-            Controls.Add(txtbPassGerente);
-            Controls.Add(btnRestore);
-            Controls.Add(btnRutaRestore);
-            Controls.Add(txbRestore);
-            Controls.Add(label4);
-            Controls.Add(label5);
-            Controls.Add(btnRuta);
-            Controls.Add(txbRuta);
+            Controls.Add(panel2);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(btnBackUp);
+            Controls.Add(panel1);
             Name = "BackUP";
             Text = "BackUP";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button btnBackUp;
-        private Label label1;
         private Label label2;
         private TextBox txbRuta;
         private Button btnRuta;
-        private Button btnRutaRestore;
-        private TextBox txbRestore;
-        private Label label4;
-        private Label label5;
-        private Button btnRestore;
-        private TextBox txtbPassGerente;
+        private Panel panel1;
+        private Label label3;
+        private Label lCodigoProd;
+        private Panel panel2;
+        private Button btnBackUp;
     }
 }

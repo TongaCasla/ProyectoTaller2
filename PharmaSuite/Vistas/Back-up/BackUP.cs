@@ -19,8 +19,8 @@ namespace PharmaSuite.Vistas.Back_up
     {
         Persona usuarioActual;
         Usuario usuario;
-        string cadena = "Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
-        // string cadena = "Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
+       // string cadena = "Data Source=DESKTOP-RLTVHDQ\\SQLEXPRESS;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
+         string cadena = "Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True";
         string backupPath;
 
         public BackUP(Persona usuario)
@@ -74,53 +74,5 @@ namespace PharmaSuite.Vistas.Back_up
 
         }
 
-        private void btnRutaRestore_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog dialogo = new OpenFileDialog())
-            {
-                // Mostrar el cuadro de diálogo para que el usuario seleccione una carpeta
-                if (dialogo.ShowDialog() == DialogResult.OK)
-                {
-                    txbRestore.Text = dialogo.FileName;
-                }
-            }
-        }
-
-        private void btnRestore_Click(object sender, EventArgs e)
-        {
-            string passGerente;
-            using (DbPharmaSuiteContext dc = new DbPharmaSuiteContext())
-            {
-                passGerente = dc.Usuarios.Single(u => u.IdUsuario.Equals(2)).Pass;
-            }
-            if (passGerente== txtbPassGerente.Text) 
-            {
-                using (SqlConnection cn = new SqlConnection(this.cadena))
-                {
-                    cn.Open();
-              
-                    string restorepath = txbRestore.Text;
-                    string query = $"RESTORE DATABASE [db_PharmaSuite] FROM DISK = '{restorepath}' WITH REPLACE";
-                    
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.ExecuteNonQuery();
-                    cn.Close();
-
-                    MessageBox.Show("Se realizo el restore de la base de datos",
-                    "Aceptar",
-                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                }
-
-            }
-            else 
-            {
-                MessageBox.Show("Contraseña incorrecta",
-                "Aceptar",
-                 MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
-        }
     }
 }
