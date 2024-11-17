@@ -170,6 +170,28 @@ BEGIN
 	inner join categoria c on p.id_categoria = c.id_categoria
 END;
 
+--Listado de ventas
+CREATE PROCEDURE ListadoTodasVentas
+AS
+BEGIN
+	SELECT
+	v.id_venta as 'Nro Venta',
+	concat(p.nombre,' ',p.apellido) as 'Nombre Vendedor',
+	concat(c.nombre,' ',c.apellido) as 'Nombre Cliente',
+	FORMAT(v.total,'C','es-AR') as 'Total venta',
+	f.forma as 'Forma de pago',
+	FORMAT(v.fecha_vta, 'dd-MM-yyyy HH:mm') as 'Fecha de venta'
+	FROM persona p
+	/*Traemos los datos del empleado que realizó la venta*/
+	inner join usuario u on u.id_persona = p.id_persona
+	/*Traemos los datos de la venta*/
+	inner join venta v on v.id_usuario = u.id_usuario
+	/*Traemos la forma de pago*/
+	inner join forma_pago f on v.id_formapago = f.id_forma_pago
+	/*Traemos los datos del cliente que realizó la compra*/
+	inner join persona c on v.cliente = c.id_persona
+END;
+
 --Ventas por empleado
 CREATE PROCEDURE ListaVentasEmpleado
 AS
