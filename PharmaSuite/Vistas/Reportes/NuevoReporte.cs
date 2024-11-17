@@ -64,7 +64,7 @@ namespace PharmaSuite.Vistas.Reportes
                         break;
                     }
                 //Administrador
-                case 4:
+                case 3:
                     {
                         comboReporte.Items.Add("Margen de ganancia");
                         comboReporte.Items.Add("Recaudación mensual");
@@ -73,7 +73,7 @@ namespace PharmaSuite.Vistas.Reportes
                         break;
                     }
                 //Gerente
-                case 3:
+                case 4:
                     {
                         comboReporte.Items.Add("Lista de clientes");
                         comboReporte.Items.Add("Lista de empleados activos");

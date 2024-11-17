@@ -36,8 +36,8 @@ namespace PharmaSuite
             t.IdPersona = 1;
             
             //Fin codigo test
-            //Application.Run(new VistaLogin());
-            Application.Run(new VistaMenuPpal(p));
+            Application.Run(new VistaLogin());
+            //Application.Run(new VistaMenuPpal(p));
 
         }
        

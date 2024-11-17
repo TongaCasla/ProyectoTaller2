@@ -16,11 +16,12 @@ using System.Globalization;
 using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using iText.Html2pdf;
+using System.Reflection;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 // Formato de moneda de Argentina
 
@@ -270,7 +271,7 @@ namespace PharmaSuite.Vistas.Ventas
                  MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-                //this.generarFactura(idventa);
+                this.generarFactura(idventa);
             }
         }
 
@@ -278,13 +279,13 @@ namespace PharmaSuite.Vistas.Ventas
         {
             NuevoUsuario nuevoUsuario = new NuevoUsuario(this, false);
             nuevoUsuario.Text = "Nuevo cliente";
-            nuevoUsuario.Show();
+            nuevoUsuario.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             BusquedaCliente busqueda = new(this);
-            busqueda.Show();
+            busqueda.ShowDialog();
             if (clienteVenta != null)
             {
                 CKBConsumidorFinal.Enabled = false;
@@ -315,63 +316,133 @@ namespace PharmaSuite.Vistas.Ventas
             return i;
         }
 
-        /*
+
         private void generarFactura(int idventa)
         {
-            DbPharmaSuiteContext dc = new DbPharmaSuiteContext();
-            SaveFileDialog factura= new SaveFileDialog();
-            string nombreArchivo = idventa.ToString()+"-"+ DateTime.Now.ToString("ddMMyyyyHHmmss");
-            factura.FileName = string.Format("{0}.pdf",nombreArchivo);
+            QueryVenta qv = new();
+            Venta v = qv.buscarPorID(idventa);
+            // Obtener la fecha y hora actual según nuestro formato
+            string fechaActual = v.FechaVta.ToString();
+                //string horaActual = DateTime.Now.ToString("h.mm.ss tt").Replace(" p.m.", " PM").Replace(" a.m.", " AM");
 
-            string PlantillaHTML = Properties.Resources.Factura;
-            string cliente = this.clienteVenta.Nombre + " " + this.clienteVenta.Apellido;
-            PlantillaHTML = PlantillaHTML.Replace("@CLIENTE",cliente);
-            PlantillaHTML = PlantillaHTML.Replace("@DOCUMENTO", this.clienteVenta.Dni.ToString());
-            PlantillaHTML = PlantillaHTML.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
-
-            string filas = string.Empty;
-            decimal total = 0;
-            foreach (VentaDetalle vd in this.listaVentaDetalle)
-            {
-                Producto prod= dc.Productos.First(d => d.CodBarra.Equals(vd.CodBarra));
-                filas += "<tr>";
-                filas += "<td>" + prod.NombreProd + "</td>";
-                filas += "<td>" + vd.Cantidad.ToString() + "</td>";
-                filas += "<td>" + prod.PrecioVenta.ToString() + "</td>";
-                filas += "<td>" + vd.Subtotal + "</td>";
-                filas += "</tr>";
-                total += decimal.Parse(vd.Subtotal.ToString());
-            }
-            PlantillaHTML = PlantillaHTML.Replace("@FILAS", filas);
-            PlantillaHTML = PlantillaHTML.Replace("@TOTAL", total.ToString());
-            PlantillaHTML = PlantillaHTML.Replace("@idventa",idventa.ToString());
-
-
-            if (factura.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(factura.FileName, FileMode.Create))
+                // Crear el documento PDF
+                iTextSharp.text.Document pdfDoc = new(PageSize.A4, 10f, 10f, 10f, 10f);
+                try
                 {
-                    
-                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+                    // Seleccionar la ruta y el nombre del archivo PDF
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
+                    saveFileDialog.FileName = "PharmaSuite-Factura-Nro" + idventa + ".pdf";
 
-                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                    pdfDoc.Open();
-                    pdfDoc.Add(new Phrase(""));
-
-                    using (StringReader sr = new StringReader(PlantillaHTML))
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                        // Crear un writer para escribir el archivo PDF
+                        iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, new FileStream(saveFileDialog.FileName, FileMode.Create));
+
+                        // Abrir el documento para añadir contenido
+                        pdfDoc.Open();
+
+                        // Crear una tabla con 2 columnas para el encabezado
+                        PdfPTable table = new PdfPTable(2);
+                        table.WidthPercentage = 100; // Ancho al 100% del documento
+                        float[] columnWidths = { 2f, 3f }; // Definir el ancho de las columnas (relación 2:3)
+                        table.SetWidths(columnWidths);
+
+                        // 1. Cargar y agregar la imagen (logo)
+                        using (Stream inputStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PharmaSuite.Vistas.Reportes.logo.png"))
+                        {
+                            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(inputStream);
+                            //logo.ScaleToFit(222f, 112.5f); // Ajustar tamaño de la imagen
+                            logo.ScaleToFit(200f, 100f); // Ajustar tamaño de la imagen
+                            logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
+                            PdfPCell imageCell = new PdfPCell(logo);
+                            imageCell.Border = PdfPCell.NO_BORDER; // Sin borde
+                            imageCell.VerticalAlignment = Element.ALIGN_MIDDLE; // Alinear verticalmente
+                            table.AddCell(imageCell); // Agregar la celda con la imagen a la tabla
+                        }
+
+                        // 2. Crear el texto alineado a la derecha
+                        // Usamos un Paragraph con frases en negrita para simular lo que se muestra en la imagen
+                        iTextSharp.text.Paragraph text = new();
+                        text.Add(new Chunk("Factura Nro: " + idventa + "\n", FontFactory.GetFont("Arial", "24", Font.Bold)));
+                        text.Add(new Chunk("Razón social: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk("PharmaSuite C.A\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("Domicilio comercial: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk("Santa Fe 4500 - Corrientes, Corrientes\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("Teléfono: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk("3795 152229\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("\nFecha: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk(fechaActual + "\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("Nombre empleado: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk(usuarioActual.Nombre.ToString() + " " + usuarioActual.Apellido.ToString() + "\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("Nombre Cliente: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk(clienteVenta.Nombre.ToString() + " " + clienteVenta.Apellido.ToString() + "\n", FontFactory.GetFont("Arial", 12)));
+                    text.Add(new Chunk("DNI Cliente: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    text.Add(new Chunk(clienteVenta.Dni.ToString() + "\n", FontFactory.GetFont("Arial", 12)));
+
+
+                    text.Add(new Chunk("Forma de pago: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                    string formaDePago = "";
+                    if (this.formaPago() == 1)
+                    {
+                        formaDePago = "Efectivo";
                     }
+                    else if (v.IdFormapago == 2)
+                    {
+                        formaDePago = "Débito";
+                    }
+                    else
+                    {
+                        formaDePago = "Transferencia";
+                    }
+                    text.Add(new Chunk(formaDePago + "\n", FontFactory.GetFont("Arial", 12)));
+                        text.Add(new Chunk("Total: ", FontFactory.GetFont("Arial", "18", Font.Bold)));
+                        text.Add(new Chunk(totalVenta.Text + "\n", FontFactory.GetFont("Arial", 12)));
 
-                    pdfDoc.Close();
-                    stream.Close();
+
+                        PdfPCell textCell = new PdfPCell(text);
+                        textCell.Border = PdfPCell.NO_BORDER; // Sin borde
+                        textCell.HorizontalAlignment = Element.ALIGN_LEFT; // Alineación horizontal a la izquierda
+                        textCell.VerticalAlignment = Element.ALIGN_MIDDLE; // Alinear verticalmente
+                        table.AddCell(textCell); // Agregar la celda con el texto a la tabla
+                        table.SpacingAfter = 25f;
+                        // 3. Añadir la tabla completa al documento
+                        pdfDoc.Add(table);
+
+                        // Crear una tabla PDF con el número de columnas necesarias
+                        PdfPTable pdfTable = new PdfPTable(4);
+                    //Creamos los header que usaremos
+                    PdfPCell headerNombre = new PdfPCell(new Phrase("Nombre Producto"));
+                    PdfPCell headerCantidad = new PdfPCell(new Phrase("Cantidad"));
+                    PdfPCell headerPrecio = new PdfPCell(new Phrase("Precio"));
+                    PdfPCell headerSubtotal = new PdfPCell(new Phrase("Subtotal"));
+                    pdfTable.AddCell(headerNombre);
+                    pdfTable.AddCell(headerCantidad);
+                    pdfTable.AddCell(headerPrecio);
+                    pdfTable.AddCell(headerSubtotal);
+                    QueryProducto qp = new();
+                    // Añadir las filas de la venta a la tabla
+                    foreach (VentaDetalle venta in listaVentaDetalle)
+                        {
+                        Producto p = qp.buscarCodBarra(venta.CodBarra);
+                          pdfTable.AddCell(p.NombreProd.ToString());
+                          pdfTable.AddCell(venta.Cantidad.ToString());
+                          pdfTable.AddCell(p.PrecioVenta.ToString());
+                          pdfTable.AddCell(venta.Subtotal.ToString());
+                        }
+                        pdfDoc.Add(pdfTable);
+                        // Cerrar el documento
+                        pdfDoc.Close();
+                        // Mostrar el mensaje de éxito
+                        MessageBox.Show("Factura guardado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-
+                catch (Exception ex)
+                {
+                    // Manejar el error
+                    MessageBox.Show("Error al generar el PDF: " + ex.Message);
+                }
             }
         }
-        */
-
-
-    }
-
+        
 }

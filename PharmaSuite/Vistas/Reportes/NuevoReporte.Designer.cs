@@ -93,12 +93,11 @@
             dateFin.Font = new Font("Century Gothic", 15.75F);
             dateFin.Format = DateTimePickerFormat.Short;
             dateFin.Location = new Point(494, 87);
-            dateFin.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             dateFin.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             dateFin.Name = "dateFin";
             dateFin.Size = new Size(154, 33);
             dateFin.TabIndex = 46;
-            dateFin.Value = new DateTime(2024, 11, 2, 0, 0, 0, 0);
+            dateFin.Value = new DateTime(2024, 11, 13, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -115,7 +114,6 @@
             dateInicio.Font = new Font("Century Gothic", 15.75F);
             dateInicio.Format = DateTimePickerFormat.Short;
             dateInicio.Location = new Point(294, 87);
-            dateInicio.MaxDate = new DateTime(2024, 11, 2, 0, 0, 0, 0);
             dateInicio.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             dateInicio.Name = "dateInicio";
             dateInicio.Size = new Size(154, 33);
