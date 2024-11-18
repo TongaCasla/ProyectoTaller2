@@ -34,14 +34,10 @@ namespace PharmaSuite.Vistas.Back_up
             {
                 this.backupPath = txbRuta.Text.ToString() + @"\Back_Up_" + DateTime.Now.ToString("ddMMyyyyHHmmss");
                 string query = $"BACKUP DATABASE [db_Pharmasuite] TO DISK = '{backupPath}'";
-
-                string q = query;
-                MessageBox.Show(q);
-                //dc.Database.ExecuteSqlRaw(query);
+                dc.Database.ExecuteSqlRaw(query);
 
             }
-            //this.registroBackup();
-            //MessageBox.Show("Se realizó correctamente el back up");
+            MessageBox.Show("Se realizó correctamente el back up");
 
         }
 
@@ -56,26 +52,5 @@ namespace PharmaSuite.Vistas.Back_up
                 }
             }
         }
-
-        private void registroBackup()
-        {
-            QueryUsuario queryUsuario = new QueryUsuario();
-            using (SqlConnection cn = new SqlConnection(this.cadena))
-            {
-                cn.Open();
-                /* this.usuario = queryUsuario.buscarPorIdPers(this.usuarioActual.IdPersona);
-                   string query = "INSERT INTO registro_backup (id_usuario,ruta_guardado)" +
-                     "VALUES ("+this.usuario.IdUsuario+","+ txbRuta.Text.ToString()+")";
-                 */
-                string query = "INSERT INTO registro_buckup (id_usuario,ruta_guardado)" +
-                    "VALUES (" + 1 + ",'" + this.backupPath + "')";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.ExecuteNonQuery();
-                cn.Close();
-
-            }
-
-        }
-
     }
 }
