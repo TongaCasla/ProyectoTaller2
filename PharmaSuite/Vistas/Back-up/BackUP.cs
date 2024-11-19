@@ -34,9 +34,6 @@ namespace PharmaSuite.Vistas.Back_up
             {
                 this.backupPath = txbRuta.Text.ToString() + @"\Back_Up_" + DateTime.Now.ToString("ddMMyyyyHHmmss");
                 string query = $"BACKUP DATABASE [db_Pharmasuite] TO DISK = '{backupPath}'";
-
-                string q = query;
-                MessageBox.Show(q);
                 dc.Database.ExecuteSqlRaw(query);
 
             }
@@ -55,6 +52,5 @@ namespace PharmaSuite.Vistas.Back_up
                 }
             }
         }
-
     }
 }
