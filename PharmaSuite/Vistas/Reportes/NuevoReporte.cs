@@ -40,7 +40,10 @@ namespace PharmaSuite.Vistas.Reportes
 
         private void desactivarOpciones()
         {
-            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha" || this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion")
+            if (this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasPorFecha" || this.verificarReporte(comboReporte.SelectedItem.ToString()) == "Recaudacion" ||
+                this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasIndividual" ||
+                this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasEmpleado" ||
+                this.verificarReporte(comboReporte.SelectedItem.ToString()) == "ListaVentasEmpleado")
             {
                 dateInicio.Enabled = true;
                 dateFin.Enabled = true;
@@ -134,7 +137,7 @@ namespace PharmaSuite.Vistas.Reportes
                     }
                 case "Ventas realizadas":
                     {
-                        this.cargarReporteConParametro(this.verificarReporte(comboReporte.SelectedItem.ToString()), usuarioActual);
+                        this.cargarReporteConParametroFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), usuarioActual,fechaInicio,fechaFin);
                         break;
                     }
 
@@ -142,6 +145,11 @@ namespace PharmaSuite.Vistas.Reportes
                     {
                         this.cargarReporteConFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), fechaInicio, fechaFin);
 
+                        break;
+                    }
+                case "Ventas por empleado":
+                    {
+                        this.cargarReporteConParametroFecha(this.verificarReporte(comboReporte.SelectedItem.ToString()), usuarioActual, fechaInicio, fechaFin);
                         break;
                     }
 
@@ -173,6 +181,49 @@ namespace PharmaSuite.Vistas.Reportes
             };
 
             return acceso;
+
+        }
+        private void cargarReporteConParametroFecha(string procedimientoSeleccionado, Persona p, string fechaInicio, string fechaFin)
+        {
+            this.reporteActual = procedimientoSeleccionado;
+            lreporte.Hide();
+            dataGridView1.Show();
+            using (SqlConnection conn = new SqlConnection("Data Source=CARLOS\\SQLEXPRESS01;Initial Catalog=db_PharmaSuite;Integrated Security=True;TrustServerCertificate=True"))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Crear un SqlCommand para ejecutar el procedimiento almacenado
+                    using (SqlCommand cmd = new SqlCommand(procedimientoSeleccionado, conn))
+                    {
+                        QueryUsuario qu = new();
+                        Usuario u = qu.buscarPorIdPers(p.IdPersona);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id_usuario", u.IdUsuario);
+                        cmd.Parameters.AddWithValue("@fecha_inicio", fechaInicio);
+                        cmd.Parameters.AddWithValue("@fecha_fin", fechaFin);
+
+
+                        // Crear un SqlDataAdapter para llenar el DataTable con los datos
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                        // Crear un DataTable para almacenar los resultados
+                        DataTable dt = new DataTable();
+
+                        // Llenar el DataTable con los resultados del procedimiento almacenado
+                        da.Fill(dt);
+
+                        // Asignar el DataTable como el origen de datos del DataGridView
+                        dataGridView1.DataSource = dt;
+                        dataGridView1.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
 
         }
 
